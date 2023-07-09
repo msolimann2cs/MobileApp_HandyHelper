@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -22,71 +23,330 @@
                 android:background="@drawable/white_round_container"
                 android:orientation="vertical">
 <LinearLayout
-    android:layout_marginTop="70dp"
+    android:layout_marginTop="75dp"
     android:layout_gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:orientation="horizontal">
     <TextView
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/button_style1"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="John Doe"
+        android:text="Maya Len"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
     <TextView
+        android:background="@drawable/button_style1"
+        android:layout_marginLeft="20dp"
         android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="4.95"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
 </LinearLayout>
-                <TextView
-                    android:paddingLeft="20dp"
-                    android:layout_gravity="center"
+                <LinearLayout
+                    android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Profile"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+                    <TextView
+                        android:background="@drawable/button_style1"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/button_style1"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wallet"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/button_style_1_selected"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+<!--                <TextView-->
+<!--                    android:background="@drawable/button_style1"-->
+<!--                    android:paddingLeft="20dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="View Profile"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textSize="24sp" />-->
 
 <LinearLayout
-    android:paddingTop="20dp"
+    android:paddingTop="35dp"
     android:layout_gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
-
-    <Button
-        android:textColor="@color/black"
-        android:background="@drawable/button_style1"
+    <LinearLayout
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:text="Settings" />
-
-    <Button
-        android:textColor="@color/black"
-        android:background="@drawable/button_style1"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style2"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Info"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3.5dp"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:text="Wallet" />
-
-    <Button
-        android:textColor="@color/black"
-        android:background="@drawable/button_style1"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style3"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Credit Cards"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3.5dp"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:text="Customer Service" />
-
-    <Button
-        android:textColor="@color/black"
-        android:background="@drawable/button_style1"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style3"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3.5dp"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:text="About App" />
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style3"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3.5dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style3"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Language"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3.5dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style3"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="3.5dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_style4"
+        >
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+
+
+<!--    <Button-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@drawable/button_style1"-->
+<!--        android:layout_width="320dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Settings" />-->
+
+<!--    <Button-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@drawable/button_style1"-->
+<!--        android:layout_width="320dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Wallet" />-->
+
+<!--    <Button-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@drawable/button_style1"-->
+<!--        android:layout_width="320dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Customer Service" />-->
+
+<!--    <Button-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@drawable/button_style1"-->
+<!--        android:layout_width="320dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="About App" />-->
 
 
 
@@ -129,14 +389,20 @@
 
 
 
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/circular_profile"
+                app:strokeWidth="2dp"
+                app:strokeColor="#D9D9D9"
+                android:layout_marginTop="5dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/circle_background"
                 android:padding="10dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/profile_photo_demo"
+                android:scaleType="centerCrop" />
+
+
 
 
         </FrameLayout>
