@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2D4059"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/signup_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
+        android:gravity="center"
+        android:scaleType="center"
+        app:srcCompat="@drawable/signup" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="326dp"
+            android:layout_height="54dp"
+            android:ems="10"
+            android:textSize="15sp"
+            android:hint="   Username"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:layout_gravity="center_horizontal" />
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="326dp"
+            android:layout_height="54dp"
+            android:ems="10"
+            android:textSize="15sp"
+            android:hint="   Enter your email"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="326dp"
+            android:layout_height="54dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:ems="10"
+            android:textSize="15sp"
+            android:hint="   Enter your password"
+            android:layout_marginBottom="15dp"
+            android:inputType="textPassword"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <EditText
+            android:id="@+id/editTextConfPassword"
+            android:layout_width="326dp"
+            android:layout_height="54dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:ems="10"
+            android:textSize="15sp"
+            android:hint="   Confirm password"
+            android:layout_marginBottom="15dp"
+            android:inputType="textPassword"
+            android:layout_gravity="center_horizontal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="15dp">
+            <AutoCompleteTextView
+                android:id="@+id/gender"
+                android:layout_width="153dp"
+                android:layout_height="54dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:ems="10"
+                android:textSize="15sp"
+                android:hint="   Gender" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="153dp"
+                android:layout_height="54dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:ems="10"
+                android:textSize="15sp"
+                android:hint="   Birth"
+                android:layout_marginLeft="20dp"
+                android:inputType="date" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="326dp"
+            android:layout_height="54dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:ems="10"
+            android:textSize="15sp"
+            android:hint="   National ID"
+            android:layout_marginBottom="10dp"
+            android:inputType="number"
+            android:layout_gravity="center_horizontal"/>
+        <Button
+            android:id="@+id/Reg"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#F9AC0C"
+            android:text="Register"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="0dp"
+                android:text="Already have an account? "
+                android:textAlignment="viewEnd"
+                android:textColor="#2D4059"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/Signin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign in"
+                android:textColor="#F9AC0C"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
