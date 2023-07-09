@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/navy_blue">
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/white_round_container"
+                android:orientation="vertical">
+<LinearLayout
+    android:layout_marginTop="70dp"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John Doe"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+    <TextView
+        android:paddingLeft="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.95"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+</LinearLayout>
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Profile"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+<LinearLayout
+    android:paddingTop="20dp"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:textColor="@color/black"
+        android:background="@drawable/button_style1"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Settings" />
+
+    <Button
+        android:textColor="@color/black"
+        android:background="@drawable/button_style1"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Wallet" />
+
+    <Button
+        android:textColor="@color/black"
+        android:background="@drawable/button_style1"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Customer Service" />
+
+    <Button
+        android:textColor="@color/black"
+        android:background="@drawable/button_style1"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="About App" />
+
+
+
+</LinearLayout>
+
+
+
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_style1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Home" />
+
+                    <Button
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_style1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Activity" />
+
+                    <Button
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_style1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Profile" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_background"
+                android:padding="10dp"
+                android:src="@drawable/logo" />
+
+
+        </FrameLayout>
+
+</LinearLayout>
