@@ -3,4 +3,7 @@
     <style name="circular_profile">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="square_item_pic">
+        <item name="cornerSize">10%</item>
+    </style>
 </resources>

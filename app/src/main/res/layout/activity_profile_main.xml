@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/navy_blue">
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/white_round_container"
+                android:orientation="vertical">
+<LinearLayout
+    android:layout_marginTop="75dp"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:orientation="horizontal">
+    <TextView
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/button_style1"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maya Len"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+    <TextView
+        android:background="@drawable/button_style1"
+        android:layout_marginLeft="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="4.95"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+</LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/profile_tab"
+                        android:background="@drawable/button_style_1_selected"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/wallet_tab"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/button_style1"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wallet"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/settings_tab"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/button_style1"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="About Me"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hi! I am Maya! \nPassionate and always ready to help!"
+
+                    android:lineSpacingExtra="4dp"
+                    android:gravity="start|top"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Categories"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:background="@drawable/button_style1"
+                        android:layout_marginLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Car"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="start|top"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:background="@drawable/button_style1"
+                        android:layout_marginLeft="10dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gardening"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="start|top"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:background="@drawable/button_style1"
+                        android:layout_marginLeft="30dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pet Care"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="start|top"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:background="@drawable/button_style1"
+                        android:layout_marginLeft="10dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transportaion"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="start|top"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Location"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Cairo"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    />
+
+                <Button
+                    android:layout_marginTop="85dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:background="@drawable/button_style_1_selected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Profile"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    >
+
+                </Button>
+
+
+
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_style1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Home" />
+
+                    <Button
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_style1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Activity" />
+
+                    <Button
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_style1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:text="Profile" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/circular_profile"
+                app:strokeWidth="2dp"
+                app:strokeColor="#D9D9D9"
+                android:layout_marginTop="5dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_background"
+                android:padding="10dp"
+                android:src="@drawable/profile_photo_demo"
+                android:scaleType="centerCrop" />
+
+
+
+
+        </FrameLayout>
+
+</LinearLayout>

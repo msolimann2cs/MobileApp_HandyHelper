@@ -28,7 +28,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Profile"
+            android:name=".ProfileMain"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileWallet"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileSettings"
             android:exported="false" />
     </application>
 

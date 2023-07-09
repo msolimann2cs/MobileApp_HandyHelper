@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/navy_blue">
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/white_round_container"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_marginTop="75dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:background="@drawable/button_style1"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maya Len"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:background="@drawable/button_style1"
+                        android:layout_marginLeft="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="4.95"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/profile_tab"
+                        android:background="@drawable/button_style1"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/wallet_tab"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/button_style_1_selected"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wallet"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/settings_tab"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/button_style1"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Available Credit"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EGP 346"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recent transactions"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="June 2023"
+                    android:textSize="13sp"
+                    android:textColor="@color/grey"
+                    />
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/square_item_pic"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="#D9D9D9"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/circle_background"
+                        android:padding="10dp"
+                        android:src="@drawable/home_item"
+                        android:scaleType="centerCrop" />
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Car Wash Service"
+                            android:textColor="@color/black"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Car Category"
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                />
+                            <TextView
+                                android:layout_marginLeft="130dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="150 EGP"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                            <TextView
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yesterday"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/square_item_pic"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="#D9D9D9"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/circle_background"
+                        android:padding="10dp"
+                        android:src="@drawable/home_item"
+                        android:scaleType="centerCrop" />
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Car Wash Service"
+                            android:textColor="@color/black"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Car Category"
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                />
+                            <TextView
+                                android:layout_marginLeft="130dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="150 EGP"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                            <TextView
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yesterday"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/square_item_pic"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="#D9D9D9"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/circle_background"
+                        android:padding="10dp"
+                        android:src="@drawable/home_item"
+                        android:scaleType="centerCrop" />
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Car Wash Service"
+                            android:textColor="@color/black"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Car Category"
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                />
+                            <TextView
+                                android:layout_marginLeft="130dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="150 EGP"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                            <TextView
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yesterday"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal"
+                    >
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/square_item_pic"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="#D9D9D9"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/circle_background"
+                        android:padding="10dp"
+                        android:src="@drawable/home_item"
+                        android:scaleType="centerCrop" />
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Car Wash Service"
+                            android:textColor="@color/black"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Car Category"
+                                android:textColor="@color/black"
+                                android:textSize="11sp"
+                                />
+                            <TextView
+                                android:layout_marginLeft="130dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="150 EGP"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                            <TextView
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yesterday"
+                                android:textSize="11sp"
+                                android:textColor="@color/selected"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_style1"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="Home" />
+
+                <Button
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_style1"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="Activity" />
+
+                <Button
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_style1"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="Profile" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearanceOverlay="@style/circular_profile"
+            app:strokeWidth="2dp"
+            app:strokeColor="#D9D9D9"
+            android:layout_marginTop="5dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/circle_background"
+            android:padding="10dp"
+            android:src="@drawable/profile_photo_demo"
+            android:scaleType="centerCrop" />
+
+
+
+
+    </FrameLayout>
+
+</LinearLayout>
