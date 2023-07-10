@@ -13,32 +13,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.imageview.ShapeableImageView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProfileWallet extends AppCompatActivity{
     private ListView listView;
-    ShapeableImageView Homebtn;
-
     private ArrayAdapter<LinearLayout> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_wallet);
-        Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
-
-        Homebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileWallet.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
 
 // Change status bar color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -154,15 +154,8 @@ public class ProfileMain extends AppCompatActivity{
         category_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout parentLayout = findViewById(R.id.parent_layout);
-                FrameLayout overlayLayout;
-                // Start FullscreenImageActivity and pass the image data
-//                Intent intent = new Intent(ProfileMain.this, EnlargedProfilePicture.class);
-//                intent.putExtra("imageResId", R.drawable.profile_photo_demo); // Pass the image resource ID or other image data
-//                startActivity(intent);
-//                overlayLayout = createOverlayLayout(); // Create the overlay layout programmatically
-//                parentLayout.addView(overlayLayout);
-                showCategory();
+                if(category_edit)
+                    showCategory();
             }
         });
         category_button2.setOnClickListener(new View.OnClickListener() {

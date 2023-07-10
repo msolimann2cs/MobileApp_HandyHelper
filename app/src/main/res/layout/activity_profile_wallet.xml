@@ -447,7 +447,7 @@
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/circle_background"
                         android:padding="10dp"
-                        android:src="@drawable/profile_icon"
+                        android:src="@drawable/profile_icon_selected"
                         android:scaleType="centerCrop" />
 
                 </FrameLayout>
@@ -458,6 +458,7 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_picture"
             app:shapeAppearanceOverlay="@style/circular_profile"
             app:strokeWidth="2dp"
             app:strokeColor="#D9D9D9"

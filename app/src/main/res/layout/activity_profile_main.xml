@@ -314,7 +314,7 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/circle_background"
                             android:padding="10dp"
-                            android:src="@drawable/profile_icon"
+                            android:src="@drawable/profile_icon_selected"
                             android:scaleType="centerCrop" />
 
                     </FrameLayout>

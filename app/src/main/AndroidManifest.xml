@@ -49,6 +49,15 @@
             android:name=".ProfileSettings"
             android:exported="false" />
         <activity
+            android:name=".AccountInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSupportMain"
+            android:exported="false" />
+        <activity
             android:name=".EnlargedProfilePicture"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
     </application>
