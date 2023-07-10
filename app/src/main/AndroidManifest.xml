@@ -39,6 +39,10 @@
         <activity
             android:name=".ProfileSettings"
             android:exported="false" />
+        <activity
+            android:name=".EnlargedProfilePicture"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
     </application>
+
 
 </manifest>

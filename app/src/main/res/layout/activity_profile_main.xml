@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/navy_blue">
+    android:background="@color/navy_blue"
+    android:id="@+id/parent_layout"
+    >
+
 
 
 
@@ -98,6 +101,7 @@
 
 
                 <TextView
+                    android:id="@+id/about_me"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
@@ -108,17 +112,19 @@
                     android:textColor="@color/black"
                     />
                 <TextView
+                    android:maxLines="3"
+                    android:scrollHorizontally="false"
+                    android:id="@+id/about_me_desc"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hi! I am Maya! \nPassionate and always ready to help!"
-
+                    android:textColor="@android:color/black"
                     android:lineSpacingExtra="4dp"
                     android:gravity="start|top"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
                     />
                 <TextView
                     android:layout_marginLeft="20dp"
@@ -131,13 +137,18 @@
                     android:textColor="@color/black"
                     />
                 <LinearLayout
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:id="@+id/categories"
                     android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
                         android:background="@drawable/button_style1"
-                        android:layout_marginLeft="20dp"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="5dp"
@@ -168,13 +179,18 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:id="@+id/categories_line2"
                     android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
                         android:background="@drawable/button_style1"
-                        android:layout_marginLeft="30dp"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="5dp"
@@ -215,6 +231,7 @@
                     android:textColor="@color/black"
                     />
                 <TextView
+                    android:id="@+id/location"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
@@ -225,6 +242,7 @@
                     />
 
                 <Button
+                    android:id="@+id/edit_profile"
                     android:layout_marginTop="85dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
@@ -278,6 +296,7 @@
 
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profile_picture"
                 app:shapeAppearanceOverlay="@style/circular_profile"
                 app:strokeWidth="2dp"
                 app:strokeColor="#D9D9D9"
