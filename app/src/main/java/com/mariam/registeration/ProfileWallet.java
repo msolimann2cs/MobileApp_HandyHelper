@@ -6,12 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ProfileWallet extends AppCompatActivity{
+    private ListView listView;
+    private ArrayAdapter<LinearLayout> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +50,49 @@ public class ProfileWallet extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        listView = findViewById(R.id.list_view);
+
+        // Create an array or list of LinearLayouts to be displayed
+        List<LinearLayout> linearLayouts = new ArrayList<>();
+
+        // Add your LinearLayouts to the list
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        linearLayouts.add(createLinearLayout());
+        // ...
+
+        // Create the custom adapter with the list of LinearLayouts
+        adapter = new LinearLayoutAdapter(this, linearLayouts);
+
+        // Set the adapter for the ListView
+        listView.setAdapter(adapter);
+
+
+
     }
+
+
+    private LinearLayout createLinearLayout() {
+        // Create a new LinearLayout programmatically
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+
+        // Add your desired views and content to the LinearLayout
+        // ...
+
+        return linearLayout;
+    }
+
+
 }

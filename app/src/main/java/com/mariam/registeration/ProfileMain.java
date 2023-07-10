@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
 
 
@@ -138,6 +139,7 @@ public class ProfileMain extends AppCompatActivity{
 
         LinearLayout category_button1 = findViewById(R.id.categories);
         LinearLayout category_button2 = findViewById(R.id.categories_line2);
+        TextView location_button = findViewById(R.id.location);
         category_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,8 +149,24 @@ public class ProfileMain extends AppCompatActivity{
 //                Intent intent = new Intent(ProfileMain.this, EnlargedProfilePicture.class);
 //                intent.putExtra("imageResId", R.drawable.profile_photo_demo); // Pass the image resource ID or other image data
 //                startActivity(intent);
-                overlayLayout = createOverlayLayout(); // Create the overlay layout programmatically
-                parentLayout.addView(overlayLayout);
+//                overlayLayout = createOverlayLayout(); // Create the overlay layout programmatically
+//                parentLayout.addView(overlayLayout);
+                showCategory();
+            }
+        });
+        category_button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(category_edit)
+                    showCategory();
+            }
+        });
+
+        location_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(location_edit)
+                    showLocation();
             }
         });
 
@@ -171,22 +189,35 @@ public class ProfileMain extends AppCompatActivity{
     }
 
     private FrameLayout createOverlayLayout() {
-        //LinearLayout parentLayout = findViewById(R.id.parent_layout);
+        LinearLayout rootLayout = findViewById(R.id.parent_layout); // Replace `root_layout` with the ID of your root layout
         LayoutInflater inflater = LayoutInflater.from(this);
-        FrameLayout overlayLayout = (FrameLayout) inflater.inflate(R.layout.activity_category_edit, null);
+        FrameLayout overlayLayout = (FrameLayout) inflater.inflate(R.layout.activity_category_edit, rootLayout, false);
 
-        // Customize the overlay layout and its contents programmatically if needed
+        overlayLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle clicks on the overlay layout (e.g., to dismiss the overlay)
+                rootLayout.removeView(overlayLayout); // Remove the overlay layout from the root layout
+                // Additional handling if needed
+            }
+        });
 
-//        overlayLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle clicks on the overlay layout (e.g., to dismiss the overlay)
-//                parentLayout.removeView(overlayLayout); // Remove the overlay layout from the parent layout
-//                // Additional handling if needed
-//            }
-//        });
+        rootLayout.addView(overlayLayout);
 
         return overlayLayout;
+    }
+
+    private void showCategory() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.activity_category_edit, null);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+    }
+    private void showLocation() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.activity_location_edit, null);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 
 

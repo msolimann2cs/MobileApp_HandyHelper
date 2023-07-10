@@ -134,292 +134,322 @@
                     android:textSize="13sp"
                     android:textColor="@color/grey"
                     />
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
+<!--                <LinearLayout-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="75dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    >-->
+<!--                    <com.google.android.material.imageview.ShapeableImageView-->
+<!--                        app:shapeAppearanceOverlay="@style/square_item_pic"-->
+<!--                        app:strokeWidth="2dp"-->
+<!--                        app:strokeColor="#D9D9D9"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_gravity="left"-->
+<!--                        android:background="@drawable/circle_background"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:src="@drawable/home_item"-->
+<!--                        android:scaleType="centerCrop" />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:layout_marginTop="12dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="55dp"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Car Wash Service"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_marginLeft="2dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Car Category"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="11sp"-->
+<!--                                />-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="130dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="150 EGP"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Yesterday"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="75dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    >-->
+<!--                    <com.google.android.material.imageview.ShapeableImageView-->
+<!--                        app:shapeAppearanceOverlay="@style/square_item_pic"-->
+<!--                        app:strokeWidth="2dp"-->
+<!--                        app:strokeColor="#D9D9D9"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_gravity="left"-->
+<!--                        android:background="@drawable/circle_background"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:src="@drawable/home_item"-->
+<!--                        android:scaleType="centerCrop" />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:layout_marginTop="12dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="55dp"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Car Wash Service"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_marginLeft="2dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Car Category"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="11sp"-->
+<!--                                />-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="130dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="150 EGP"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Yesterday"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="75dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    >-->
+<!--                    <com.google.android.material.imageview.ShapeableImageView-->
+<!--                        app:shapeAppearanceOverlay="@style/square_item_pic"-->
+<!--                        app:strokeWidth="2dp"-->
+<!--                        app:strokeColor="#D9D9D9"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_gravity="left"-->
+<!--                        android:background="@drawable/circle_background"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:src="@drawable/home_item"-->
+<!--                        android:scaleType="centerCrop" />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:layout_marginTop="12dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="55dp"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Car Wash Service"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_marginLeft="2dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Car Category"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="11sp"-->
+<!--                                />-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="130dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="150 EGP"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Yesterday"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="75dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    >-->
+<!--                    <com.google.android.material.imageview.ShapeableImageView-->
+<!--                        app:shapeAppearanceOverlay="@style/square_item_pic"-->
+<!--                        app:strokeWidth="2dp"-->
+<!--                        app:strokeColor="#D9D9D9"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_gravity="left"-->
+<!--                        android:background="@drawable/circle_background"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:src="@drawable/home_item"-->
+<!--                        android:scaleType="centerCrop" />-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:layout_marginTop="12dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="55dp"-->
+<!--                        android:orientation="vertical">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Car Wash Service"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+<!--                            <TextView-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_marginLeft="2dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Car Category"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="11sp"-->
+<!--                                />-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="130dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="150 EGP"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                            <TextView-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginTop="3dp"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Yesterday"-->
+<!--                                android:textSize="11sp"-->
+<!--                                android:textColor="@color/selected"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+                <ListView
+                    android:id="@+id/list_view"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:orientation="horizontal"
-                    >
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:shapeAppearanceOverlay="@style/square_item_pic"
-                        app:strokeWidth="2dp"
-                        app:strokeColor="#D9D9D9"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="left"
-                        android:background="@drawable/circle_background"
-                        android:padding="10dp"
-                        android:src="@drawable/home_item"
-                        android:scaleType="centerCrop" />
-                    <LinearLayout
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Car Wash Service"
-                            android:textColor="@color/black"
-                            />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_marginTop="3dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Car Category"
-                                android:textColor="@color/black"
-                                android:textSize="11sp"
-                                />
-                            <TextView
-                                android:layout_marginLeft="130dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="150 EGP"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                            <TextView
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Yesterday"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:orientation="horizontal"
-                    >
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:shapeAppearanceOverlay="@style/square_item_pic"
-                        app:strokeWidth="2dp"
-                        app:strokeColor="#D9D9D9"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="left"
-                        android:background="@drawable/circle_background"
-                        android:padding="10dp"
-                        android:src="@drawable/home_item"
-                        android:scaleType="centerCrop" />
-                    <LinearLayout
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Car Wash Service"
-                            android:textColor="@color/black"
-                            />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_marginTop="3dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Car Category"
-                                android:textColor="@color/black"
-                                android:textSize="11sp"
-                                />
-                            <TextView
-                                android:layout_marginLeft="130dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="150 EGP"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                            <TextView
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Yesterday"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:orientation="horizontal"
-                    >
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:shapeAppearanceOverlay="@style/square_item_pic"
-                        app:strokeWidth="2dp"
-                        app:strokeColor="#D9D9D9"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="left"
-                        android:background="@drawable/circle_background"
-                        android:padding="10dp"
-                        android:src="@drawable/home_item"
-                        android:scaleType="centerCrop" />
-                    <LinearLayout
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Car Wash Service"
-                            android:textColor="@color/black"
-                            />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_marginTop="3dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Car Category"
-                                android:textColor="@color/black"
-                                android:textSize="11sp"
-                                />
-                            <TextView
-                                android:layout_marginLeft="130dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="150 EGP"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                            <TextView
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Yesterday"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:orientation="horizontal"
-                    >
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:shapeAppearanceOverlay="@style/square_item_pic"
-                        app:strokeWidth="2dp"
-                        app:strokeColor="#D9D9D9"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="left"
-                        android:background="@drawable/circle_background"
-                        android:padding="10dp"
-                        android:src="@drawable/home_item"
-                        android:scaleType="centerCrop" />
-                    <LinearLayout
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Car Wash Service"
-                            android:textColor="@color/black"
-                            />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_marginTop="3dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Car Category"
-                                android:textColor="@color/black"
-                                android:textSize="11sp"
-                                />
-                            <TextView
-                                android:layout_marginLeft="130dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="150 EGP"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                            <TextView
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="3dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Yesterday"
-                                android:textSize="11sp"
-                                android:textColor="@color/selected"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
             <LinearLayout
+                android:background="@color/white"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <Button
-                    android:textColor="@color/black"
-                    android:background="@drawable/button_style1"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="Home" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:strokeColor="#D9D9D9"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:src="@drawable/home_icon"
+                        android:scaleType="centerCrop" />
+                </FrameLayout>
 
-                <Button
-                    android:textColor="@color/black"
-                    android:background="@drawable/button_style1"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="Activity" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:strokeColor="#D9D9D9"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/circle_background"
+                        android:padding="10dp"
+                        android:src="@drawable/activity_icon"
+                        android:scaleType="centerCrop" />
+                </FrameLayout>
 
-                <Button
-                    android:textColor="@color/black"
-                    android:background="@drawable/button_style1"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="Profile" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:strokeColor="#D9D9D9"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/circle_background"
+                        android:padding="10dp"
+                        android:src="@drawable/profile_icon"
+                        android:scaleType="centerCrop" />
 
+                </FrameLayout>
             </LinearLayout>
 
         </RelativeLayout>
