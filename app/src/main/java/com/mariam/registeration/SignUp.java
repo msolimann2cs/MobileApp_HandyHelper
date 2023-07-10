@@ -225,7 +225,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener  {
                     user_data.setB_month(month);
                     user_data.setB_year(year);
                     user_data.setNat_ID( ID.getText().toString());
-                    Intent i = new Intent(this,Register_success.class);
+                    Intent i = new Intent(this,ProfileMain.class);
                     i.putExtra("user_data", user_data);
                     this.startActivity(i);
                 }

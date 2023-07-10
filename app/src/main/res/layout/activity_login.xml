@@ -39,15 +39,17 @@
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="326dp"
             android:layout_height="54dp"
-            android:ems="10"
-            android:textSize="15sp"
-            android:hint="Enter your email"
-            android:padding="10dp"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="30dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_edittext_bg"
-            android:layout_gravity="center_horizontal"/>
+            android:ems="10"
+            android:hint="Enter your email"
+            android:textColor="#252424"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColorHint="#8C8B8B"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/editTextTextPassword"
@@ -57,6 +59,8 @@
             android:ems="10"
             android:textSize="15sp"
             android:hint="Enter your password"
+            android:textColor="#252424"
+            android:textColorHint="#8C8B8B"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:inputType="textPassword"
@@ -92,6 +96,7 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="#F9AC0C"
             android:text="Login"
+            android:background="@drawable/button_style_1_selected"
             android:textSize="25sp"
             android:textStyle="bold" />
 
