@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="#2D4059"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/background_view"
+    >
 
     <ImageView
         android:id="@+id/signup_img"
@@ -30,7 +32,8 @@
             android:layout_height="54dp"
             android:ems="10"
             android:textSize="15sp"
-            android:hint="   Username"
+            android:hint="Username"
+            android:padding="10dp"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="17dp"
@@ -42,7 +45,8 @@
             android:layout_height="54dp"
             android:ems="10"
             android:textSize="15sp"
-            android:hint="   Enter your email"
+            android:padding="10dp"
+            android:hint="Enter your email"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="15dp"
             android:background="@drawable/rounded_edittext_bg"
@@ -55,7 +59,8 @@
             android:background="@drawable/rounded_edittext_bg"
             android:ems="10"
             android:textSize="15sp"
-            android:hint="   Enter your password"
+            android:padding="10dp"
+            android:hint="Enter your password"
             android:layout_marginBottom="15dp"
             android:inputType="textPassword"
             android:layout_gravity="center_horizontal"/>
@@ -68,7 +73,8 @@
             android:background="@drawable/rounded_edittext_bg"
             android:ems="10"
             android:textSize="15sp"
-            android:hint="   Confirm password"
+            android:padding="10dp"
+            android:hint="Confirm password"
             android:layout_marginBottom="15dp"
             android:inputType="textPassword"
             android:layout_gravity="center_horizontal"/>
@@ -78,25 +84,29 @@
             android:orientation="horizontal"
             android:gravity="center_horizontal"
             android:layout_marginBottom="15dp">
+
             <AutoCompleteTextView
-                android:id="@+id/gender"
+                android:id="@+id/gender_dropdown"
                 android:layout_width="153dp"
                 android:layout_height="54dp"
                 android:background="@drawable/rounded_edittext_bg"
-                android:ems="10"
+                android:hint="Gender"
+                android:padding="10dp"
+                android:inputType="none"
                 android:textSize="15sp"
-                android:hint="   Gender" />
+                android:focusable="false" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/birthdate_edittext"
                 android:layout_width="153dp"
                 android:layout_height="54dp"
                 android:background="@drawable/rounded_edittext_bg"
-                android:ems="10"
-                android:textSize="15sp"
-                android:hint="   Birth"
+                android:hint="DD/MM/YYYY"
                 android:layout_marginLeft="20dp"
-                android:inputType="date" />
+                android:padding="10dp"
+                android:textSize="15sp"
+                android:inputType="number" />
+
         </LinearLayout>
 
         <EditText
@@ -106,7 +116,8 @@
             android:background="@drawable/rounded_edittext_bg"
             android:ems="10"
             android:textSize="15sp"
-            android:hint="   National ID"
+            android:hint="National ID"
+            android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:inputType="number"
             android:layout_gravity="center_horizontal"/>
@@ -149,7 +160,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>
