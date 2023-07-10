@@ -75,7 +75,7 @@ public class Login extends AppCompatActivity {
                         && user.getPass().equals(mPasswordEditText.getText().toString()))
                         {
                             logged = true;
-                            Intent i = new Intent(context,ProfileMain.class);
+                            Intent i = new Intent(context,HomeActivity.class);
                             context.startActivity(i);
                         }
                     }
