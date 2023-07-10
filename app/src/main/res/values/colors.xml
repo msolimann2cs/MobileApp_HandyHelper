@@ -8,4 +8,9 @@
     <color name="selected">#FBC75A</color>
     <color name="navy_blue">#2D4059</color>
     <color name="button_styl1_bg">#F9F9F9</color>
+    <color name="darkBlue35">#592D4059</color>
+    <color name="lightBlue">#DBE2EF</color>
+    <color name="yellow">#F9AC0C</color>
+    <color name="darkBlue">#2D4059</color>
+
 </resources>

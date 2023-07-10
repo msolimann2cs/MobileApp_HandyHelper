@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FilterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkBlue"
+        android:orientation="vertical"
+        android:weightSum="15">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/darkBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Filter"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/arrow_back_ios_48px"
+                    android:layout_marginStart="15dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/back"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:background="@drawable/rounded_corner_top"
+            android:paddingTop="12dp"
+            android:orientation="vertical"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/plexsanslight"
+                    android:text="Catagories"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:textColor="@color/darkBlue"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="45dp"
+                        app:backgroundTint="@color/lightBlue"
+                        android:id="@+id/gardeningButton"
+                        android:background="@drawable/catagbuttons"
+                        android:text="Gardening"
+                        android:fontFamily="@font/plexsansmed"
+                        android:padding="0dp"
+                        android:textColor="@color/darkBlue"
+                        android:layout_margin="10dp"/>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="45dp"
+                        app:backgroundTint="@color/lightBlue"
+                        android:id="@+id/petcareButton"
+                        android:text="Pet Care"
+                        android:fontFamily="@font/plexsansmed"
+                        android:textColor="@color/darkBlue"
+                        android:padding="0dp"
+                        android:background="@drawable/catagbuttons"
+                        android:layout_margin="10dp"/>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        app:backgroundTint="@color/lightBlue"
+                        android:id="@+id/carcareButton"
+                        android:text="Car Care"
+                        android:fontFamily="@font/plexsansmed"
+                        android:textColor="@color/darkBlue"
+                        android:padding="0dp"
+                        android:background="@drawable/catagbuttons"
+                        android:layout_margin="10dp"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="45dp"
+                        app:backgroundTint="@color/lightBlue"
+                        android:id="@+id/installationButton"
+                        android:text="Installation"
+                        android:fontFamily="@font/plexsansmed"
+                        android:textColor="@color/darkBlue"
+                        android:padding="0dp"
+                        android:background="@drawable/catagbuttons"
+                        android:layout_margin="10dp"/>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="45dp"
+                        app:backgroundTint="@color/lightBlue"
+                        android:id="@+id/transportationButton"
+                        android:text="Transportation"
+                        android:fontFamily="@font/plexsansmed"
+                        android:textColor="@color/darkBlue"
+                        android:padding="0dp"
+                        android:background="@drawable/catagbuttons"
+                        android:layout_margin="10dp"/>
+                </LinearLayout>
+
+                <View style="@style/Divider" android:layout_marginHorizontal="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/plexsanslight"
+                        android:text="Price"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:textColor="@color/darkBlue"/>
+                    <com.google.android.material.slider.RangeSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:values="@array/rangeSliderPrice"
+                        android:valueFrom="0.0"
+                        android:valueTo="1000.0"
+                        app:trackColor="@color/lightBlue"
+                        app:thumbColor="@color/darkBlue"
+                        android:stepSize="25"
+                        app:trackColorActive="@color/darkBlue"
+                        android:id="@+id/priceSlider"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/plexsanslight"
+                        android:text="Date"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:textColor="@color/darkBlue"/>
+                    <com.google.android.material.slider.RangeSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:values="@array/rangeSliderDate"
+                        android:valueFrom="0"
+                        android:valueTo="30"
+                        app:trackColor="@color/lightBlue"
+                        app:thumbColor="@color/darkBlue"
+                        android:stepSize="1"
+                        app:trackColorActive="@color/darkBlue"
+                        android:id="@+id/dateSlider"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/plexsanslight"
+                        android:text="Distance"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:textColor="@color/darkBlue"/>
+                    <com.google.android.material.slider.RangeSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:values="@array/rangeSliderDistance"
+                        android:valueFrom="0.0"
+                        android:valueTo="25.0"
+                        app:trackColor="@color/lightBlue"
+                        app:thumbColor="@color/darkBlue"
+                        android:stepSize="0.5"
+                        app:trackColorActive="@color/darkBlue"
+                        android:id="@+id/distanceSlider"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="horizontal"
+
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5dp"
+
+                    android:background="@drawable/homefill_48px"
+
+                    android:id="@+id/navReq"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/quick_reference_all_48px"
+                    android:id="@+id/navPost"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/account_circle_48px"
+                    android:id="@+id/navProfile"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

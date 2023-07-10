@@ -371,7 +371,8 @@
                         android:layout_gravity="center_horizontal"
                         android:padding="10dp"
                         android:src="@drawable/home_icon"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:id="@+id/homeBtn"/>
                 </FrameLayout>
 
                 <FrameLayout

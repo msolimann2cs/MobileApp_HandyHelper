@@ -31,12 +31,23 @@ public class ProfileMain extends AppCompatActivity{
     LinearLayout parentLayout;
     boolean category_edit = false;
     boolean location_edit = false;
+    ShapeableImageView Homebtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_main);
 
         LinearLayout parentLayout = findViewById(R.id.parent_layout);
+
+        Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
+
+        Homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileMain.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
 // Change status bar color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

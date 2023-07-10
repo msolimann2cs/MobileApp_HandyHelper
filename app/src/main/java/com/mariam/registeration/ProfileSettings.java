@@ -10,12 +10,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 
 public class ProfileSettings extends AppCompatActivity{
+    ShapeableImageView Homebtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_settings);
+
+        Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
+
+        Homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileSettings.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
 // Change status bar color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
