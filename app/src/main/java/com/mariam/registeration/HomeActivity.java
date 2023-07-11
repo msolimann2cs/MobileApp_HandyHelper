@@ -178,6 +178,16 @@ public class HomeActivity extends AppCompatActivity {
                 HomeActivity.this.startActivity(intent);
             }
         });
+
+        TextView profile_button = findViewById(R.id.navProfile);
+        profile_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(HomeActivity.this, ProfileMain.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getLastLocation(){
