@@ -18,10 +18,12 @@
             android:exported="false" />
         <activity
             android:name=".FilterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
+
         <activity
             android:name=".Register_success"
             android:exported="false" />
