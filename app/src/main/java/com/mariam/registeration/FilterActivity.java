@@ -1,10 +1,12 @@
 package com.mariam.registeration;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -115,19 +117,24 @@ public class FilterActivity extends AppCompatActivity {
 
 
         RangeSlider priceSlider = (RangeSlider) findViewById(R.id.priceSlider);
-        List<Float> priceVals = priceSlider.getValues();
+
+
+
 
         RangeSlider dateSlider = (RangeSlider) findViewById(R.id.dateSlider);
-        List<Float> dateVals = dateSlider.getValues();
+
 
         RangeSlider disSlider = (RangeSlider) findViewById(R.id.distanceSlider);
-        List<Float> disValues = disSlider.getValues();
+
 
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
+                List<Float> priceVals = priceSlider.getValues();
+                List<Float> dateVals = dateSlider.getValues();
+                List<Float> disValues = disSlider.getValues();
 
                 intent.putExtra("catagories", cats);
                 intent.putExtra("priceMin", priceVals.get(0));
