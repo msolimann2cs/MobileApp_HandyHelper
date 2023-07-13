@@ -6,9 +6,11 @@ import com.google.android.gms.location.LocationServices;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 public class Request {
@@ -23,16 +25,17 @@ public class Request {
     double currLon;
     int image;
     float time;
-    float price;
+    int price;
+    ArrayList<Application> apps;
 
 
-    public Request(String title, String description, String date, double locationLat, double locationLong, float time, float price, int image) {
+    public Request(String title, String description, String date, double locationLat, double locationLong, float time, int price, int image) {
         //Current User Location
 
 
         this.title = title;
         this.description = description;
-
+        this.apps = new ArrayList<Application>();
         try {
             LocalDate reqDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
             LocalDate currDate = LocalDate.now();
@@ -84,5 +87,14 @@ public class Request {
     public void setCurrentLocations(double lat1, double lon1){
         this.currLat = lat1;
         this.currLon = lon1;
+    }
+
+    public void addApplication(User user,int price){
+        Application app = new Application(user, price);
+        apps.add(app);
+    }
+
+    public void acceptApp(int i){
+        apps.get(i).setAccepted(true);
     }
 }
