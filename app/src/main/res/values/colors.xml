@@ -10,7 +10,9 @@
     <color name="button_styl1_bg">#F9F9F9</color>
     <color name="darkBlue35">#592D4059</color>
     <color name="lightBlue">#DBE2EF</color>
+    <color name="brightBlue">#447FCB</color>
     <color name="yellow">#F9AC0C</color>
+    <color name="lightGrey">#EBEBEB</color>
     <color name="darkBlue">#2D4059</color>
 
 </resources>

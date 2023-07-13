@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +16,21 @@
         android:theme="@style/Theme.Registeration"
         tools:targetApi="31">
         <activity
+            android:name=".register_done"
+            android:exported="false" />
+        <activity
+            android:name=".description"
+            android:exported="false" />
+        <activity
+            android:name=".setup_interest"
+            android:exported="false" />
+        <activity
+            android:name=".verify_phone2"
+            android:exported="false" />
+        <activity
+            android:name=".verify_phone"
+            android:exported="false" />
+        <activity
             android:name=".RequestDetailsActivity"
             android:exported="false" />
         <activity
@@ -23,7 +40,6 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-
         <activity
             android:name=".Register_success"
             android:exported="false" />
