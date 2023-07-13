@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -17,14 +19,32 @@
         android:theme="@style/Theme.Registeration"
         tools:targetApi="31">
         <activity
+
             android:name=".AppliedActivity"
+            android:exported="false"/>
+        <activity
+  android:name=".register_done"
+            android:exported="false" />
+        <activity
+            android:name=".description"
+            android:exported="false" />
+        <activity
+            android:name=".setup_interest"
+            android:exported="false" />
+        <activity
+            android:name=".verify_phone2"
+            android:exported="false" />
+        <activity
+            android:name=".verify_phone"
+
             android:exported="false" />
         <activity
             android:name=".RequestDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".FilterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
@@ -54,6 +74,15 @@
             android:exported="false" />
         <activity
             android:name=".ProfileSettings"
+            android:exported="false" />
+        <activity
+            android:name=".AccountInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSupportMain"
             android:exported="false" />
         <activity
             android:name=".EnlargedProfilePicture"

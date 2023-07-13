@@ -68,5 +68,30 @@ public class ProfileSettings extends AppCompatActivity{
         });
 
 
+        TextView account_info_button = findViewById(R.id.account_info);
+        account_info_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileSettings.this, AccountInfo.class);
+                startActivity(intent);
+            }
+        });
+        TextView change_passowrd_button = findViewById(R.id.change_password);
+        change_passowrd_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileSettings.this, ChangePassword.class);
+                startActivity(intent);
+            }
+        });
+        TextView customer_support_button = findViewById(R.id.customer_support);
+        customer_support_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileSettings.this, CustomerSupportMain.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

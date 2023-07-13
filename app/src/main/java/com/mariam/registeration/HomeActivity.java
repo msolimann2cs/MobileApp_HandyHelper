@@ -187,7 +187,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent intent = new Intent(HomeActivity.this, ProfileMain.class);
                 startActivity(intent);
             }
