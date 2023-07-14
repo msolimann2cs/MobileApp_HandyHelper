@@ -16,6 +16,7 @@ import java.util.List;
 public class Request {
     String title;
     String description;
+    LocalDate reqDate;
     String date;
 
     int dateNum;
@@ -23,23 +24,25 @@ public class Request {
     double locationLat;
     double currLat;
     double currLon;
-    int image;
-    float time;
     int price;
+    int id;
+    int cat;
+    String userId;
+    String time;
     ArrayList<Application> apps;
 
 
-    public Request(String title, String description, String date, double locationLat, double locationLong, float time, int price, int image) {
+    public Request(int id,int cat, String title, String description, String date,String time, double locationLat, double locationLong, int price,  String userId) {
         //Current User Location
+        this.reqDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+        this.id = id;
+        this.cat = cat;
+        this.userId = userId;
+        this.time = time;
 
-
-        this.title = title;
-        this.description = description;
-        this.apps = new ArrayList<Application>();
         try {
-            LocalDate reqDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
             LocalDate currDate = LocalDate.now();
-            Duration diff = Duration.between(reqDate.atStartOfDay(), currDate.atStartOfDay());
+            Duration diff = Duration.between(currDate.atStartOfDay(), reqDate.atStartOfDay());
             this.dateNum =(int)diff.toDays();
             if(this.dateNum ==0){
                 this.date = "Today";
@@ -52,12 +55,15 @@ public class Request {
         }catch (Exception e){
 
         }
+
+        this.title = title;
+        this.description = description;
+        this.apps = new ArrayList<Application>();
+
         this.locationLat = locationLat;
         this.locationLong = locationLong;
 
-        this.time = time;
         this.price = price;
-        this.image = image;
     }
 
     public double distance() {
@@ -97,4 +103,10 @@ public class Request {
     public void acceptApp(int i){
         apps.get(i).setAccepted(true);
     }
+
+    public void setDateString() {
+
+    }
+
+
 }
