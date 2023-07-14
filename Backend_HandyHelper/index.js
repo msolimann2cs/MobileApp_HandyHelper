@@ -26,29 +26,26 @@ const connection = mysql.createConnection({
 // insert a new user
 app.post('/adduser', (req, res) => {
     // extract user data from the request body
-    const { national_id, username, email, password, gender, phone_number, date_of_birth, interests } = req.body;
-  //console log all variables
-    // console.log(national_id);
-    // console.log(username);
-    // console.log(email);
-    // console.log(password);
-    // console.log(gender);
-    // console.log(phone_number);
-    // console.log(date_of_birth);
-    // console.log(rating);
-    // console.log(interests);
-    let query ='';
-   // define a SQL query to insert a new user into the 'user' table
-   if (interests){
-    query = `INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth, interests) 
-    VALUES ('${national_id}', '${username}', '${email}', '${password}', '${gender}', '${phone_number}', '${date_of_birth}','${interests}')`;
-   } else {
-    query = `INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth) 
-    VALUES ('${national_id}', '${username}', '${email}', '${password}', '${gender}', '${phone_number}', '${date_of_birth}')`;
-   }
+    const { national_id, username, email, password, gender, phone_number, date_of_birth, interests, image, description } = req.body;
+    let query1 =`INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth`;
+    let query2 =`) VALUES ('${national_id}', '${username}', '${email}', '${password}', '${gender}', '${phone_number}', '${date_of_birth}'`;
+
+  if (interests){
+    query1 += `, interests`;
+    query2 += `, '${interests}'`;
+  }
+  if (image){
+    query1 += `, image`;
+    query2 += `, '${image}'`;
+  }
+  if (description){
+    query1 += `, description`;
+    query2 += `, '${description}'`;
+  }
+  query1 += query2 + `)`;
   
     // execute the query using the MySQL connection pool
-    connection.query(query, (err, result) => {
+    connection.query(query1, (err, result) => {
       if (err) {
         console.error(err);
         res.status(500).send('Error inserting user into database');
@@ -57,15 +54,6 @@ app.post('/adduser', (req, res) => {
         res.status(201).send('User inserted into database');
       }
     });
-    // connection.query(interestQuery, (err, result) => {
-    //   if (err) {
-    //     console.error(err);
-    //     res.status(500).send('Error inserting interest into database');
-    //   } else {
-    //     console.log(`Interest ${interests} inserted into database`);
-    //     res.status(201).send('Interest inserted into database');
-    //   }
-    // });
     
   });
 
@@ -116,13 +104,13 @@ app.post('/adduser', (req, res) => {
 
   // get all posts with of a certain user
 app.get('/posts/:nationalID', (req, res) => {
-  // extract the interest parameter from the request URL
+
   const national_id = req.params.nationalID.replace(':','');
   console.log(national_id);
-  // define a SQL query to select all posts with the same interest from the 'post' table
+
   const query = `SELECT * FROM post WHERE national_id = '${national_id}'`;
   console.log(query);
-  // execute the query using the MySQL connection pool
+
   connection.query(query, (err, result) => {
     if (err) {
       console.error(err);
@@ -136,10 +124,8 @@ app.get('/posts/:nationalID', (req, res) => {
 //get all posts
 app.get('/posts', (req, res) => {
 
-  // define a SQL query to select all posts with the same interest from the 'post' table
   const query = `SELECT * FROM post`;
 
-  // execute the query using the MySQL connection pool
   connection.query(query, (err, result) => {
     if (err) {
       console.error(err);
@@ -152,14 +138,11 @@ app.get('/posts', (req, res) => {
 
 //post a new post
 app.post('/newpost', (req, res) => {
-  // extract post data from the request body
   const { national_id, title, content, category, service_date, service_time, location,initial_price } = req.body;
 
-  // define a SQL query to insert a new post into the 'post' table
   const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location, initial_price) 
                  VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location}', ${initial_price})`;
 
-  // execute the query using the MySQL connection pool
   connection.query(query, (err, result) => {
     if (err) {
       console.error(err);
@@ -170,6 +153,63 @@ app.post('/newpost', (req, res) => {
     }
   });
 });
+
+//add a new job application
+app.post('/applies', (req, res) => {
+
+  const { national_id, post_id, apply_price } = req.body;
+
+  const query = `INSERT INTO apply (national_id, post_id, apply_price) 
+                 VALUES ('${national_id}', ${post_id}, ${apply_price})`;
+
+  connection.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error inserting job application into database');
+    } else {
+      console.log(`Job application for post ID ${post_id} inserted into database`);
+      res.status(201).send('Job application inserted into database');
+    }
+  });
+});
+
+// get all job applications of a certain user
+app.get('/applies/user/:national_id', (req, res) => {
+  const national_id = req.params.national_id.replace(':','');
+
+  const query = `SELECT * FROM apply 
+                 INNER JOIN post ON apply.post_id = post.id 
+                 WHERE apply.national_id = '${national_id}'`;
+
+  connection.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving job applications from database');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+// get all job applications of a certain post
+app.get('/applies/post/:post_id', (req, res) => {
+  const post_id = req.params.post_id.replace(':','');
+
+  const query = `SELECT * FROM apply 
+                 INNER JOIN users ON apply.national_id = users.national_id 
+                 WHERE apply.post_id = '${post_id}'`;
+  connection.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving job applications from database');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+
+
 
 
 app.listen(3000, () => console.log('Server started'));
