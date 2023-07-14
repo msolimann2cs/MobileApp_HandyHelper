@@ -222,15 +222,15 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                 for(int i =0; i<arrSize; i++){
                     JSONObject jsonReq = jsonarr.getJSONObject(i);
                     int id = jsonReq.getInt("id");
-                    int cat = jsonReq.getInt("category");
+                    String cat = jsonReq.getString("category");
                     String title = jsonReq.getString("title");
                     String desc = jsonReq.getString("content");
-                    double locationLat = jsonReq.getDouble("locationLat");
-                    double locationLon = jsonReq.getDouble("locationLong");
-                    String date = jsonReq.getString("servicedate").substring(0,10);
-                    String time = jsonReq.getString("servicetime");
-                    int initialPrice = jsonReq.getInt("initialPrice");
-                    String userId = jsonReq.getString("userId");
+                    double locationLat = jsonReq.getDouble("location_lat");
+                    double locationLon = jsonReq.getDouble("location_lon");
+                    String date = jsonReq.getString("service_date").substring(0,10);
+                    String time = jsonReq.getString("service_time");
+                    int initialPrice = jsonReq.getInt("initial_price");
+                    String userId = jsonReq.getString("national_id");
                     Request req = new Request(id,cat,title,desc, date, time,locationLat, locationLon, initialPrice, userId);
                     reqs.add(req);
                 }
@@ -240,7 +240,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
 
             }catch (Exception e){
-                Log.i("ERTOOOTOTOTOO", s);
+                e.printStackTrace();
 
             }
         }

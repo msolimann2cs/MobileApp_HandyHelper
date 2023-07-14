@@ -26,13 +26,13 @@ public class Request {
     double currLon;
     int price;
     int id;
-    int cat;
+    String cat;
     String userId;
     String time;
     ArrayList<Application> apps;
 
 
-    public Request(int id,int cat, String title, String description, String date,String time, double locationLat, double locationLong, int price,  String userId) {
+    public Request(int id,String cat, String title, String description, String date,String time, double locationLat, double locationLong, int price,  String userId) {
         //Current User Location
         this.reqDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
         this.id = id;

@@ -138,10 +138,10 @@ app.get('/posts', (req, res) => {
 
 //post a new post
 app.post('/newpost', (req, res) => {
-  const { national_id, title, content, category, service_date, service_time, location,initial_price } = req.body;
+  const { national_id, title, content, category, service_date, service_time, location_lat, location_lon,initial_price } = req.body;
 
-  const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location, initial_price) 
-                 VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location}', ${initial_price})`;
+  const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location_lat, location_lon, initial_price) 
+                 VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location_lat}', '${location_lon}', ${initial_price})`;
 
   connection.query(query, (err, result) => {
     if (err) {
