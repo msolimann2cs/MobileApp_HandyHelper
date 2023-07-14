@@ -69,6 +69,27 @@ app.post('/adduser', (req, res) => {
     
   });
 
+  //
+  app.get('/login', (req, res)=>{
+    const {email, pass} = req.body;
+    const query = "SELECT * FROM users WHERE email = ?";
+    connection.query(query, [email],(err, results)=>{
+      if(err) res.status(401).send("Failed to get User")
+      if(results.length>0){
+        if(results[0].pass === pass){
+          res.status(201).send(results[0]);
+        }else{
+          res.status(401).send("Wrong email or password")
+        }
+
+      }
+    })
+  });
+
+
+    
+
+  
 
   //retrieve a user by national ID
   app.get('/users/:national_id', (req, res) => {
