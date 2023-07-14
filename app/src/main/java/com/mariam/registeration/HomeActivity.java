@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         reqs = new ArrayList();
         getAllRequests getReqs = new getAllRequests();
 
-        getReqs.execute("http:\\\\127.0.0.1:5001\\allRequests");
+        getReqs.execute();
 
 
 
@@ -164,7 +164,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
-        private static final String API_URL = "http://"+"192.168.100.8:5001/"+"allRequests";
+        private static final String API_URL = "http://"+"192.168.100.8:3000/"+"posts";
         public static final String REQUEST_METHOD = "GET";
         public static final int READ_TIMEOUT = 15000;
         public static final int CONNECTION_TIMEOUT = 15000;
@@ -224,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                     int id = jsonReq.getInt("id");
                     int cat = jsonReq.getInt("category");
                     String title = jsonReq.getString("title");
-                    String desc = jsonReq.getString("description");
+                    String desc = jsonReq.getString("content");
                     double locationLat = jsonReq.getDouble("locationLat");
                     double locationLon = jsonReq.getDouble("locationLong");
                     String date = jsonReq.getString("servicedate").substring(0,10);
