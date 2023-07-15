@@ -22,8 +22,6 @@ public class Request {
     int dateNum;
     double locationLong;
     double locationLat;
-    double currLat;
-    double currLon;
     int price;
     int id;
     String cat;
@@ -31,6 +29,12 @@ public class Request {
     String time;
     ArrayList<Application> apps;
 
+    public static double currLat;
+    public static double currLon;
+
+    public Request(){
+
+    }
 
     public Request(int id,String cat, String title, String description, String date,String time, double locationLat, double locationLong, int price,  String userId) {
         //Current User Location

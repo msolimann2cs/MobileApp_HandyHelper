@@ -47,12 +47,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeActivity extends AppCompatActivity implements LocationListener {
+public class HomeActivity extends AppCompatActivity{
     TextView filterBtn;
     ArrayList<Request> reqs;
     FusedLocationProviderClient fusedLocationProviderClient;
-    LocationManager locationManager;
+    double lat, lon;
     private final static int REQUEST_CODE = 100;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 //        double[] locationLon = new double[]{31.518187, 31.450164, 31.369465196372992, 31.27112588129936, 31.00419195220193};
 //        int[] prices = new int[]{100, 200, 300, 100, 200};
 
-        if (ContextCompat.checkSelfPermission(HomeActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(HomeActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-        }
 
-
-        getLastLocation();
 
 
 
@@ -87,6 +84,15 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
         reqs = new ArrayList();
         getAllRequests getReqs = new getAllRequests();
+        ActivityCompat.requestPermissions(HomeActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+
+        location loc = new location();
+
+        loc.setCtx(this);
+        loc.getLastLocation();
+        Request req = new Request();
+        req.currLat = loc.lat;
+        req.currLon = loc.lon;
 
         getReqs.execute();
 
@@ -103,64 +109,13 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         });
     }
 
-    private void getLastLocation() {
-        try {
-            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
 
-                return;
-            }
-            Log.i("HIIIIIIIII", "HIIIIIIIIIIII");
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, HomeActivity.this);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-
-    }
 //
 //                for (Request req : reqs) {
 //                        req.setCurrentLocations(address.get(0).getLatitude(), address.get(0).getLongitude());
 
 
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-        try{
-            Geocoder geocoder = new Geocoder(HomeActivity.this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            for (Request req : reqs) {
-                req.setCurrentLocations(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
-            }
-            Log.i("LOCATIONNNNNNNNNN", "Lat "+addresses.get(0).getLatitude());
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        LocationListener.super.onStatusChanged(provider, status, extras);
-    }
-
-    @Override
-    public void onProviderEnabled(@NonNull String provider) {
-        LocationListener.super.onProviderEnabled(provider);
-    }
-
-    @Override
-    public void onProviderDisabled(@NonNull String provider) {
-        LocationListener.super.onProviderDisabled(provider);
-    }
 
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
@@ -234,6 +189,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                     Request req = new Request(id,cat,title,desc, date, time,locationLat, locationLon, initialPrice, userId);
                     reqs.add(req);
                 }
+
+
+
 
                 display();
 
@@ -364,6 +322,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                     HomeActivity.this.startActivity(intent);
                 }
             });
+
         }
     }
 }
