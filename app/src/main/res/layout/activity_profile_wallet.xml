@@ -106,16 +106,47 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     />
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EGP 346"
-                    android:textStyle="bold"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"
-                    />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EGP 346"
+                        android:textStyle="bold"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"
+                        />
+                    <LinearLayout
+                        android:layout_marginLeft="160dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/circle_background"
+                            android:padding="10dp"
+                            android:src="@drawable/add_funds"
+                            android:scaleType="centerCrop" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Funds"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"

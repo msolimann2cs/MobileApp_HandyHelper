@@ -33,9 +33,9 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         context= this;
 
-        Users.add(new User("Mariam","mariam@gmail.com",
+        Users.add(new User("mariam","mariam@gmail.com",
                 "mariam","Female",2000,10,
-                10,"10101010101010"));
+                10,"12345678912345"));
 
         backgroundView = findViewById(R.id.background_view);
         backgroundView.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +76,7 @@ public class Login extends AppCompatActivity {
                         {
                             logged = true;
                             Intent i = new Intent(context,HomeActivity.class);
+                            i.putExtra("current_user", user);
                             context.startActivity(i);
                         }
                     }

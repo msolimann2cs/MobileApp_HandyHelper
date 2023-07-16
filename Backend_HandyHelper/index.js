@@ -208,7 +208,23 @@ app.get('/applies/post/:post_id', (req, res) => {
   });
 });
 
+app.use(bodyParser.json())
+// Update user description by username
+app.put('/users/:username/description', (req, res) => {
+  const { username } = req.params;
+  const { description } = req.body;
 
+  const sql = 'UPDATE users SET description = ? WHERE username = ?';
+  connection.query(sql, [description, username], (err, result) => {
+    if (err) {
+      console.error('Error updating user description: ', err);
+      res.status(500).json({ error: 'Failed to update user description' });
+      return;
+    }
+    console.log(`User "${username}" description updated successfully`);
+    res.json({ message: 'User description updated successfully' });
+  });
+});
 
 
 

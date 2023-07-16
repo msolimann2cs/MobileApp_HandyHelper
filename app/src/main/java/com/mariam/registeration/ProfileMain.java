@@ -6,8 +6,10 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,18 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,12 +40,20 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class ProfileMain extends AppCompatActivity{
+
+public class ProfileMain extends AppCompatActivity {
     LinearLayout parentLayout;
     boolean category_edit = false;
     boolean location_edit = false;
     ShapeableImageView Homebtn;
+    private UserApiService userApiService;
+
+
+// Now you can use the userList in Activity B
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +77,12 @@ public class ProfileMain extends AppCompatActivity{
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.navy_blue));
         }
+        Intent intent = getIntent();
+        User current_user = (User) intent.getSerializableExtra("current_user");
+
+
+        TextView name = findViewById(R.id.name);
+        name.setText(current_user.getUsername());
 
         TextView wallet_button = findViewById(R.id.wallet_tab);
         wallet_button.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +113,6 @@ public class ProfileMain extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
 
 
         Button editProfileButton = findViewById(R.id.edit_profile);
@@ -124,12 +151,19 @@ public class ProfileMain extends AppCompatActivity{
                     parent.removeView(aboutMeDescTextView);
                     parent.addView(aboutMeDescEditText, index);
 
+
                     editProfileButton.setText("Done");
                 } else {
                     // Change back to TextView mode
                     String updatedText = aboutMeDescEditText.getText().toString();
                     aboutMeDescTextView.setText(updatedText);
                     aboutMeDescTextView.setTextColor(ContextCompat.getColor(ProfileMain.this, android.R.color.black));
+                    // userApiService = new UserApiService();
+                    // userApiService.updateUserDescription(current_user.getNat_ID(), updatedText);
+                    String username = current_user.getUsername(); // Replace with the actual username
+                    String newDescription = updatedText;
+                    UpdateDescriptionTask task = new UpdateDescriptionTask();
+                    task.execute(username, newDescription);
 
                     ViewGroup parent = (ViewGroup) aboutMeDescEditText.getParent();
                     int index = parent.indexOfChild(aboutMeDescEditText);
@@ -154,14 +188,14 @@ public class ProfileMain extends AppCompatActivity{
         category_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(category_edit)
+                if (category_edit)
                     showCategory();
             }
         });
         category_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(category_edit)
+                if (category_edit)
                     showCategory();
             }
         });
@@ -169,11 +203,10 @@ public class ProfileMain extends AppCompatActivity{
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(location_edit)
+                if (location_edit)
                     showLocation();
             }
         });
-
 
 
     }
@@ -217,6 +250,7 @@ public class ProfileMain extends AppCompatActivity{
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
     }
+
     private void showLocation() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View bottomSheetView = getLayoutInflater().inflate(R.layout.activity_location_edit, null);
@@ -224,6 +258,59 @@ public class ProfileMain extends AppCompatActivity{
         bottomSheetDialog.show();
     }
 
+    private class UpdateDescriptionTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String username = params[0];
+            String rawDescription = params[1];
+            String apiUrl = "http://10.39.1.162:3000/users/" + username + "/description";
 
+            try {
+                URL url = new URL(apiUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("PUT");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setDoOutput(true);
 
+                String description = new JSONObject().put("description", rawDescription).toString();
+                //String requestBody = "{\"description\":\"" + description + "\"}";
+                String requestBody = description;
+                Log.d("Request Payload", requestBody);
+
+                OutputStream outputStream = connection.getOutputStream();
+                outputStream.write(requestBody.getBytes());
+                outputStream.flush();
+                outputStream.close();
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = connection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    bufferedReader.close();
+                    inputStream.close();
+
+                    return response.toString();
+                } else {
+                    return "Error: " + responseCode;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Error: " + e.getMessage();
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Handle the result here
+            //Toast.makeText(ProfileMain.this, result, Toast.LENGTH_SHORT).show();
+        }
+
+    }
 }
