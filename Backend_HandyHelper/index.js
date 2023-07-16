@@ -226,6 +226,28 @@ app.put('/users/:username/description', (req, res) => {
   });
 });
 
+// API to get specific columns from the users table
+// image, rating, interests, and description
+app.get('/users/:national_id/details', (req, res) => {
+  const national_id = req.params.national_id.replace(':','');
+
+  const query = `SELECT image, rating, interests, description FROM users WHERE national_id = '${national_id}'`;
+
+  connection.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving user details from database');
+    } else {
+      if (result.length > 0) {
+        const userDetails = result[0];
+        res.status(200).json(userDetails);
+      } else {
+        res.status(404).send('User not found');
+      }
+    }
+  });
+});
+
 
 
 app.listen(3000, () => console.log('Server started'));

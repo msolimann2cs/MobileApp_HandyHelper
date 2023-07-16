@@ -43,6 +43,7 @@
         android:textColor="@android:color/black"
         android:textSize="24sp" />
     <TextView
+        android:id="@+id/rating"
         android:background="@drawable/button_style1"
         android:layout_marginLeft="20dp"
         android:paddingLeft="20dp"

@@ -51,6 +51,11 @@ public class ProfileMain extends AppCompatActivity {
     ShapeableImageView Homebtn;
     private UserApiService userApiService;
 
+    String image;
+    String rating;
+    String interests;
+    String description;
+
 
 // Now you can use the userList in Activity B
 
@@ -60,6 +65,17 @@ public class ProfileMain extends AppCompatActivity {
         setContentView(R.layout.activity_profile_main);
 
         LinearLayout parentLayout = findViewById(R.id.parent_layout);
+
+        Intent intent = getIntent();
+        User current_user = (User) intent.getSerializableExtra("current_user");
+
+        // ------------------------------
+        // Replace "YOUR_NATIONAL_ID" with the actual national ID you want to retrieve details for
+        String nationalId = current_user.getNat_ID();
+        GetUserDetailsTask task = new GetUserDetailsTask();
+        task.execute(nationalId);
+
+        // ------------------------------
 
         Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
 
@@ -77,12 +93,17 @@ public class ProfileMain extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.navy_blue));
         }
-        Intent intent = getIntent();
-        User current_user = (User) intent.getSerializableExtra("current_user");
-
-
+        // ---------------------------------------------
         TextView name = findViewById(R.id.name);
         name.setText(current_user.getUsername());
+
+//        TextView rating_field = findViewById(R.id.rating);
+//        rating_field.setText(rating);
+
+        // ---------------------------------------------
+
+
+
 
         TextView wallet_button = findViewById(R.id.wallet_tab);
         wallet_button.setOnClickListener(new View.OnClickListener() {
@@ -313,4 +334,66 @@ public class ProfileMain extends AppCompatActivity {
         }
 
     }
+
+    private class GetUserDetailsTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String nationalId = params[0];
+            String apiUrl = "http://10.39.1.162:3000/users/" + nationalId + "/details";
+
+            try {
+                URL url = new URL(apiUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-Type", "application/json");
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = connection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    bufferedReader.close();
+                    inputStream.close();
+
+                    return response.toString();
+                } else {
+                    return "Error: " + responseCode;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Error: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Handle the result here
+            // Parse the JSON response and extract the specific columns
+            try {
+                JSONObject jsonResult = new JSONObject(result);
+                image = jsonResult.getString("image");
+                rating = jsonResult.getString("rating");
+                interests = jsonResult.getString("interests");
+                description = jsonResult.getString("description");
+
+                TextView rating_field = findViewById(R.id.rating);
+                rating_field.setText(rating);
+
+                TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
+                aboutMeDescTextView.setText(description);
+
+
+                // Use the retrieved data as needed
+                // e.g., update UI elements with the retrieved values
+            } catch (JSONException e) {
+                e.printStackTrace();
+                // Handle JSON parsing error
+            }
+        }
+    }
+
 }
