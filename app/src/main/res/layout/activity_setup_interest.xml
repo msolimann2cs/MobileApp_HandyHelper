@@ -48,31 +48,35 @@
             android:textColor="@color/grey"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="35dp"
             android:layout_marginLeft="35dp"/>
 
 
-        <Button
-            android:id="@+id/button3"
+        <ToggleButton
+            android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:background="@drawable/white_button"
+            android:background="@drawable/toggle_interest"
             android:padding="10dp"
-            android:text="Pet Care"
+            android:textOff="PetCare"
+            android:textOn="PetCare"
+            android:text="Petcare"
             android:textAllCaps="false"
             android:textColor="@color/darkBlue"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:id="@+id/button4"
+        <ToggleButton
+            android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:background="@drawable/white_button"
+            android:background="@drawable/toggle_interest"
             android:padding="10dp"
+            android:textOff="Installation"
+            android:textOn="Installation"
             android:text="Installation"
             android:textAllCaps="false"
             android:textColor="@color/darkBlue"
@@ -80,13 +84,15 @@
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:id="@+id/button5"
+        <ToggleButton
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:background="@drawable/white_button"
+            android:background="@drawable/toggle_interest"
             android:padding="10dp"
+            android:textOff="Gardening"
+            android:textOn="Gardening"
             android:text="Gardening"
             android:textAllCaps="false"
             android:textColor="@color/darkBlue"
@@ -94,13 +100,15 @@
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:id="@+id/button6"
+        <ToggleButton
+            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:background="@drawable/white_button"
+            android:background="@drawable/toggle_interest"
             android:padding="10dp"
+            android:textOff="Transportation"
+            android:textOn="Transportation"
             android:text="Transportation"
             android:textAllCaps="false"
             android:textColor="@color/darkBlue"
@@ -108,14 +116,15 @@
             android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:id="@+id/button7"
+        <ToggleButton
+            android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:background="@drawable/white_button"
+            android:background="@drawable/toggle_interest"
             android:padding="10dp"
-            android:text="Cars"
+            android:textOff="Cars"
+            android:textOn="Cars"
             android:textAllCaps="false"
             android:textColor="@color/darkBlue"
             android:textSize="20sp"
@@ -125,12 +134,12 @@
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:buttonTint="@color/yellow"
             android:text="Turn on notifications for these categories."
             android:textColor="@color/grey"
             android:textSize="15sp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,19 +148,20 @@
             android:gravity="bottom"
             android:layout_marginBottom="50dp">
             <Button
-                android:id="@+id/button"
+                android:id="@+id/next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="100dp"
-                android:background="@drawable/button_style_1_selected"
-                android:text="Next"
+                android:background="@drawable/deactivated_button"
+                android:text="Maybe Later"
+                android:textColor="@color/grey"
                 android:textAllCaps="false"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="20dp"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="100dp"
@@ -163,7 +173,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 </LinearLayout>
