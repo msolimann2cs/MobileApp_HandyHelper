@@ -21,6 +21,9 @@ public class ProfileSettings extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_settings);
 
+        Intent intent = getIntent();
+        User current_user = (User) intent.getSerializableExtra("current_user");
+
         Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
 
         Homebtn.setOnClickListener(new View.OnClickListener() {
@@ -58,15 +61,15 @@ public class ProfileSettings extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-        TextView wallet_button = findViewById(R.id.wallet_tab);
-        wallet_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                Intent intent = new Intent(ProfileSettings.this, ProfileWallet.class);
-                startActivity(intent);
-            }
-        });
+//        TextView wallet_button = findViewById(R.id.wallet_tab);
+//        wallet_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//                Intent intent = new Intent(ProfileSettings.this, ProfileWallet.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         TextView logout_button = findViewById(R.id.log_out);
@@ -93,6 +96,7 @@ public class ProfileSettings extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSettings.this, ChangePassword.class);
+                intent.putExtra("current_user", current_user);
                 startActivity(intent);
             }
         });

@@ -248,6 +248,65 @@ app.get('/users/:national_id/details', (req, res) => {
   });
 });
 
+// Update user password by username
+app.put('/users/:username/password', (req, res) => {
+  const { username } = req.params;
+  const { password } = req.body;
+
+  const sql = 'UPDATE users SET pass = ? WHERE username = ?';
+  connection.query(sql, [password, username], (err, result) => {
+    if (err) {
+      console.error('Error updating user password: ', err);
+      res.status(500).json({ error: 'Failed to update user password' });
+      return;
+    }
+    console.log(`User "${username}" password updated successfully`);
+    res.json({ message: 'User password updated successfully' });
+  });
+});
+
+// Update user email or phone number by username
+app.put('/users/:username/contact', (req, res) => {
+  const { username } = req.params;
+  const { email, phoneNumber } = req.body;
+
+  // Check if either email or phone number is provided
+  if (!email && !phoneNumber) {
+    res.status(400).json({ error: 'Either email or phone number must be provided' });
+    return;
+  }
+
+  // Build the SQL query dynamically based on the provided fields
+  let sql = 'UPDATE users SET';
+  const values = [];
+
+  if (email) {
+    sql += ' email = ?,';
+    values.push(email);
+  }
+  if (phoneNumber) {
+    sql += ' phone_number = ?,';
+    values.push(phoneNumber);
+  }
+
+  // Remove the trailing comma from the query
+  sql = sql.slice(0, -1);
+
+  // Add the WHERE clause to update the user with the specified username
+  sql += ' WHERE username = ?';
+  values.push(username);
+
+  connection.query(sql, values, (err, result) => {
+    if (err) {
+      console.error('Error updating user contact information: ', err);
+      res.status(500).json({ error: 'Failed to update user contact information' });
+      return;
+    }
+    console.log(`User "${username}" contact information updated successfully`);
+    res.json({ message: 'User contact information updated successfully' });
+  });
+});
+
 
 
 app.listen(3000, () => console.log('Server started'));

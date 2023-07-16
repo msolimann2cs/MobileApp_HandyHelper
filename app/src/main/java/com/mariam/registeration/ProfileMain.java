@@ -105,21 +105,22 @@ public class ProfileMain extends AppCompatActivity {
 
 
 
-        TextView wallet_button = findViewById(R.id.wallet_tab);
-        wallet_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                Intent intent = new Intent(ProfileMain.this, ProfileWallet.class);
-                startActivity(intent);
-            }
-        });
+        // TextView wallet_button = findViewById(R.id.wallet_tab);
+//        wallet_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//                Intent intent = new Intent(ProfileMain.this, ProfileWallet.class);
+//                startActivity(intent);
+//            }
+//        });
         TextView settings_button = findViewById(R.id.settings_tab);
         settings_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 Intent intent = new Intent(ProfileMain.this, ProfileSettings.class);
+                intent.putExtra("current_user", current_user);
                 startActivity(intent);
             }
         });
