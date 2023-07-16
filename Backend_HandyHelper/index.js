@@ -26,21 +26,26 @@ const connection = mysql.createConnection({
 // insert a new user
 app.post('/adduser', (req, res) => {
     // extract user data from the request body
-    const { national_id, username, email, password, gender, phone_number, date_of_birth, interests, image, description } = req.body;
+    const { nat_ID, username, email, pass, gender, phone, date_of_birth, interest, description, notify} = req.body;
+    console.log("nationa: "+nat_ID);
     let query1 =`INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth`;
-    let query2 =`) VALUES ('${national_id}', '${username}', '${email}', '${password}', '${gender}', '${phone_number}', '${date_of_birth}'`;
+    let query2 =`) VALUES ('${nat_ID}', '${username}', '${email}', '${pass}', '${gender}', '${phone}', '${date_of_birth}'`;
 
-  if (interests){
+  if (interest){
     query1 += `, interests`;
-    query2 += `, '${interests}'`;
+    query2 += `, '${interest}'`;
   }
-  if (image){
-    query1 += `, image`;
-    query2 += `, '${image}'`;
-  }
+  // if (image){
+  //   query1 += `, image`;
+  //   query2 += `, '${image}'`;
+  // }
   if (description){
     query1 += `, description`;
     query2 += `, '${description}'`;
+  }
+  if (notify){
+    query1 += `, notify`;
+    query2 += `, ${notify}`;
   }
   query1 += query2 + `)`;
   
@@ -50,7 +55,7 @@ app.post('/adduser', (req, res) => {
         console.error(err);
         res.status(500).send('Error inserting user into database');
       } else {
-        console.log(`User with national ID ${national_id} inserted into database`);
+        console.log(`User with national ID ${nat_ID} inserted into database`);
         res.status(201).send('User inserted into database');
       }
     });
@@ -59,13 +64,15 @@ app.post('/adduser', (req, res) => {
 
   //
   app.get('/login', (req, res)=>{
-    const {email, pass} = req.body;
+    const email = req.query.email;
+    const pass = req.query.pass;
+    // const {email, pass} = req.body;
     const query = "SELECT * FROM users WHERE email = ?";
     connection.query(query, [email],(err, results)=>{
       if(err) res.status(401).send("Failed to get User")
       if(results.length>0){
         if(results[0].pass === pass){
-          res.status(201).send(results[0]);
+          res.status(200).send(results[0]);
         }else{
           res.status(401).send("Wrong email or password")
         }
@@ -138,10 +145,10 @@ app.get('/posts', (req, res) => {
 
 //post a new post
 app.post('/newpost', (req, res) => {
-  const { national_id, title, content, category, service_date, service_time, location_lat, location_lon,initial_price } = req.body;
+  const { national_id, title, content, category, service_date, service_time, location,initial_price } = req.body;
 
-  const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location_lat, location_lon, initial_price) 
-                 VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location_lat}', '${location_lon}', ${initial_price})`;
+  const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location, initial_price) 
+                 VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location}', ${initial_price})`;
 
   connection.query(query, (err, result) => {
     if (err) {
@@ -208,6 +215,7 @@ app.get('/applies/post/:post_id', (req, res) => {
   });
 });
 
+ 
 app.use(bodyParser.json())
 // Update user description by username
 app.put('/users/:username/description', (req, res) => {
@@ -310,3 +318,5 @@ app.put('/users/:username/contact', (req, res) => {
 
 
 app.listen(3000, () => console.log('Server started'));
+
+
