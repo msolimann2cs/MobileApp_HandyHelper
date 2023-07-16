@@ -65,7 +65,7 @@ app.post('/adduser', (req, res) => {
       if(err) res.status(401).send("Failed to get User")
       if(results.length>0){
         if(results[0].pass === pass){
-          res.status(201).send(results[0]);
+          res.status(201).json(results[0]);
         }else{
           res.status(401).send("Wrong email or password")
         }
@@ -73,6 +73,33 @@ app.post('/adduser', (req, res) => {
       }
     })
   });
+
+  //get application of a certain user to a certain service
+  app.get('/apply', (req, res)=>{
+    const {national_id, post_id}  = req.query;
+    const query = "SELECT * FROM apply WHERE post_id = ? and national_id = ?";
+    connection.query(query, [post_id, national_id], (err, results)=>{
+      if(err) res.status(401).send("failed to get row");
+      if(results.length > 0){
+        res.status(201).json(results[0]);
+      }else{
+        res.status(404).json({message:"No entry"});
+      }
+    })
+  })
+
+  app.post('/apply', (req, res)=>{
+    const {post_id, national_id, apply_price} = req.body;
+    const query = "INSERT INTO apply (post_id, national_id, apply_price) VALUES (?, ?, ?)";
+    connection.query(query, [post_id, national_id, apply_price], (err, results)=>{
+      if(err) {
+        console.log(err);
+        res.send("0")
+      }
+      if(results) res.send("1");
+    })
+
+  })
 
 
     
@@ -121,10 +148,29 @@ app.get('/posts/:nationalID', (req, res) => {
   });
 });
 
+app.get('/post', (req, res)=>{
+  const post_id = req.query.post_id;
+  
+    const query = "SELECT * FROM post WHERE id = ?";
+    connection.query(query, [post_id], (err, results)=>{
+      if(err) {
+        console.log(err);
+        res.status(401).send("failed to get row");
+      }
+      else{
+      if(results.length > 0){
+        res.status(201).json(results[0]);
+      }else{
+        res.status(404).json({message:"No entry"});
+      }
+    }
+    })
+})
+
 //get all posts
 app.get('/posts', (req, res) => {
 
-  const query = `SELECT * FROM post`;
+  const query = `SELECT * FROM post p join users u on u.national_id = p.national_id where state = "n"`;
 
   connection.query(query, (err, result) => {
     if (err) {
@@ -153,6 +199,25 @@ app.post('/newpost', (req, res) => {
     }
   });
 });
+
+//update status of post
+
+app.get('/updatepoststatus', (req, res)=>{
+  const{post_id, status } = req.query;
+  const query = "UPDATE post SET state = ? where id = ?";
+  connection.query(query, [status, post_id], (err, results)=>{
+    if(err){
+      console.log(err);
+      res.json({done:0});
+    }else{
+      if(results.length > 0){
+        console.log("hi")
+        res.json({done:1});
+      }
+      res.json({done:1});
+    }
+  })
+})
 
 //add a new job application
 app.post('/applies', (req, res) => {

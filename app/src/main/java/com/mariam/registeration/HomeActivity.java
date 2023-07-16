@@ -10,10 +10,12 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.BoringLayout;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -43,6 +45,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -187,6 +192,13 @@ public class HomeActivity extends AppCompatActivity{
                     int initialPrice = jsonReq.getInt("initial_price");
                     String userId = jsonReq.getString("national_id");
                     Request req = new Request(id,cat,title,desc, date, time,locationLat, locationLon, initialPrice, userId);
+
+
+
+
+
+
+
                     reqs.add(req);
                 }
 
@@ -218,7 +230,7 @@ public class HomeActivity extends AppCompatActivity{
             if (bundle != null) {
                 cats = bundle.getBooleanArray("catagories");
                 for (int i = 0; i < reqs.size(); i++) {
-                    if (cats[0] == false && reqs.get(i).title == "Gardening") {
+                    if (cats[0] == false && reqs.get(i).cat == "Gardening") {
                         reqs.remove(reqs.get(i));
                         i--;
                     }
@@ -226,7 +238,7 @@ public class HomeActivity extends AppCompatActivity{
                 }
                 for (int i = 0; i < reqs.size(); i++) {
 
-                    if (cats[1] == false && reqs.get(i).title == "Car Care") {
+                    if (cats[1] == false && reqs.get(i).cat == "Carcare") {
                         reqs.remove(reqs.get(i));
                         i--;
                     }
@@ -235,7 +247,7 @@ public class HomeActivity extends AppCompatActivity{
                 for (int i = 0; i < reqs.size(); i++) {
 
 
-                    if (cats[2] == false && reqs.get(i).title == "Installation") {
+                    if (cats[2] == false && reqs.get(i).cat == "Installation") {
                         reqs.remove(reqs.get(i));
                         i--;
 
@@ -246,7 +258,7 @@ public class HomeActivity extends AppCompatActivity{
                 for (int i = 0; i < reqs.size(); i++) {
 
 
-                    if (cats[3] == false && reqs.get(i).title == "Transportation") {
+                    if (cats[3] == false && reqs.get(i).cat == "Transportation") {
                         reqs.remove(reqs.get(i));
                         i--;
                     }
@@ -255,7 +267,7 @@ public class HomeActivity extends AppCompatActivity{
                 }
                 for (int i = 0; i < reqs.size(); i++) {
 
-                    if (cats[4] == false && reqs.get(i).title == "Pet Care") {
+                    if (cats[4] == false && reqs.get(i).cat == "Petcare") {
                         reqs.remove(reqs.get(i));
                         i--;
                     }
@@ -276,12 +288,14 @@ public class HomeActivity extends AppCompatActivity{
                         i--;
                     }
 
+                }
 
-//
-//                if (reqs.get(i).distance() > maxdis || reqs.get(i).distance() < mindis) {
-//                    reqs.remove(i);
-//                    i--;
-//                }
+                for (int i = 0; i < reqs.size(); i++) {
+                    if (reqs.get(i).distance() > maxdis || reqs.get(i).distance() < mindis) {
+                    reqs.remove(i);
+                    i--;
+                }
+
                 }
 
                 for (int i = 0; i < reqs.size(); i++) {
@@ -313,6 +327,9 @@ public class HomeActivity extends AppCompatActivity{
                     intent.putExtra("userImage", R.drawable.a);
                     intent.putExtra("lat", clickedReq.locationLat);
                     intent.putExtra("lon", clickedReq.locationLong);
+                    intent.putExtra("reqId", clickedReq.id);
+                    intent.putExtra("userId", clickedReq.userId);
+
                     HomeActivity.this.startActivity(intent);
                 }
             });

@@ -6,7 +6,7 @@
     </string-array>
     <string-array name="rangeSliderDistance">
         <item>0.5</item>
-        <item>10</item>
+        <item>80</item>
     </string-array>
     <string-array name="rangeSliderPrice">
         <item>200</item>
