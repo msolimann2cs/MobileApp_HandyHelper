@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Login = (TextView) findViewById(R.id.signin);
         Login.setOnClickListener(this);
 
+//        Intent i = new Intent(this,register_done.class);
+//        this.startActivity(i);
+
     }
 
     @Override

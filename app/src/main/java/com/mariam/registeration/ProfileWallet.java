@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,17 @@ public class ProfileWallet extends AppCompatActivity{
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.navy_blue));
         }
+
+        ShapeableImageView profile_picture = findViewById(R.id.profile_picture);
+        profile_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start FullscreenImageActivity and pass the image data
+                Intent intent = new Intent(ProfileWallet.this, EnlargedProfilePicture.class);
+                intent.putExtra("imageResId", R.drawable.profile_photo_demo); // Pass the image resource ID or other image data
+                startActivity(intent);
+            }
+        });
 
         TextView profile_button = findViewById(R.id.profile_tab);
         profile_button.setOnClickListener(new View.OnClickListener() {

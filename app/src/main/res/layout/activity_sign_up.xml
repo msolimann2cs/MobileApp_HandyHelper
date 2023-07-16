@@ -92,7 +92,6 @@
             android:orientation="horizontal"
             android:gravity="center_horizontal"
             android:layout_marginBottom="15dp">
-
             <AutoCompleteTextView
                 android:id="@+id/gender_dropdown"
                 android:layout_width="153dp"
@@ -105,19 +104,34 @@
                 android:textSize="15sp"
                 android:textColorHint="#8C8B8B"
                 android:focusable="false" />
-
             <EditText
-                android:id="@+id/birthdate_edittext"
+                android:id="@+id/editTextDate"
                 android:layout_width="153dp"
                 android:layout_height="54dp"
+                android:inputType="none"
+                android:onClick="showDatePickerDialog"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:background="@drawable/rounded_edittext_bg"
-                android:hint="DD/MM/YYYY"
                 android:textColor="#252424"
                 android:layout_marginLeft="20dp"
                 android:padding="10dp"
                 android:textSize="15sp"
                 android:textColorHint="#8C8B8B"
-                android:inputType="number" />
+                android:hint="Date of birth" />
+
+<!--            <EditText-->
+<!--                android:id="@+id/birthdate_edittext"-->
+<!--                android:layout_width="153dp"-->
+<!--                android:layout_height="54dp"-->
+<!--                android:background="@drawable/rounded_edittext_bg"-->
+<!--                android:hint="DD/MM/YYYY"-->
+<!--                android:textColor="#252424"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:padding="10dp"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textColorHint="#8C8B8B"-->
+<!--                android:inputType="number" />-->
 
         </LinearLayout>
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".verify_phone"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/background_view">
 
 
     <TextView
@@ -61,7 +62,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:ems="4"
+                android:paddingLeft="35dp"
+                android:textColor="@color/black"
                 android:inputType="number"
+                android:maxLength="1"
                 android:layout_marginEnd="6dp"
                 android:background="@drawable/whiterounded_greyedges"/>
             <EditText
@@ -69,10 +73,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:ems="4"
-                android:text="_"
-                android:inputType="number"
+                android:paddingLeft="35dp"
+                android:textColor="@color/black"                android:inputType="number"
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="6dp"
+                android:maxLength="1"
                 android:background="@drawable/whiterounded_greyedges"/>
             <EditText
                 android:id="@+id/editTextNumber3"
@@ -80,8 +85,11 @@
                 android:layout_height="50dp"
                 android:ems="4"
                 android:inputType="number"
+                android:paddingLeft="35dp"
+                android:textColor="@color/black"
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="6dp"
+                android:maxLength="1"
                 android:background="@drawable/whiterounded_greyedges"/>
             <EditText
                 android:id="@+id/editTextNumber4"
@@ -89,7 +97,10 @@
                 android:layout_height="50dp"
                 android:ems="4"
                 android:inputType="number"
+                android:paddingLeft="35dp"
+                android:textColor="@color/black"
                 android:layout_marginStart="6dp"
+                android:maxLength="1"
                 android:background="@drawable/whiterounded_greyedges"/>
 
         </LinearLayout>
@@ -102,6 +113,14 @@
             android:layout_margin="10dp"
             android:text="Resend the code"
             android:textColor="@color/brightBlue"/>
+        <TextView
+            android:id="@+id/unmatched"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Incorrect code, please retry."
+            android:visibility="invisible"
+            android:textColor="@color/red"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,20 +129,21 @@
             android:gravity="bottom"
             android:layout_marginBottom="50dp">
             <Button
-                android:id="@+id/button"
+                android:id="@+id/confirm_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:background="@drawable/deactivated_button"
                 android:text="Confirm"
+                android:clickable="false"
                 android:textAllCaps="false"
-                android:textColor="#80827F7F"
+                android:textColor="@color/grey"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="20dp"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="100dp"

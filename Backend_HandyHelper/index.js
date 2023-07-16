@@ -26,21 +26,26 @@ const connection = mysql.createConnection({
 // insert a new user
 app.post('/adduser', (req, res) => {
     // extract user data from the request body
-    const { national_id, username, email, password, gender, phone_number, date_of_birth, interests, image, description } = req.body;
+    const { nat_ID, username, email, pass, gender, phone, date_of_birth, interest, description, notify} = req.body;
+    console.log("nationa: "+nat_ID);
     let query1 =`INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth`;
-    let query2 =`) VALUES ('${national_id}', '${username}', '${email}', '${password}', '${gender}', '${phone_number}', '${date_of_birth}'`;
+    let query2 =`) VALUES ('${nat_ID}', '${username}', '${email}', '${pass}', '${gender}', '${phone}', '${date_of_birth}'`;
 
-  if (interests){
+  if (interest){
     query1 += `, interests`;
-    query2 += `, '${interests}'`;
+    query2 += `, '${interest}'`;
   }
-  if (image){
-    query1 += `, image`;
-    query2 += `, '${image}'`;
-  }
+  // if (image){
+  //   query1 += `, image`;
+  //   query2 += `, '${image}'`;
+  // }
   if (description){
     query1 += `, description`;
     query2 += `, '${description}'`;
+  }
+  if (notify){
+    query1 += `, notify`;
+    query2 += `, ${notify}`;
   }
   query1 += query2 + `)`;
   
@@ -50,7 +55,7 @@ app.post('/adduser', (req, res) => {
         console.error(err);
         res.status(500).send('Error inserting user into database');
       } else {
-        console.log(`User with national ID ${national_id} inserted into database`);
+        console.log(`User with national ID ${nat_ID} inserted into database`);
         res.status(201).send('User inserted into database');
       }
     });
@@ -59,13 +64,15 @@ app.post('/adduser', (req, res) => {
 
   //
   app.get('/login', (req, res)=>{
-    const {email, pass} = req.body;
+    const email = req.query.email;
+    const pass = req.query.pass;
+    // const {email, pass} = req.body;
     const query = "SELECT * FROM users WHERE email = ?";
     connection.query(query, [email],(err, results)=>{
       if(err) res.status(401).send("Failed to get User")
       if(results.length>0){
         if(results[0].pass === pass){
-          res.status(201).json(results[0]);
+          res.status(200).send(results[0]);
         }else{
           res.status(401).send("Wrong email or password")
         }
@@ -184,10 +191,10 @@ app.get('/posts', (req, res) => {
 
 //post a new post
 app.post('/newpost', (req, res) => {
-  const { national_id, title, content, category, service_date, service_time, location_lat, location_lon,initial_price } = req.body;
+  const { national_id, title, content, category, service_date, service_time, location,initial_price } = req.body;
 
-  const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location_lat, location_lon, initial_price) 
-                 VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location_lat}', '${location_lon}', ${initial_price})`;
+  const query = `INSERT INTO post (national_id, title, content, category, service_date, service_time, location, initial_price) 
+                 VALUES ('${national_id}', '${title}', '${content}', '${category}', '${service_date}', '${service_time}', '${location}', ${initial_price})`;
 
   connection.query(query, (err, result) => {
     if (err) {
@@ -273,8 +280,108 @@ app.get('/applies/post/:post_id', (req, res) => {
   });
 });
 
+ 
+app.use(bodyParser.json())
+// Update user description by username
+app.put('/users/:username/description', (req, res) => {
+  const { username } = req.params;
+  const { description } = req.body;
 
+  const sql = 'UPDATE users SET description = ? WHERE username = ?';
+  connection.query(sql, [description, username], (err, result) => {
+    if (err) {
+      console.error('Error updating user description: ', err);
+      res.status(500).json({ error: 'Failed to update user description' });
+      return;
+    }
+    console.log(`User "${username}" description updated successfully`);
+    res.json({ message: 'User description updated successfully' });
+  });
+});
+
+// API to get specific columns from the users table
+// image, rating, interests, and description
+app.get('/users/:national_id/details', (req, res) => {
+  const national_id = req.params.national_id.replace(':','');
+
+  const query = `SELECT image, rating, interests, description FROM users WHERE national_id = '${national_id}'`;
+
+  connection.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving user details from database');
+    } else {
+      if (result.length > 0) {
+        const userDetails = result[0];
+        res.status(200).json(userDetails);
+      } else {
+        res.status(404).send('User not found');
+      }
+    }
+  });
+});
+
+// Update user password by username
+app.put('/users/:username/password', (req, res) => {
+  const { username } = req.params;
+  const { password } = req.body;
+
+  const sql = 'UPDATE users SET pass = ? WHERE username = ?';
+  connection.query(sql, [password, username], (err, result) => {
+    if (err) {
+      console.error('Error updating user password: ', err);
+      res.status(500).json({ error: 'Failed to update user password' });
+      return;
+    }
+    console.log(`User "${username}" password updated successfully`);
+    res.json({ message: 'User password updated successfully' });
+  });
+});
+
+// Update user email or phone number by username
+app.put('/users/:username/contact', (req, res) => {
+  const { username } = req.params;
+  const { email, phoneNumber } = req.body;
+
+  // Check if either email or phone number is provided
+  if (!email && !phoneNumber) {
+    res.status(400).json({ error: 'Either email or phone number must be provided' });
+    return;
+  }
+
+  // Build the SQL query dynamically based on the provided fields
+  let sql = 'UPDATE users SET';
+  const values = [];
+
+  if (email) {
+    sql += ' email = ?,';
+    values.push(email);
+  }
+  if (phoneNumber) {
+    sql += ' phone_number = ?,';
+    values.push(phoneNumber);
+  }
+
+  // Remove the trailing comma from the query
+  sql = sql.slice(0, -1);
+
+  // Add the WHERE clause to update the user with the specified username
+  sql += ' WHERE username = ?';
+  values.push(username);
+
+  connection.query(sql, values, (err, result) => {
+    if (err) {
+      console.error('Error updating user contact information: ', err);
+      res.status(500).json({ error: 'Failed to update user contact information' });
+      return;
+    }
+    console.log(`User "${username}" contact information updated successfully`);
+    res.json({ message: 'User contact information updated successfully' });
+  });
+});
 
 
 
 app.listen(3000, () => console.log('Server started'));
+
+
