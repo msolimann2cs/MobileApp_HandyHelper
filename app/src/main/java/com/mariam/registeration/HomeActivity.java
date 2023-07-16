@@ -126,7 +126,7 @@ public class HomeActivity extends AppCompatActivity{
 
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
-        private static final String API_URL = "http://"+"10.39.1.162:3000/"+"posts";
+        private static final String API_URL = "http://"+"192.168.1.8:3000/"+"posts";
         public static final String REQUEST_METHOD = "GET";
         public static final int READ_TIMEOUT = 15000;
         public static final int CONNECTION_TIMEOUT = 15000;

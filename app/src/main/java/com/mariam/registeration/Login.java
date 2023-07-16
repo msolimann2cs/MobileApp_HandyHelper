@@ -141,9 +141,12 @@ public class Login extends AppCompatActivity {
                                         temp.setInterest( obj.getString("interests"));
                                         temp.setNotify( obj.getInt("notify"));
                                         temp.setDescription( obj.getString("description"));
+                                        Login.this.logged=true;
                                         Login.this.update_move(temp);
                                     }
                                 } else {
+                                    Login.this.logged=false;
+                                    Login.this.notlogged();
                                     String errorResponse = "HTTP error code: " + responseCode;
                                 }
                             } catch (IOException e) {
@@ -153,12 +156,12 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     }).start();
-                    if(!logged)
-                    {
-                        Login.this.errorMessageTextView.setVisibility(View.VISIBLE);
-                        Login.this.mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
-                        Login.this.mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
-                    }
+//                    if(!logged)
+//                    {
+//                        Login.this.errorMessageTextView.setVisibility(View.VISIBLE);
+//                        Login.this.mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
+//                        Login.this.mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
+//                    }
                 }
             }
         });
@@ -179,6 +182,13 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
+    private void notlogged() {
+        errorMessageTextView.setVisibility(View.VISIBLE);
+        mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
+        mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
+    }
+
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = getCurrentFocus();
@@ -189,7 +199,6 @@ public class Login extends AppCompatActivity {
     }
     private void update_move(User temp)
     {
-        logged = true;
         System.out.println(temp.getNat_ID());
         Intent i = new Intent(Login.this, HomeActivity.class);
         i.putExtra("user_data",temp);
