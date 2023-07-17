@@ -35,7 +35,7 @@
         android:id="@+id/name"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:background="@drawable/button_style1"
+        android:background="@drawable/button_style1_mod"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                 <TextView
                     android:id="@+id/about_me"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="45dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="About Me"
@@ -222,26 +222,26 @@
                         />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="My Location"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Cairo"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    />
+<!--                <TextView-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="My Location"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/location"-->
+<!--                    android:layout_marginLeft="22dp"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="New Cairo"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    />-->
 
                 <Button
                     android:id="@+id/edit_profile"
@@ -265,7 +265,67 @@
 
 
             </LinearLayout>
+<!--                <LinearLayout-->
+<!--                    android:background="@color/white"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <FrameLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1">-->
+<!--                        <com.google.android.material.imageview.ShapeableImageView-->
+<!--                            app:strokeColor="#D9D9D9"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:clickable="true"-->
+<!--                            android:focusable="true"-->
+<!--                            android:layout_marginEnd="8dp"-->
+<!--                            android:layout_width="80dp"-->
+<!--                            android:layout_height="80dp"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:src="@drawable/home_icon"-->
+<!--                            android:scaleType="centerCrop"-->
+<!--                            android:id="@+id/homeBtn"/>-->
+<!--                    </FrameLayout>-->
+
+<!--                    <FrameLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1">-->
+<!--                        <com.google.android.material.imageview.ShapeableImageView-->
+<!--                            app:strokeColor="#D9D9D9"-->
+<!--                            android:layout_width="80dp"-->
+<!--                            android:layout_height="80dp"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:background="@drawable/circle_background"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:src="@drawable/activity_icon"-->
+<!--                            android:scaleType="centerCrop" />-->
+<!--                    </FrameLayout>-->
+
+<!--                    <FrameLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1">-->
+<!--                        <com.google.android.material.imageview.ShapeableImageView-->
+<!--                            app:strokeColor="#D9D9D9"-->
+<!--                            android:layout_width="80dp"-->
+<!--                            android:layout_height="80dp"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:background="@drawable/circle_background"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:src="@drawable/profile_icon_selected"-->
+<!--                            android:scaleType="centerCrop" />-->
+
+<!--                    </FrameLayout>-->
+<!--                </LinearLayout>-->
                 <LinearLayout
+
+                    android:layout_weight="1"
                     android:background="@color/white"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
@@ -273,55 +333,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <com.google.android.material.imageview.ShapeableImageView
-                            app:strokeColor="#D9D9D9"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:layout_marginEnd="8dp"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="10dp"
-                            android:src="@drawable/home_icon"
-                            android:scaleType="centerCrop"
-                            android:id="@+id/homeBtn"/>
-                    </FrameLayout>
 
-                    <FrameLayout
-                        android:layout_width="0dp"
+                    >
+                    <LinearLayout
+                        android:id="@+id/homeBtn"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <com.google.android.material.imageview.ShapeableImageView
-                            app:strokeColor="#D9D9D9"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@drawable/circle_background"
-                            android:padding="10dp"
-                            android:src="@drawable/activity_icon"
-                            android:scaleType="centerCrop" />
-                    </FrameLayout>
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
 
-                    <FrameLayout
-                        android:layout_width="0dp"
+                            android:background="@drawable/home_48px"
+
+                            android:id="@+id/navReq"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <com.google.android.material.imageview.ShapeableImageView
-                            app:strokeColor="#D9D9D9"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@drawable/circle_background"
-                            android:padding="10dp"
-                            android:src="@drawable/profile_icon_selected"
-                            android:scaleType="centerCrop" />
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:background="@drawable/quick_reference_all_48px"
+                            android:id="@+id/navPost"/>
+                    </LinearLayout>
 
-                    </FrameLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:background="@drawable/account_circle_fill_48px"
+                            android:id="@+id/navProfile"/>
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
             </RelativeLayout>

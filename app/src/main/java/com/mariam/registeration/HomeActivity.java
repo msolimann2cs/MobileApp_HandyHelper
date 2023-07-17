@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.mariam.registeration.R.drawable;
 import com.mariam.registeration.R.id;
 import com.mariam.registeration.R.layout;
+import com.mariam.registeration.screens.profile.ProfileMain;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

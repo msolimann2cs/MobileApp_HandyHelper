@@ -18,7 +18,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mariam.registeration.services.HandyAPI;
+
 public class register_done extends AppCompatActivity {
+    private HandyAPI my_api = new HandyAPI();
 
     private TextView greeting;
     private User user;
@@ -61,7 +64,7 @@ public class register_done extends AppCompatActivity {
                 editor.putString("description", user.getDescription());
                 editor.apply();
                 Log.i("done","done");
-                final String API_URL = "http://192.168.1.5:3000/adduser";
+                final String API_URL = "http://"+my_api.API_LINK+"/adduser";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

@@ -33,7 +33,9 @@
                         android:layout_height="wrap_content"
                         android:text="&lt;"
                         android:textColor="@android:color/black"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        android:onClick="onBackPressed"
+                        />
                     <TextView
                         android:layout_marginLeft="100dp"
                         android:layout_marginTop="10dp"
@@ -61,10 +63,11 @@
                         android:layout_height="wrap_content"
                         android:text="Email"
                         android:textColor="@color/black"/>
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="maya@gmail.com"
+                        android:hint="maya@gmail.com"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"/>
 
                 </LinearLayout>
@@ -85,10 +88,11 @@
                         android:layout_height="wrap_content"
                         android:text="First name"
                         android:textColor="@color/black"/>
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maya"
+                        android:hint="Maya"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"/>
 
                 </LinearLayout>
@@ -108,10 +112,11 @@
                         android:layout_height="wrap_content"
                         android:text="Last name"
                         android:textColor="@color/black"/>
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Len"
+                        android:hint="Len"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"/>
 
                 </LinearLayout>
@@ -131,18 +136,32 @@
                         android:layout_height="wrap_content"
                         android:text="Phone number"
                         android:textColor="@color/black"/>
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="01122662468"
+                        android:hint="01122662468"
+                        android:textColorHint="@color/black"
                         android:textColor="@color/black"/>
 
                 </LinearLayout>
+
                 <View
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/grey" />
+
+                <Button
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/submit_btn"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:background="@drawable/button_style_1_selected"
+                    />
 
 
 

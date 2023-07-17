@@ -1,4 +1,4 @@
-package com.mariam.registeration;
+package com.mariam.registeration.screens.profile;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -39,12 +39,24 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.mariam.registeration.HomeActivity;
+import com.mariam.registeration.R;
+import com.mariam.registeration.User;
+import com.mariam.registeration.UserApiService;
+import com.mariam.registeration.screens.profile.EnlargedProfilePicture;
+import com.mariam.registeration.screens.profile.ProfileSettings;
+import com.mariam.registeration.services.DatabaseCallback;
+import com.mariam.registeration.services.DatabaseManager;
+import com.mariam.registeration.services.HandyAPI;
+import com.mariam.registeration.services.UserSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class ProfileMain extends AppCompatActivity {
+public class ProfileMain extends AppCompatActivity implements DatabaseCallback {
+    private HandyAPI my_api = new HandyAPI();
+    private DatabaseManager database;
     LinearLayout parentLayout;
     boolean category_edit = false;
     boolean location_edit = false;
@@ -66,18 +78,14 @@ public class ProfileMain extends AppCompatActivity {
 
         LinearLayout parentLayout = findViewById(R.id.parent_layout);
 
-        Intent intent = getIntent();
-        User current_user = (User) intent.getSerializableExtra("current_user");
-
-        // ------------------------------
-        // Replace "YOUR_NATIONAL_ID" with the actual national ID you want to retrieve details for
-        String nationalId = current_user.getNat_ID();
-        GetUserDetailsTask task = new GetUserDetailsTask();
-        task.execute(nationalId);
+        User logged_user = UserSession.getInstance().getLoggedUser();
+        database = new DatabaseManager();
+        String nationalId = logged_user.getNat_ID();
+        database.getUserDetails(nationalId, this);
 
         // ------------------------------
 
-        Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
+        LinearLayout Homebtn = findViewById(R.id.homeBtn);
 
         Homebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +103,7 @@ public class ProfileMain extends AppCompatActivity {
         }
         // ---------------------------------------------
         TextView name = findViewById(R.id.name);
-        name.setText(current_user.getUsername());
+        name.setText(logged_user.getUsername());
 
 //        TextView rating_field = findViewById(R.id.rating);
 //        rating_field.setText(rating);
@@ -120,7 +128,7 @@ public class ProfileMain extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 Intent intent = new Intent(ProfileMain.this, ProfileSettings.class);
-                intent.putExtra("current_user", current_user);
+                //intent.putExtra("current_user", current_user);
                 startActivity(intent);
             }
         });
@@ -142,7 +150,7 @@ public class ProfileMain extends AppCompatActivity {
         AtomicReference<EditText> aboutMeDescEditTextRef = new AtomicReference<>(null);
         LinearLayout categoriesLayout1 = findViewById(R.id.categories);
         LinearLayout categoriesLayout2 = findViewById(R.id.categories_line2);
-        TextView locationTextView = findViewById(R.id.location);
+        // TextView locationTextView = findViewById(R.id.location);
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +173,7 @@ public class ProfileMain extends AppCompatActivity {
                     aboutMeDescEditText.setBackground(borderDrawable);
                     categoriesLayout1.setBackground(borderDrawable);
                     categoriesLayout2.setBackground(borderDrawable);
-                    locationTextView.setBackground(borderDrawable);
+                    // locationTextView.setBackground(borderDrawable);
                     aboutMeDescEditTextRef.set(aboutMeDescEditText);
 
                     ViewGroup parent = (ViewGroup) aboutMeDescTextView.getParent();
@@ -182,10 +190,9 @@ public class ProfileMain extends AppCompatActivity {
                     aboutMeDescTextView.setTextColor(ContextCompat.getColor(ProfileMain.this, android.R.color.black));
                     // userApiService = new UserApiService();
                     // userApiService.updateUserDescription(current_user.getNat_ID(), updatedText);
-                    String username = current_user.getUsername(); // Replace with the actual username
+                    String username = logged_user.getUsername(); // Replace with the actual username
                     String newDescription = updatedText;
-                    UpdateDescriptionTask task = new UpdateDescriptionTask();
-                    task.execute(username, newDescription);
+                    database.updateDescription(username, newDescription, this);
 
                     ViewGroup parent = (ViewGroup) aboutMeDescEditText.getParent();
                     int index = parent.indexOfChild(aboutMeDescEditText);
@@ -193,7 +200,7 @@ public class ProfileMain extends AppCompatActivity {
                     parent.addView(aboutMeDescTextView, index);
                     categoriesLayout1.setBackground(null);
                     categoriesLayout2.setBackground(null);
-                    locationTextView.setBackground(null);
+                    // locationTextView.setBackground(null);
                     aboutMeDescEditTextRef.set(null);
                     category_edit = false;
                     location_edit = false;
@@ -206,7 +213,7 @@ public class ProfileMain extends AppCompatActivity {
 
         LinearLayout category_button1 = findViewById(R.id.categories);
         LinearLayout category_button2 = findViewById(R.id.categories_line2);
-        TextView location_button = findViewById(R.id.location);
+        // TextView location_button = findViewById(R.id.location);
         category_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,13 +229,13 @@ public class ProfileMain extends AppCompatActivity {
             }
         });
 
-        location_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (location_edit)
-                    showLocation();
-            }
-        });
+//        location_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (location_edit)
+//                    showLocation();
+//            }
+//        });
 
 
     }
@@ -280,121 +287,30 @@ public class ProfileMain extends AppCompatActivity {
         bottomSheetDialog.show();
     }
 
-    private class UpdateDescriptionTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            String username = params[0];
-            String rawDescription = params[1];
-            String apiUrl = "http://192.168.1.5:3000/users/" + username + "/description";
 
-            try {
-                URL url = new URL(apiUrl);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("PUT");
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setDoOutput(true);
+    @Override
+    public void onDataFetched(String result) {
+        try {
+            JSONObject jsonResult = new JSONObject(result);
+            String image = jsonResult.getString("image");
+            String rating = jsonResult.getString("rating");
+            String interests = jsonResult.getString("interests");
+            String description = jsonResult.getString("description");
 
-                String description = new JSONObject().put("description", rawDescription).toString();
-                //String requestBody = "{\"description\":\"" + description + "\"}";
-                String requestBody = description;
-                Log.d("Request Payload", requestBody);
-
-                OutputStream outputStream = connection.getOutputStream();
-                outputStream.write(requestBody.getBytes());
-                outputStream.flush();
-                outputStream.close();
-
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    InputStream inputStream = connection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        response.append(line);
-                    }
-                    bufferedReader.close();
-                    inputStream.close();
-
-                    return response.toString();
-                } else {
-                    return "Error: " + responseCode;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "Error: " + e.getMessage();
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // Handle the result here
-            //Toast.makeText(ProfileMain.this, result, Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    private class GetUserDetailsTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            String nationalId = params[0];
-            String apiUrl = "http://192.168.1.5:3000/users/" + nationalId + "/details";
-
-            try {
-                URL url = new URL(apiUrl);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    InputStream inputStream = connection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        response.append(line);
-                    }
-                    bufferedReader.close();
-                    inputStream.close();
-
-                    return response.toString();
-                } else {
-                    return "Error: " + responseCode;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "Error: " + e.getMessage();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // Handle the result here
-            // Parse the JSON response and extract the specific columns
-            try {
-                JSONObject jsonResult = new JSONObject(result);
-                image = jsonResult.getString("image");
-                rating = jsonResult.getString("rating");
-                interests = jsonResult.getString("interests");
-                description = jsonResult.getString("description");
-
-                TextView rating_field = findViewById(R.id.rating);
-                rating_field.setText(rating);
-
-                TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
-                aboutMeDescTextView.setText(description);
-
-
-                // Use the retrieved data as needed
-                // e.g., update UI elements with the retrieved values
-            } catch (JSONException e) {
-                e.printStackTrace();
-                // Handle JSON parsing error
-            }
+            // Use the retrieved data as needed
+            // Update UI or perform other operations with the data
+            TextView rating_view = findViewById(R.id.rating);
+            rating_view.setText(rating);
+            TextView description_view = findViewById(R.id.descriptionText);
+            description_view.setText(description);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            // Handle JSON parsing error
         }
     }
 
+    @Override
+    public void onDataFetchError(String errorMessage) {
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.mariam.registeration;
+package com.mariam.registeration.screens.profile;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.mariam.registeration.R;
 
 public class EnlargedProfilePicture extends AppCompatActivity {
     private GestureDetector gestureDetector;

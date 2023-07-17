@@ -1,4 +1,4 @@
-package com.mariam.registeration;
+package com.mariam.registeration.screens.profile;
 
 import android.content.Intent;
 import android.os.Build;
@@ -6,25 +6,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.mariam.registeration.screens.profile.ChangePassword;
+import com.mariam.registeration.HomeActivity;
+import com.mariam.registeration.MainActivity;
+import com.mariam.registeration.R;
+import com.mariam.registeration.User;
+import com.mariam.registeration.services.DatabaseCallback;
+import com.mariam.registeration.services.DatabaseManager;
+import com.mariam.registeration.services.UserSession;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
-public class ProfileSettings extends AppCompatActivity{
+public class ProfileSettings extends AppCompatActivity implements DatabaseCallback {
     ShapeableImageView Homebtn;
-
+    private DatabaseManager database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_settings);
 
-        Intent intent = getIntent();
-        User current_user = (User) intent.getSerializableExtra("current_user");
+//        Intent intent = getIntent();
+//        User current_user = (User) intent.getSerializableExtra("current_user");
 
-        Homebtn = (ShapeableImageView) findViewById(R.id.homeBtn);
+        LinearLayout Homebtn = findViewById(R.id.homeBtn);
 
         Homebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +45,12 @@ public class ProfileSettings extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+        database = new DatabaseManager();
+        User logged_user = UserSession.getInstance().getLoggedUser();
+        String nationalId = logged_user.getNat_ID();
+        database.getUserDetails(nationalId, this);
+        TextView name = findViewById(R.id.name);
+        name.setText(logged_user.getUsername());
 
 // Change status bar color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -96,7 +114,7 @@ public class ProfileSettings extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSettings.this, ChangePassword.class);
-                intent.putExtra("current_user", current_user);
+                //intent.putExtra("current_user", current_user);
                 startActivity(intent);
             }
         });
@@ -108,6 +126,33 @@ public class ProfileSettings extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    public void onDataFetched(String result) {
+        try {
+            JSONObject jsonResult = new JSONObject(result);
+            String image = jsonResult.getString("image");
+            String rating = jsonResult.getString("rating");
+            String interests = jsonResult.getString("interests");
+            String description = jsonResult.getString("description");
+
+            // Use the retrieved data as needed
+            // Update UI or perform other operations with the data
+            TextView rating_field = findViewById(R.id.rating);
+            rating_field.setText(rating);
+
+//            TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
+//            aboutMeDescTextView.setText(description);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            // Handle JSON parsing error
+        }
+    }
+
+    @Override
+    public void onDataFetchError(String errorMessage) {
 
     }
 }

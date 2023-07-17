@@ -48,14 +48,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileMain" android:exported="false" />
-        <activity android:name=".ProfileWallet" android:exported="false" />
-        <activity android:name=".ProfileSettings" android:exported="false" />
-        <activity android:name=".AccountInfo" android:exported="false" />
-        <activity android:name=".ChangePassword" android:exported="false" />
-        <activity android:name=".CustomerSupportMain" android:exported="false" />
+        <activity android:name=".screens.profile.ProfileMain" android:exported="false" />
+        <activity android:name=".screens.profile.ProfileSettings" android:exported="false" />
+        <activity android:name=".screens.profile.AccountInfo" android:exported="false" />
+        <activity android:name=".screens.profile.ChangePassword" android:exported="false" />
+        <activity android:name=".screens.profile.CustomerSupportMain" android:exported="false" />
         <activity android:name=".MyRequests" android:exported="false" />
-        <activity android:name=".EnlargedProfilePicture" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name=".screens.profile.EnlargedProfilePicture" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

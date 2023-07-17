@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mariam.registeration.services.HandyAPI;
+import com.mariam.registeration.services.UserSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Login extends AppCompatActivity {
+    private HandyAPI my_api = new HandyAPI();
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
     private Button mLoginButton;
@@ -90,7 +93,7 @@ public class Login extends AppCompatActivity {
                     mPasswordEditText.setError("Please enter your password");
                 } else {
 
-                    final String API_URL = "http://192.168.100.8:3000/login";
+                    final String API_URL = "http://"+my_api.API_LINK+"/login";
 
                     new Thread(new Runnable() {
                         @Override
@@ -201,6 +204,7 @@ public class Login extends AppCompatActivity {
     }
     private void update_move(User temp)
     {
+        UserSession.getInstance().setLoggedUser(temp);
         System.out.println(temp.getNat_ID());
         Intent i = new Intent(Login.this, HomeActivity.class);
         i.putExtra("user_data",temp);

@@ -1,4 +1,4 @@
-package com.mariam.registeration;
+package com.mariam.registeration.screens.profile;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -32,12 +32,16 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.mariam.registeration.R;
+import com.mariam.registeration.User;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class ChangePassword extends AppCompatActivity{
+    private HandyAPI my_api = new HandyAPI();
 
     private EditText editTextCurrentPassword;
     private EditText editTextNewPassword;
@@ -81,7 +85,7 @@ public class ChangePassword extends AppCompatActivity{
                 }
 
                 // Make network request to update the password
-                String apiUrl = "http://192.168.1.5:3000/users/"; // Replace with your API URL
+                String apiUrl = "http://"+my_api.API_LINK+"/users/"; // Replace with your API URL
                 String username = current_user.getUsername(); // Replace with the username
                 ChangePasswordTask task = new ChangePasswordTask();
                 task.execute(apiUrl, username, newPassword);
