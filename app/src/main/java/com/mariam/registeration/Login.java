@@ -89,7 +89,9 @@ public class Login extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(password)) {
                     mPasswordEditText.setError("Please enter your password");
                 } else {
+
                     final String API_URL = "http://192.168.100.8:3000/login";
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
