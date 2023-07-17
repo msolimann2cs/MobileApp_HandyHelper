@@ -285,7 +285,7 @@ public class ProfileMain extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String username = params[0];
             String rawDescription = params[1];
-            String apiUrl = "http://10.39.1.162:3000/users/" + username + "/description";
+            String apiUrl = "http://192.168.1.5:3000/users/" + username + "/description";
 
             try {
                 URL url = new URL(apiUrl);
@@ -340,7 +340,7 @@ public class ProfileMain extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String nationalId = params[0];
-            String apiUrl = "http://10.39.1.162:3000/users/" + nationalId + "/details";
+            String apiUrl = "http://192.168.1.5:3000/users/" + nationalId + "/details";
 
             try {
                 URL url = new URL(apiUrl);

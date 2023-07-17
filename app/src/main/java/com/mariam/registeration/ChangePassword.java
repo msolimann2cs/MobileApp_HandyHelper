@@ -81,7 +81,7 @@ public class ChangePassword extends AppCompatActivity{
                 }
 
                 // Make network request to update the password
-                String apiUrl = "http://10.39.1.162:3000/users/"; // Replace with your API URL
+                String apiUrl = "http://192.168.1.5:3000/users/"; // Replace with your API URL
                 String username = current_user.getUsername(); // Replace with the username
                 ChangePasswordTask task = new ChangePasswordTask();
                 task.execute(apiUrl, username, newPassword);

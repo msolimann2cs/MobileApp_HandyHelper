@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <!-- Include your trusted CA certificates here -->
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">api.example.com(to be adjusted)</domain>
+        <domain includeSubdomains="true">api.example.com</domain>
     </domain-config>
 </network-security-config>

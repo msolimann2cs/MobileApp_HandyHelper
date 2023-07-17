@@ -11,7 +11,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-//login or signup
+    //login or signup
     private Button Signup;
     private TextView Login;
     @Override

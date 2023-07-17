@@ -61,7 +61,7 @@ public class register_done extends AppCompatActivity {
                 editor.putString("description", user.getDescription());
                 editor.apply();
                 Log.i("done","done");
-                final String API_URL = "http://192.168.1.8:3000/adduser";
+                final String API_URL = "http://192.168.1.5:3000/adduser";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
