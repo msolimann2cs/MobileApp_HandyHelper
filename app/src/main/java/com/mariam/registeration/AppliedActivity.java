@@ -14,10 +14,20 @@ public class AppliedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applied);
         Button viewApps = (Button) findViewById(R.id.ViewApps);
+        Button goHome = (Button) findViewById(R.id.returnHome);
         viewApps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =
+                Intent intent = new Intent(AppliedActivity.this, MyApplications.class);
+                startActivity(intent);
+            }
+        });
+
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AppliedActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }

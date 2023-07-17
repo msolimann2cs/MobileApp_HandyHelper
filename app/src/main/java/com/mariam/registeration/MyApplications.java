@@ -205,7 +205,7 @@ public class MyApplications extends AppCompatActivity {
             String result = "";
 
             try {
-                URL url = new URL("http://192.168.1.5:3000/appliedPosts/" + userId);
+                URL url = new URL("http://192.168.100.8:3000/appliedPosts/" + userId);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                 int responseCode = connection.getResponseCode();

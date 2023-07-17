@@ -89,7 +89,7 @@ int p_id;
         dateTime.add("");
 
         SharedPreferences sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
-        String national_id = sharedPref.getString("national_id", "15874962853465");
+        String national_id = sharedPref.getString("national_id", "11111111111111");
         final ArrayList<String> nat_id = new ArrayList<String>();
         nat_id.add(national_id);
         final ArrayList<Integer> post_id = new ArrayList<Integer>();
@@ -119,7 +119,7 @@ int p_id;
             lat = bundle.getDouble("lat");
             lon= bundle.getDouble("lon");
 
-            tvTime.setText(Float.toString(bundle.getFloat("reqTime")));
+            
         }
 
         getUser userget = new getUser(user_id.get(0), new getUser.OnRequestCompletedListener() {

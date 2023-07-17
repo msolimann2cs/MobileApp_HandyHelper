@@ -70,6 +70,7 @@ app.post('/adduser', (req, res) => {
     const query = "SELECT * FROM users WHERE email = ?";
     connection.query(query, [email],(err, results)=>{
       if(err) res.status(401).send("Failed to get User")
+      else{
       if(results.length>0){
         if(results[0].pass === pass){
           res.status(200).send(results[0]);
@@ -78,6 +79,7 @@ app.post('/adduser', (req, res) => {
         }
 
       }
+    }
     })
   });
 
