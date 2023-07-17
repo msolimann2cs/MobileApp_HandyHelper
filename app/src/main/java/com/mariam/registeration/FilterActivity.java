@@ -135,7 +135,7 @@ public class FilterActivity extends AppCompatActivity {
                 List<Float> priceVals = priceSlider.getValues();
                 List<Float> dateVals = dateSlider.getValues();
                 List<Float> disValues = disSlider.getValues();
-
+                intent.putExtra("Uniqid","From_Filter");
                 intent.putExtra("catagories", cats);
                 intent.putExtra("priceMin", priceVals.get(0));
                 intent.putExtra("priceMax", priceVals.get(1));

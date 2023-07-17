@@ -222,7 +222,7 @@ int p_id;
 
                                 if (bidPrice > 10) {
                                     applied = true;
-                                    applyToPost app = new applyToPost(national_id, 4, Integer.parseInt(bidText.getText().toString()), new applyToPost.OnRequestCompletedListener() {
+                                    applyToPost app = new applyToPost(national_id, post_id.get(0), Integer.parseInt(bidText.getText().toString()), new applyToPost.OnRequestCompletedListener() {
                                         @Override
                                         public void onRequestCompleted(String response) {
                                             if(response.equals("1")) {

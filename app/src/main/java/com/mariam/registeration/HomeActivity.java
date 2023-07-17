@@ -126,7 +126,7 @@ public class HomeActivity extends AppCompatActivity{
 
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
-        private static final String API_URL = "http://"+"192.168.1.8:3000/"+"posts";
+        private static final String API_URL = "http://"+"192.168.100.8:3000/"+"posts";
         public static final String REQUEST_METHOD = "GET";
         public static final int READ_TIMEOUT = 15000;
         public static final int CONNECTION_TIMEOUT = 15000;
@@ -227,12 +227,15 @@ public class HomeActivity extends AppCompatActivity{
 
             Bundle bundle = HomeActivity.this.getIntent().getExtras();
             boolean cats[] = new boolean[5];
+            cats[0] = false;
             float minprice, maxprice, mindate, maxdate, mindis, maxdis;
 
-            if (bundle != null) {
+            if (bundle != null&&bundle.getString("Uniqid").matches("From_Filter")) {
+
                 cats = bundle.getBooleanArray("catagories");
+                Log.i("Size", "s "+cats.length);
                 for (int i = 0; i < reqs.size(); i++) {
-                    if (cats[0] == false && reqs.get(i).cat == "Gardening") {
+                    if (cats[0] == false && reqs.get(i).cat.equals("Gardening") ) {
                         reqs.remove(reqs.get(i));
                         i--;
                     }

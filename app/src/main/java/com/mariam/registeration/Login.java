@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(password)) {
                     mPasswordEditText.setError("Please enter your password");
                 } else {
-                    final String API_URL = "http://192.168.1.8:3000/login";
+                    final String API_URL = "http://192.168.100.8:3000/login";
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -202,6 +202,7 @@ public class Login extends AppCompatActivity {
         System.out.println(temp.getNat_ID());
         Intent i = new Intent(Login.this, HomeActivity.class);
         i.putExtra("user_data",temp);
+        i.putExtra("Uniqid","From_Login");
         Login.this.startActivity(i);
     }
 }
