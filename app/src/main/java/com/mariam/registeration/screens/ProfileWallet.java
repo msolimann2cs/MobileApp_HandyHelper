@@ -18,9 +18,9 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.mariam.registeration.screens.profile.EnlargedProfilePicture;
 import com.mariam.registeration.LinearLayoutAdapter;
 import com.mariam.registeration.R;
-//import com.mariam.registeration.screens.profile.ProfileMain;
-import com.mariam.registeration.screens.profile.ProfileMain;
-import com.mariam.registeration.screens.profile.ProfileSettings;
+//import com.mariam.registeration.ProfileMain;
+import com.mariam.registeration.ProfileMain;
+import com.mariam.registeration.ProfileSettings;
 
 import java.util.ArrayList;
 import java.util.List;

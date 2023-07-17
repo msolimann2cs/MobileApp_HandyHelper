@@ -48,8 +48,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.profile.ProfileMain" android:exported="false" />
-        <activity android:name=".screens.profile.ProfileSettings" android:exported="false" />
+        <activity android:name=".ProfileMain" android:exported="false" />
+        <activity android:name=".ProfileSettings" android:exported="false" />
         <activity android:name=".screens.profile.AccountInfo" android:exported="false" />
         <activity android:name=".screens.profile.ChangePassword" android:exported="false" />
         <activity android:name=".screens.profile.CustomerSupportMain" android:exported="false" />

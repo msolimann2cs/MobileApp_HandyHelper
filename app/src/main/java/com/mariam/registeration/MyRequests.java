@@ -14,14 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.mariam.registeration.screens.profile.ProfileMain;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -235,7 +233,7 @@ public class MyRequests extends AppCompatActivity {
                 //String nationalID = getNationalIDFromSharedPreferences(); // Retrieve the national ID
                 String nationalID = "11111111111111"; // Retrieve the national ID
 
-                URL url = new URL("http://192.168.1.5:3000/combinedData/" + nationalID);
+                URL url = new URL("http://10.40.34.169:3000/combinedData/" + nationalID);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "connection is " + connection);
 

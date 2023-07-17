@@ -13,10 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mariam.registeration.R.drawable;
 import com.mariam.registeration.R.id;
-import com.mariam.registeration.R.layout;
-import com.mariam.registeration.screens.profile.ProfileMain;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,6 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    private HandyAPI my_api = new HandyAPI();
     TextView filterBtn;
     ArrayList<Request> reqs;
     private static final int REQUEST_CODE = 100;
@@ -79,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
 
-        private static final String API_URL = "http://"+"192.168.100.8:3000/"+"posts";
+        private static final String API_URL = "http://"+"10.40.34.169:3000/"+"posts";
 
       
         public static final String REQUEST_METHOD = "GET";

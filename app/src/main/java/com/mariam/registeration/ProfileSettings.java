@@ -1,4 +1,4 @@
-package com.mariam.registeration.screens.profile;
+package com.mariam.registeration;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,11 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.mariam.registeration.screens.profile.AccountInfo;
 import com.mariam.registeration.screens.profile.ChangePassword;
-import com.mariam.registeration.HomeActivity;
-import com.mariam.registeration.MainActivity;
-import com.mariam.registeration.R;
-import com.mariam.registeration.User;
+import com.mariam.registeration.screens.profile.CustomerSupportMain;
+import com.mariam.registeration.screens.profile.EnlargedProfilePicture;
 import com.mariam.registeration.services.DatabaseCallback;
 import com.mariam.registeration.services.DatabaseManager;
 import com.mariam.registeration.services.UserSession;
