@@ -44,7 +44,7 @@
         android:textSize="24sp" />
     <TextView
         android:id="@+id/rating"
-        android:background="@drawable/button_style1"
+        android:background="@drawable/button_style1_mod"
         android:layout_marginLeft="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -89,7 +89,7 @@
                     <TextView
                         android:id="@+id/settings_tab"
                         android:layout_marginLeft="20dp"
-                        android:background="@drawable/button_style1"
+                        android:background="@drawable/button_style1_mod"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:layout_gravity="center"
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:background="@drawable/button_style1"
+                        android:background="@drawable/button_style1_mod"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="5dp"
@@ -164,7 +164,7 @@
                         android:textColor="@color/black"
                         />
                     <TextView
-                        android:background="@drawable/button_style1"
+                        android:background="@drawable/button_style1_mod"
                         android:layout_marginLeft="10dp"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:background="@drawable/button_style1"
+                        android:background="@drawable/button_style1_mod"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="5dp"
@@ -206,7 +206,7 @@
                         android:textColor="@color/black"
                         />
                     <TextView
-                        android:background="@drawable/button_style1"
+                        android:background="@drawable/button_style1_mod"
                         android:layout_marginLeft="10dp"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"

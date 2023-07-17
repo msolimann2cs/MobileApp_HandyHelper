@@ -59,14 +59,6 @@ public class ProfileMain extends AppCompatActivity implements DatabaseCallback {
     private DatabaseManager database;
     LinearLayout parentLayout;
     boolean category_edit = false;
-    boolean location_edit = false;
-    ShapeableImageView Homebtn;
-    private UserApiService userApiService;
-
-    String image;
-    String rating;
-    String interests;
-    String description;
 
 
 // Now you can use the userList in Activity B
@@ -155,7 +147,7 @@ public class ProfileMain extends AppCompatActivity implements DatabaseCallback {
             @Override
             public void onClick(View v) {
                 category_edit = true;
-                location_edit = true;
+                // location_edit = true;
                 EditText aboutMeDescEditText = aboutMeDescEditTextRef.get();
                 if (aboutMeDescEditText == null) {
                     // Change to Edit mode
@@ -203,7 +195,7 @@ public class ProfileMain extends AppCompatActivity implements DatabaseCallback {
                     // locationTextView.setBackground(null);
                     aboutMeDescEditTextRef.set(null);
                     category_edit = false;
-                    location_edit = false;
+                    // location_edit = false;
 
                     editProfileButton.setText("Edit Profile");
                 }
