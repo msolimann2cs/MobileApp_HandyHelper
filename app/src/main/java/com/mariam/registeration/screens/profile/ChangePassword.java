@@ -35,6 +35,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.mariam.registeration.R;
 import com.mariam.registeration.User;
 import com.mariam.registeration.services.HandyAPI;
+import com.mariam.registeration.services.UserSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,9 +58,9 @@ public class ChangePassword extends AppCompatActivity{
             window.setStatusBarColor(getResources().getColor(R.color.navy_blue));
         }
 
-        Intent intent = getIntent();
-        User current_user = (User) intent.getSerializableExtra("current_user");
-
+        //Intent intent = getIntent();
+        //User current_user = (User) intent.getSerializableExtra("current_user");
+        User current_user = UserSession.getInstance().getLoggedUser();
         editTextCurrentPassword = findViewById(R.id.current_pwd);
         editTextNewPassword = findViewById(R.id.new_pwd);
         editTextConfirmPassword = findViewById(R.id.confirm_pwd);

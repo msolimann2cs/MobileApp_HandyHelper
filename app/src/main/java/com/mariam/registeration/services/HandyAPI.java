@@ -6,5 +6,6 @@ public class HandyAPI {
     private String salma_api = "";
     private String soliman_api = "10.39.1.162:3000";
     private String home_server = "10.39.1.39:3000";
-    public String API_LINK = soliman_api;
+    private String temp = "172.20.10.2:3000";
+    public String API_LINK = temp       ;
 }
