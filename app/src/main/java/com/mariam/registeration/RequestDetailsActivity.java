@@ -115,6 +115,7 @@ int p_id;
             tvDesc.setText(bundle.getString("reqDesc"));
             reqDate = bundle.getString("reqDate");
             tvDate.setText(reqDate);
+            tvTime.setText(dateTime.get(0));
             lat = bundle.getDouble("lat");
             lon= bundle.getDouble("lon");
 
