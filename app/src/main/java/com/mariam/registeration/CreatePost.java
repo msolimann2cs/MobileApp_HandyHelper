@@ -256,7 +256,7 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
             String description = params[4];
 
             try {
-                URL url = new URL("http://192.168.1.5:3000/createPost");
+                URL url = new URL("http://10.40.34.169:3000/createPost");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");

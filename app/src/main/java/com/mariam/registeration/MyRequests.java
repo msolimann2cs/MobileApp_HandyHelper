@@ -233,7 +233,7 @@ public class MyRequests extends AppCompatActivity {
                 //String nationalID = getNationalIDFromSharedPreferences(); // Retrieve the national ID
                 String nationalID = "11111111111111"; // Retrieve the national ID
 
-                URL url = new URL("http://192.168.1.5:3000/combinedData/" + nationalID);
+                URL url = new URL("http://10.40.34.169:3000/combinedData/" + nationalID);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "connection is " + connection);
 

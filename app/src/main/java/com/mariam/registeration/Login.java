@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity {
                                     }
                                 } else {
                                     Login.this.logged=false;
-                                    Login.this.notlogged();
+                                    //Login.this.notlogged();
                                     String errorResponse = "HTTP error code: " + responseCode;
                                 }
                             } catch (IOException e) {
@@ -188,11 +188,11 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void notlogged() {
-        errorMessageTextView.setVisibility(View.VISIBLE);
-        mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
-        mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
-    }
+//    private void notlogged() {
+//        errorMessageTextView.setVisibility(View.VISIBLE);
+//        mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
+//        mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
+//    }
 
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);

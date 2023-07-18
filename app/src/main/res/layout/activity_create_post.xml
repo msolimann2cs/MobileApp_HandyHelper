@@ -175,7 +175,9 @@
                     android:textColor="#2D4059"
                     android:textSize="16sp"
                     android:clickable="false"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:backgroundTint="#2D4059"
+                    />
 
             </LinearLayout>
 
@@ -197,7 +199,10 @@
                     android:textColor="#2D4059"
                     android:textSize="16sp"
                     android:clickable="false"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:backgroundTint="#2D4059"
+
+                    />
 
             </LinearLayout>
 

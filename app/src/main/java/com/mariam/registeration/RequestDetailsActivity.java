@@ -89,7 +89,7 @@ int p_id;
         dateTime.add("");
 
         SharedPreferences sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
-        String national_id = sharedPref.getString("national_id", "11111111111111");
+        String national_id = sharedPref.getString("national_id", "15874962853465");
         final ArrayList<String> nat_id = new ArrayList<String>();
         nat_id.add(national_id);
         final ArrayList<Integer> post_id = new ArrayList<Integer>();
@@ -307,7 +307,7 @@ int p_id;
     }
 
     public class getPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"192.168.100.8:3000/"+"apply";
+        String API_URL = "http://"+"10.40.34.169:3000/"+"apply";
         private String nationalId;
         private int postId;
         private OnRequestCompletedListener listener;
@@ -376,7 +376,7 @@ int p_id;
 
 
     public class applyToPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"192.168.100.8:3000/"+"apply";
+        String API_URL = "http://"+"10.40.34.169:3000/"+"apply";
         private String nationalId;
         private int postId;
         private int price;
@@ -461,7 +461,7 @@ int p_id;
     }
 
     public class getFullPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"192.168.100.8:3000/"+"post";
+        String API_URL = "http://"+"10.40.34.169:3000/"+"post";
         private int postId;
         private OnRequestCompletedListener listener;
 
@@ -531,7 +531,7 @@ int p_id;
 
 
     public class updatePostState extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"192.168.100.8:3000/"+"updatepoststatus";
+        String API_URL = "http://"+"10.40.34.169:3000/"+"updatepoststatus";
         private int postId;
         private String status;
         private OnRequestCompletedListener listener;
@@ -602,7 +602,7 @@ int p_id;
     }
 
     public class getUser extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"192.168.100.8:3000/"+"users/";
+        String API_URL = "http://"+"10.40.34.169:3000/"+"users/";
         private String nationalId;
         private int postId;
         private OnRequestCompletedListener listener;
