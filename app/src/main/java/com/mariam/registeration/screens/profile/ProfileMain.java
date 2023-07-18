@@ -1,4 +1,4 @@
-package com.mariam.registeration;
+package com.mariam.registeration.screens.profile;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -25,7 +25,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -33,9 +38,12 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import com.mariam.registeration.screens.profile.EnlargedProfilePicture;
+import com.mariam.registeration.HomeActivity;
+import com.mariam.registeration.R;
+import com.mariam.registeration.User;
 import com.mariam.registeration.services.HandyAPI;
 import com.mariam.registeration.services.UserSession;
+import com.mariam.registeration.services.db_manager2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +60,7 @@ public class ProfileMain extends AppCompatActivity {
     String rating;
     String interests;
     String description;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
 
 // Now you can use the userList in Activity B
@@ -62,6 +71,9 @@ public class ProfileMain extends AppCompatActivity {
         setContentView(R.layout.activity_profile_main);
 
         LinearLayout parentLayout = findViewById(R.id.parent_layout);
+//        User current_user = new User("Mariam", "mariam3@gmail.com",
+//                "mariam", "Female", 2000, 10,
+//                10, "11111111111111");
 
 //        Intent intent = getIntent();
 //        User current_user = (User) intent.getSerializableExtra("current_user");
@@ -69,10 +81,35 @@ public class ProfileMain extends AppCompatActivity {
 
         // ------------------------------
         // Replace "YOUR_NATIONAL_ID" with the actual national ID you want to retrieve details for
-        String nationalId = current_user.getNat_ID();
-        System.out.println(nationalId);
-        GetUserDetailsTask task = new GetUserDetailsTask();
-        task.execute(nationalId);
+        String username = current_user.getUsername();
+//        GetUserDetailsTask task = new GetUserDetailsTask();
+//        task.execute("mariam");
+        Future<String> userDetailsFuture = executorService.submit(new GetUserDetailsTask(username));
+        try {
+            String result = userDetailsFuture.get();
+
+            // Handle the result here
+            // Parse the JSON response and extract the specific columns
+            // This code should remain the same as before
+            JSONObject jsonResult = new JSONObject(result);
+            image = jsonResult.getString("image");
+            rating = jsonResult.getString("rating");
+            interests = jsonResult.getString("interests");
+            description = jsonResult.getString("description");
+
+            // Update the UI with the retrieved user details
+            TextView ratingField = findViewById(R.id.rating);
+            ratingField.setText(rating);
+
+            TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
+            aboutMeDescTextView.setText(description);
+
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
 
         // ------------------------------
 
@@ -232,6 +269,13 @@ public class ProfileMain extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Shutdown the executor service when the activity is destroyed
+        executorService.shutdown();
+    }
+
     // Create a custom drawable for the border
     private Drawable createBorderDrawable() {
         int strokeWidth = getResources().getDimensionPixelSize(R.dimen.border_stroke_width);
@@ -335,11 +379,148 @@ public class ProfileMain extends AppCompatActivity {
 
     }
 
-    private class GetUserDetailsTask extends AsyncTask<String, Void, String> {
+//    private class GetUserDetailsTask extends AsyncTask<String, Void, String> {
+//        @Override
+//        protected String doInBackground(String... params) {
+//            String username = params[0];
+//            System.out.println(username);
+//            String apiUrl = "http://"+my_api.API_LINK+"/users/" + username + "/details";
+//
+//            try {
+//                URL url = new URL(apiUrl);
+//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//                connection.setRequestMethod("GET");
+//                connection.setRequestProperty("Content-Type", "application/json");
+//
+//                int responseCode = connection.getResponseCode();
+//                if (responseCode == HttpURLConnection.HTTP_OK) {
+//                    InputStream inputStream = connection.getInputStream();
+//                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+//                    StringBuilder response = new StringBuilder();
+//                    String line;
+//                    while ((line = bufferedReader.readLine()) != null) {
+//                        response.append(line);
+//                    }
+//                    bufferedReader.close();
+//                    inputStream.close();
+//
+//                    return response.toString();
+//                } else {
+//                    return "Error: " + responseCode;
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                return "Error: " + e.getMessage();
+//            }
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            // Handle the result here
+//            // Parse the JSON response and extract the specific columns
+//            try {
+//                JSONObject jsonResult = new JSONObject(result);
+//                image = jsonResult.getString("image");
+//                rating = jsonResult.getString("rating");
+//                interests = jsonResult.getString("interests");
+//                description = jsonResult.getString("description");
+//
+//                TextView rating_field = findViewById(R.id.rating);
+//                rating_field.setText(rating);
+//
+//                TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
+//                aboutMeDescTextView.setText(description);
+//
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//                // Handle JSON parsing error
+//            }
+//        }
+//    }
+
+    // --------- new old
+//public class GetUserDetailsTask extends AsyncTask<String, Void, String> {
+//    private static final HandyAPI my_api = new HandyAPI();
+//    private static final String API_URL_BASE = "http://" + my_api.API_LINK + "/users/%s/details";
+//
+//    @Override
+//    protected String doInBackground(String... params) {
+//        String username = params[0];
+//        String apiUrl = String.format(API_URL_BASE, username);
+//
+//        HttpURLConnection urlConnection = null;
+//        BufferedReader reader = null;
+//        StringBuilder stringBuilder = new StringBuilder();
+//
+//        try {
+//            URL url = new URL(apiUrl);
+//            urlConnection = (HttpURLConnection) url.openConnection();
+//            urlConnection.setRequestMethod("GET");
+//
+//            // Read the response
+//            InputStream inputStream = urlConnection.getInputStream();
+//            reader = new BufferedReader(new InputStreamReader(inputStream));
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                stringBuilder.append(line);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (urlConnection != null) {
+//                urlConnection.disconnect();
+//            }
+//            if (reader != null) {
+//                try {
+//                    reader.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        return stringBuilder.toString();
+//    }
+//
+//    @Override
+//    protected void onPostExecute(String result) {
+//        // Handle the result here
+//        // Parse the JSON response and extract the specific columns
+//        try {
+//            JSONObject jsonResult = new JSONObject(result);
+//            String image = jsonResult.getString("image");
+//            String rating = jsonResult.getString("rating");
+//            String interests = jsonResult.getString("interests");
+//            String description = jsonResult.getString("description");
+//
+//            // Update the UI with the retrieved user details
+//            TextView ratingField = findViewById(R.id.rating);
+//            ratingField.setText(rating);
+//
+//            TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
+//            aboutMeDescTextView.setText(description);
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//            // Handle JSON parsing error
+//        }
+//    }
+//}
+
+
+    private class GetUserDetailsTask implements Callable<String> {
+        private HandyAPI my_api = new HandyAPI();
+        private String API_URL_BASE = "http://" + my_api.API_LINK + "/users/%s/details";
+        private String username;
+
+        GetUserDetailsTask(String username) {
+            this.username = username;
+        }
+
         @Override
-        protected String doInBackground(String... params) {
-            String nationalId = params[0];
-            String apiUrl = "http://"+my_api.API_LINK+"/users/" + nationalId + "/details";
+        public String call() throws Exception {
+            String apiUrl = String.format(API_URL_BASE, username);
 
             try {
                 URL url = new URL(apiUrl);
@@ -368,30 +549,8 @@ public class ProfileMain extends AppCompatActivity {
                 return "Error: " + e.getMessage();
             }
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // Handle the result here
-            // Parse the JSON response and extract the specific columns
-            try {
-                JSONObject jsonResult = new JSONObject(result);
-                image = jsonResult.getString("image");
-                rating = jsonResult.getString("rating");
-                interests = jsonResult.getString("interests");
-                description = jsonResult.getString("description");
-
-                TextView rating_field = findViewById(R.id.rating);
-                rating_field.setText(rating);
-
-                TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
-                aboutMeDescTextView.setText(description);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-                // Handle JSON parsing error
-            }
-        }
     }
+
+
 
 }

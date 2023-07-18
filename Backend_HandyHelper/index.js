@@ -301,27 +301,6 @@ app.put('/users/:username/description', (req, res) => {
   });
 });
 
-// API to get specific columns from the users table
-// image, rating, interests, and description
-app.get('/users/:national_id/details', (req, res) => {
-  const national_id = req.params.national_id.replace(':','');
-
-  const query = `SELECT image, rating, interests, description FROM users WHERE national_id = '${national_id}'`;
-
-  connection.query(query, (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving user details from database');
-    } else {
-      if (result.length > 0) {
-        const userDetails = result[0];
-        res.status(200).json(userDetails);
-      } else {
-        res.status(404).send('User not found');
-      }
-    }
-  });
-});
 
 // Update user password by username
 app.put('/users/:username/password', (req, res) => {
@@ -575,20 +554,21 @@ app.get('/appliedPosts/:userId', (req, res) => {
 
 // API to get specific columns from the users table
 // image, rating, interests, and description
-app.get('/users/:national_id/details', (req, res) => {
-  const national_id = req.params.national_id.replace(':','');
+app.get('/users/:username/details', (req, res) => {
+  const username = req.params.username;
 
-  const query = `SELECT image, rating, interests, description FROM users WHERE national_id = '${national_id}'`;
+  const query = `SELECT image, rating, interests, description FROM users WHERE username = '${username}'`;
 
   connection.query(query, (err, result) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error retrieving user details from database');
+      res.status(500).send('Error retrieving user details from the database');
     } else {
       if (result.length > 0) {
         const userDetails = result[0];
         res.status(200).json(userDetails);
       } else {
+        console.log('No user found in the database.'); // Add this line to log the scenario.
         res.status(404).send('User not found');
       }
     }
