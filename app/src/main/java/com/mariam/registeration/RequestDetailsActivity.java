@@ -91,8 +91,8 @@ int p_id;
         dateTime.add("");
         dateTime.add("");
 
-        SharedPreferences sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
-        String national_id = sharedPref.getString("national_id", "15874962853465");
+        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String national_id = sharedPref.getString("Nat_ID", "15874962853465");
         final ArrayList<String> nat_id = new ArrayList<String>();
         nat_id.add(national_id);
         final ArrayList<Integer> post_id = new ArrayList<Integer>();
@@ -158,6 +158,13 @@ updateApps updateapps = new updateApps(post_id.get(0), new updateApps.OnRequestC
             }
         });
         userget.execute();
+
+        rejectAll rejectall = new rejectAll(post_id.get(0), new rejectAll.OnRequestCompletedListener() {
+            @Override
+            public void onRequestCompleted(String response) {
+
+            }
+        });
         getPost apply = new getPost(national_id, post_id.get(0), new getPost.OnRequestCompletedListener() {
             @Override
             public void onRequestCompleted(String response) {
@@ -195,6 +202,7 @@ updateApps updateapps = new updateApps(post_id.get(0), new updateApps.OnRequestC
                                         if (state.equals("n") && currDate.compareTo(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE)  )>= 0 && LocalTime.now().isAfter(LocalTime.parse(time))) {
                                             appliedLayout.setVisibility(View.INVISIBLE);
                                             startBtn.setVisibility(View.VISIBLE);
+                                            rejectall.execute();
                                         } else if (state.equals("s")) {
                                             appliedLayout.setVisibility(View.INVISIBLE);
                                             startBtn.setVisibility(View.INVISIBLE);
@@ -692,6 +700,78 @@ updateApps updateapps = new updateApps(post_id.get(0), new updateApps.OnRequestC
         private OnRequestCompletedListener listener;
 
         public updateApps(int postId,  OnRequestCompletedListener listener) {
+            this.postId = postId;
+
+            this.listener = listener;
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
+            StringBuilder stringBuilder = new StringBuilder();
+
+
+            try {
+                URL url = new URL(API_URL+ postId);
+                Log.i("userssss", API_URL+ postId);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+
+
+
+                // Read the response
+                InputStream inputStream = urlConnection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+            } catch (IOException  e) {
+                e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            return stringBuilder.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.i("RESSSSSS", s);
+            super.onPostExecute(s);
+
+            if (listener != null) {
+                listener.onRequestCompleted(s);
+            }
+        }
+
+        public interface OnRequestCompletedListener {
+            void onRequestCompleted(String response);
+        }
+    }
+
+
+
+    public class rejectAll extends AsyncTask<String, Integer, String>{
+        String API_URL = "http://"+API.API_LINK+"/"+"rejectAll?post_id=";
+
+        private int postId;
+        private OnRequestCompletedListener listener;
+
+        public rejectAll(int postId,  OnRequestCompletedListener listener) {
             this.postId = postId;
 
             this.listener = listener;

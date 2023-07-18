@@ -109,9 +109,9 @@ app.post('/adduser', (req, res) => {
     connection.query(query, [post_id, national_id], (err, results)=>{
       if(err) res.status(401).send("failed to get row");
       if(results.length > 0){
-        res.status(201).json(results[0]);
+        res.json(results[0]);
       }else{
-        res.status(404).send("0");
+        res.send("0");
       }
     })
   })
@@ -202,13 +202,13 @@ app.get('/post', (req, res)=>{
     connection.query(query, [post_id], (err, results)=>{
       if(err) {
         console.log(err);
-        res.status(401).send("failed to get row");
+        res.send("failed to get row");
       }
       else{
       if(results.length > 0){
-        res.status(201).json(results[0]);
+        res.json(results[0]);
       }else{
-        res.status(404).json({message:"No entry"});
+        res.json({message:"No entry"});
       }
     }
     })
@@ -265,6 +265,27 @@ app.get('/updatepoststatus', (req, res)=>{
     }
   })
 })
+
+
+app.get('/rejectAll', (req, res)=>{
+  const{post_id } = req.query;
+  const query = "UPDATE apply SET state = 'R' where post_id = ? and state = 'P'";
+  connection.query(query, [, post_id], (err, results)=>{
+    if(err){
+      console.log(err);
+      res.json({done:0});
+    }else{
+      if(results.length > 0){
+        console.log("hi")
+        res.json({done:1});
+      }
+      res.json({done:1});
+    }
+  })
+})
+
+
+
 
 //add a new job application
 app.post('/applies', (req, res) => {
