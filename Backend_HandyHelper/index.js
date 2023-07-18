@@ -92,11 +92,30 @@ app.post('/adduser', (req, res) => {
       if(results.length > 0){
         res.status(201).json(results[0]);
       }else{
-        res.status(404).json({message:"No entry"});
+        res.status(404).send("0");
       }
     })
   })
+app.get('/updateallapps', (req,res)=>{
+  const {post_id} = req.query;
+  const query = "SELECT * FROM apply WHERE post_id = ? and accepted_status = 'A' "
 
+  connection.query(query,[post_id], (err, results)=>{
+    if(err) return;
+    if(results.length > 0){
+      const query2 = "UPDATE apply set accepted_status = 'R' where post_id = ? and accepted_status = 'P'";
+      connection.query(query2,[post_id], (err, results)=>{
+        if (err) return;
+        if(results){
+          res.send("1");
+        }
+      })
+    }else{
+      res.send("0");
+    }
+  })
+
+})
   app.post('/apply', (req, res)=>{
     const {post_id, national_id, apply_price} = req.body;
     const query = "INSERT INTO apply (post_id, national_id, apply_price) VALUES (?, ?, ?)";

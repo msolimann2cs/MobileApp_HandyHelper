@@ -2,6 +2,8 @@ package com.mariam.registeration;
 
 import androidx.annotation.NonNull;
 
+import com.mariam.registeration.services.HandyAPI;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -12,7 +14,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class UserApiService {
-    private static final String BASE_URL = "http://10.39.1.39:3000";
+    private static final String BASE_URL = "http://"+new HandyAPI().API_LINK;
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private OkHttpClient client;

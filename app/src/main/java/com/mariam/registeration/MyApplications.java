@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -199,13 +200,13 @@ public class MyApplications extends AppCompatActivity {
     }
 
     private class RetrieveAppliedPostsTask extends AsyncTask<Void, Void, String> {
-
+        HandyAPI API = new HandyAPI();
         @Override
         protected String doInBackground(Void... voids) {
             String result = "";
 
             try {
-                URL url = new URL("http://10.40.34.169:3000/appliedPosts/" + userId);
+                URL url = new URL("http://"+API.API_LINK+"/appliedPosts/" + userId);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                 int responseCode = connection.getResponseCode();

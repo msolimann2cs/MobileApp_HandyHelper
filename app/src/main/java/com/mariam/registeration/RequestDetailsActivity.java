@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mariam.registeration.R.id;
 import com.mariam.registeration.R.layout;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +57,8 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
 int p_id;
 
     double lat,lon;
+    HandyAPI API = new HandyAPI();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +124,14 @@ int p_id;
 
             
         }
+updateApps updateapps = new updateApps(post_id.get(0), new updateApps.OnRequestCompletedListener() {
+    @Override
+    public void onRequestCompleted(String response) {
 
+    }
+});
+
+        updateapps.execute();
         getUser userget = new getUser(user_id.get(0), new getUser.OnRequestCompletedListener() {
             @Override
             public void onRequestCompleted(String response) {
@@ -151,7 +161,7 @@ int p_id;
         getPost apply = new getPost(national_id, post_id.get(0), new getPost.OnRequestCompletedListener() {
             @Override
             public void onRequestCompleted(String response) {
-                if(!response.equals("")){
+                if(!response.equals("0")){
                     applyLayout.setVisibility(View.INVISIBLE);
                     appliedLayout.setVisibility(View.VISIBLE);
                     try {
@@ -307,7 +317,7 @@ int p_id;
     }
 
     public class getPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"apply";
+        String API_URL = "http://"+API.API_LINK+"/"+"apply";
         private String nationalId;
         private int postId;
         private OnRequestCompletedListener listener;
@@ -376,7 +386,7 @@ int p_id;
 
 
     public class applyToPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"apply";
+        String API_URL = "http://"+API.API_LINK+"/"+"apply";
         private String nationalId;
         private int postId;
         private int price;
@@ -461,7 +471,7 @@ int p_id;
     }
 
     public class getFullPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"post";
+        String API_URL = "http://"+API.API_LINK+"/"+"post";
         private int postId;
         private OnRequestCompletedListener listener;
 
@@ -531,7 +541,7 @@ int p_id;
 
 
     public class updatePostState extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"updatepoststatus";
+        String API_URL = "http://"+API.API_LINK+"/"+"updatepoststatus";
         private int postId;
         private String status;
         private OnRequestCompletedListener listener;
@@ -602,7 +612,7 @@ int p_id;
     }
 
     public class getUser extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"users/";
+        String API_URL = "http://"+API.API_LINK+"/"+"users/";
         private String nationalId;
         private int postId;
         private OnRequestCompletedListener listener;
@@ -626,6 +636,78 @@ int p_id;
             try {
                 URL url = new URL(API_URL+ nationalId);
                 Log.i("userssss", API_URL+ nationalId);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+
+
+
+                // Read the response
+                InputStream inputStream = urlConnection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+            } catch (IOException  e) {
+                e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            return stringBuilder.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.i("RESSSSSS", s);
+            super.onPostExecute(s);
+
+            if (listener != null) {
+                listener.onRequestCompleted(s);
+            }
+        }
+
+        public interface OnRequestCompletedListener {
+            void onRequestCompleted(String response);
+        }
+    }
+
+
+
+    public class updateApps extends AsyncTask<String, Integer, String>{
+        String API_URL = "http://"+API.API_LINK+"/"+"updateallapps?post_id=";
+
+        private int postId;
+        private OnRequestCompletedListener listener;
+
+        public updateApps(int postId,  OnRequestCompletedListener listener) {
+            this.postId = postId;
+
+            this.listener = listener;
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
+            StringBuilder stringBuilder = new StringBuilder();
+
+
+            try {
+                URL url = new URL(API_URL+ postId);
+                Log.i("userssss", API_URL+ postId);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
 

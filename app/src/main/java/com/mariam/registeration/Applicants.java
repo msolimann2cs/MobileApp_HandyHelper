@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import com.mariam.registeration.services.HandyAPI;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +57,7 @@ class Applicant {
 }
 
 public class Applicants extends AppCompatActivity {
+    HandyAPI API = new HandyAPI();
 
     private ListView listView;
     private List<Applicant> itemList;
@@ -151,7 +154,7 @@ public class Applicants extends AppCompatActivity {
             String result = "";
 
             try {
-                URL url = new URL("http://10.40.34.169:3000/applicants/" + postId);
+                URL url = new URL("http://"+API.API_LINK+ "/applicants/" + postId);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "URL is "+ url);
 
@@ -214,7 +217,7 @@ public class Applicants extends AppCompatActivity {
             String status = params[2];
 
             try {
-                URL url = new URL("http://10.40.34.169:3000/updateApplicationStatus");
+                URL url = new URL("http://"+ API.API_LINK+"/updateApplicationStatus");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");

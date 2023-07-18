@@ -30,9 +30,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
-    private HandyAPI my_api = new HandyAPI();
+     HandyAPI my_api = new HandyAPI();
     TextView filterBtn;
     ArrayList<Request> reqs;
+
     private static final int REQUEST_CODE = 100;
 
     @Override
@@ -82,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
 
-        private static final String API_URL = "http://"+"10.40.34.169:3000/"+"posts";
+        private final String API_URL = "http://"+my_api.API_LINK+"/"+"posts";
 
       
         public static final String REQUEST_METHOD = "GET";
