@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.mariam.registeration.screens.profile.ProfileMain;
+import com.mariam.registeration.screens.profile.ProfileSettings;
 import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
@@ -138,7 +139,7 @@ public class MyRequests extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle icon1 click here
-                Intent intent = new Intent(MyRequests.this, ProfileMain.class);
+                Intent intent = new Intent(MyRequests.this, ProfileSettings.class);
                 startActivity(intent);
             }
         });

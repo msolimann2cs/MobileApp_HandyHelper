@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.mariam.registeration.R.id;
 import com.mariam.registeration.screens.profile.ProfileMain;
+import com.mariam.registeration.screens.profile.ProfileSettings;
 import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ProfileMain.class);
+                Intent intent = new Intent(HomeActivity.this, ProfileSettings.class);
                 intent.putExtra("current_user", current_user);
                 startActivity(intent);
             }

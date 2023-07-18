@@ -68,7 +68,7 @@
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
+                        android:text="View Profile"
                         android:textColor="@android:color/black"
                         android:textSize="24sp" />
 <!--                    <TextView-->
@@ -83,22 +83,13 @@
 <!--                        android:text="Wallet"-->
 <!--                        android:textColor="@android:color/black"-->
 <!--                        android:textSize="24sp" />-->
-                    <TextView
-                        android:id="@+id/settings_tab"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/button_style_1_selected"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Settings"
-                        android:textColor="@android:color/black"
-                        android:textSize="24sp" />
+
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="35dp"
+                    android:gravity="center"
                     android:paddingTop="35dp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -196,36 +187,7 @@
                             android:textSize="25sp"
                             />
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginTop="3.5dp"
-                        android:layout_width="320dp"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/button_style3"
-                        >
-                        <TextView
-                            android:layout_marginLeft="10dp"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Language"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            />
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="20dp"
-                            android:gravity="end"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text=">"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"
-                            />
-                    </LinearLayout>
+
 <!--                    <LinearLayout-->
 <!--                        android:layout_marginTop="3.5dp"-->
 <!--                        android:layout_width="320dp"-->
@@ -256,37 +218,37 @@
 <!--                            android:textSize="25sp"-->
 <!--                            />-->
 <!--                    </LinearLayout>-->
-                    <LinearLayout
-                        android:layout_marginTop="3.5dp"
-                        android:layout_width="320dp"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/button_style3"
-                        >
-                        <TextView
-                            android:id="@+id/customer_support"
-                            android:layout_marginLeft="10dp"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Customer Support"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            />
-                        <TextView
-                            android:layout_marginTop="5dp"
-                            android:layout_marginRight="20dp"
-                            android:gravity="end"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text=">"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"
-                            />
-                    </LinearLayout>
+<!--                    <LinearLayout-->
+<!--                        android:layout_marginTop="3.5dp"-->
+<!--                        android:layout_width="320dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:background="@drawable/button_style3"-->
+<!--                        >-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/customer_support"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Customer Support"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="18sp"-->
+<!--                            />-->
+<!--                        <TextView-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:gravity="end"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:text=">"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="25sp"-->
+<!--                            />-->
+<!--                    </LinearLayout>-->
                     <LinearLayout
                         android:layout_marginTop="3.5dp"
                         android:layout_width="320dp"

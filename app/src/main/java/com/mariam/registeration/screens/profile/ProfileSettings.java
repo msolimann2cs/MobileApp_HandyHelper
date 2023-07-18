@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.mariam.registeration.HomeActivity;
 import com.mariam.registeration.MainActivity;
@@ -122,6 +123,7 @@ public class ProfileSettings extends AppCompatActivity {
         profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                showBottomSheet();
                 finish();
                 Intent intent = new Intent(ProfileSettings.this, ProfileMain.class);
                 startActivity(intent);
@@ -166,14 +168,14 @@ public class ProfileSettings extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        TextView customer_support_button = findViewById(R.id.customer_support);
-        customer_support_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfileSettings.this, CustomerSupportMain.class);
-                startActivity(intent);
-            }
-        });
+//        TextView customer_support_button = findViewById(R.id.customer_support);
+//        customer_support_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ProfileSettings.this, CustomerSupportMain.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -217,6 +219,13 @@ public class ProfileSettings extends AppCompatActivity {
                 return "Error: " + e.getMessage();
             }
         }
+    }
+
+    private void showBottomSheet() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.activity_profile_main, null);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 
 }
