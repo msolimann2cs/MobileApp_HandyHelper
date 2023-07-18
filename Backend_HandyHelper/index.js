@@ -12,11 +12,13 @@ const app = express();
 app.use(bodyParser.json());
 
 const connection = mysql.createPool({
-  connectionLimit: 10,
   host: 'db4free.net',
   user: 'handyhelper',
   password: 'handyhelper',
-  database: 'auc_handyhelper'
+  database: 'auc_handyhelper',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
   
   // connection.connect(function(err) {
@@ -629,47 +631,6 @@ app.put('/users/:username/password', (req, res) => {
   });
 });
 
-// Update user email or phone number by username
-app.put('/users/:username/contact', (req, res) => {
-  const { username } = req.params;
-  const { email, phoneNumber } = req.body;
-
-  // Check if either email or phone number is provided
-  if (!email && !phoneNumber) {
-    res.status(400).json({ error: 'Either email or phone number must be provided' });
-    return;
-  }
-
-  // Build the SQL query dynamically based on the provided fields
-  let sql = 'UPDATE users SET';
-  const values = [];
-
-  if (email) {
-    sql += ' email = ?,';
-    values.push(email);
-  }
-  if (phoneNumber) {
-    sql += ' phone_number = ?,';
-    values.push(phoneNumber);
-  }
-
-  // Remove the trailing comma from the query
-  sql = sql.slice(0, -1);
-
-  // Add the WHERE clause to update the user with the specified username
-  sql += ' WHERE username = ?';
-  values.push(username);
-
-  connection.query(sql, values, (err, result) => {
-    if (err) {
-      console.error('Error updating user contact information: ', err);
-      res.status(500).json({ error: 'Failed to update user contact information' });
-      return;
-    }
-    console.log(`User "${username}" contact information updated successfully`);
-    res.json({ message: 'User contact information updated successfully' });
-  });
-});
 
 app.post('/update_interests', (req, res) => {
   const { username, interests } = req.body;
@@ -690,6 +651,25 @@ app.post('/update_interests', (req, res) => {
   });
 });
 
+// API endpoint to handle user updates
+app.post('/update_user', (req, res) => {
+  const { username, email, newUsername, phone_number } = req.body;
+
+  // Update the email, username, and phone_number columns in the user table for the matching username
+  const sql = 'UPDATE users SET email = ?, username = ?, phone_number = ? WHERE username = ?';
+  connection.query(sql, [email, newUsername, phone_number, username], (err, result) => {
+    if (err) {
+      console.error('Error updating user:', err);
+      res.status(500).json({ error: 'An error occurred while updating user' });
+    } else {
+      if (result.affectedRows === 0) {
+        res.status(404).json({ error: 'User not found' });
+      } else {
+        res.json({ message: 'User updated successfully' });
+      }
+    }
+  });
+});
 
 
 

@@ -57,6 +57,13 @@ public class ChangePassword extends AppCompatActivity{
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.navy_blue));
         }
+        TextView back_btn = findViewById(R.id.back_btn_password);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //Intent intent = getIntent();
         //User current_user = (User) intent.getSerializableExtra("current_user");
@@ -115,6 +122,18 @@ public class ChangePassword extends AppCompatActivity{
                 outputStream.write(requestBody.toString().getBytes());
                 outputStream.flush();
                 outputStream.close();
+                User current_user = UserSession.getInstance().getLoggedUser();
+                User temp = new User(
+                        current_user.getUsername(),
+                        current_user.getEmail(),
+                        newPassword,
+                        current_user.getGender(),
+                        0,0,0, current_user.getNat_ID());
+                temp.setPhone( current_user.getPhone());
+                temp.setInterest( current_user.getInterest());
+                temp.setNotify( current_user.getNotify());
+                temp.setDescription( current_user.getDescription());
+                UserSession.getInstance().setLoggedUser(temp);
 
                 return connection.getResponseCode();
             } catch (IOException | JSONException e) {
@@ -128,6 +147,7 @@ public class ChangePassword extends AppCompatActivity{
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 // Password updated successfully
                 Toast.makeText(ChangePassword.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
+
             } else {
                 // Error updating password
                 Toast.makeText(ChangePassword.this, "Error updating password. Please try again.", Toast.LENGTH_SHORT).show();

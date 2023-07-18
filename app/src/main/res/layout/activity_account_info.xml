@@ -26,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/back_btn_info"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center"
@@ -34,7 +35,6 @@
                         android:text="&lt;"
                         android:textColor="@android:color/black"
                         android:textSize="24sp"
-                        android:onClick="onBackPressed"
                         />
                     <TextView
                         android:layout_marginLeft="100dp"
@@ -64,6 +64,7 @@
                         android:text="Email"
                         android:textColor="@color/black"/>
                     <EditText
+                        android:id="@+id/editTextEmailProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="maya@gmail.com"
@@ -86,9 +87,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="First name"
+                        android:text="Username"
                         android:textColor="@color/black"/>
                     <EditText
+                        android:id="@+id/editTextUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Maya"
@@ -101,30 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/grey" />
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Last name"
-                        android:textColor="@color/black"/>
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Len"
-                        android:textColorHint="@color/black"
-                        android:textColor="@color/black"/>
 
-                </LinearLayout>
-                <View
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/grey" />
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
@@ -137,6 +116,7 @@
                         android:text="Phone number"
                         android:textColor="@color/black"/>
                     <EditText
+                        android:id="@+id/editTextPhoneNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="01122662468"
@@ -166,62 +146,7 @@
 
 
             </LinearLayout>
-            <LinearLayout
-                android:background="@color/white"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:strokeColor="#D9D9D9"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_horizontal"
-                        android:padding="10dp"
-                        android:src="@drawable/home_icon"
-                        android:scaleType="centerCrop"
-                        android:id="@+id/homeBtn"/>
-                </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:strokeColor="#D9D9D9"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/circle_background"
-                        android:padding="10dp"
-                        android:src="@drawable/activity_icon"
-                        android:scaleType="centerCrop" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <com.google.android.material.imageview.ShapeableImageView
-                        app:strokeColor="#D9D9D9"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/circle_background"
-                        android:padding="10dp"
-                        android:src="@drawable/profile_icon_selected"
-                        android:scaleType="centerCrop" />
-
-                </FrameLayout>
-            </LinearLayout>
 
         </RelativeLayout>
 
