@@ -46,8 +46,7 @@ const connection = mysql.createPool({
 // insert a new user
 app.post('/adduser', (req, res) => {
     // extract user data from the request body
-    const { nat_ID, username, email, pass, gender, phone, date_of_birth, interest, description, notify} = req.body;
-    console.log("nationa: "+nat_ID);
+    const { nat_ID, username, email, pass, gender, phone, date_of_birth, interest, description, notify,imageBytes} = req.body;
     let query1 =`INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth`;
     let query2 =`) VALUES ('${nat_ID}', '${username}', '${email}', '${pass}', '${gender}', '${phone}', '${date_of_birth}'`;
 
@@ -55,10 +54,10 @@ app.post('/adduser', (req, res) => {
     query1 += `, interests`;
     query2 += `, '${interest}'`;
   }
-  // if (image){
-  //   query1 += `, image`;
-  //   query2 += `, '${image}'`;
-  // }
+  if (imageBytes!= null){
+    query1 += `, image`;
+    query2 += `, '${imageBytes}'`;
+  }
   if (description){
     query1 += `, description`;
     query2 += `, '${description}'`;
