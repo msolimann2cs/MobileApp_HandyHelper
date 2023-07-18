@@ -2,7 +2,8 @@ const fs = require('fs/promises');
 const express = require('express');
 const cors = require('cors');
 const _ = require('lodash');
-const mysql = require('mysql');
+// const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const { v4: uuid } = require('uuid');
 
@@ -10,18 +11,35 @@ const { v4: uuid } = require('uuid');
 const app = express();
 app.use(bodyParser.json());
 
-const connection = mysql.createConnection({
-    // connectionLimit: 10,
-    host: 'db4free.net',
-    user: 'handyhelper',
-    password: 'handyhelper',
-    database: 'auc_handyhelper'
-  });
+const connection = mysql.createPool({
+  connectionLimit: 10,
+  host: 'db4free.net',
+  user: 'handyhelper',
+  password: 'handyhelper',
+  database: 'auc_handyhelper'
+});
   
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected to MySQL database!");
-    });
+  // connection.connect(function(err) {
+  //   if (err) throw err;
+  //   console.log("Connected to MySQL database!");
+  //   });
+  connection.on('connection', (connection) => {
+    console.log('New connection established.');
+  });
+
+  // console.log(connection.promise().isConnected() ? 'Connected to MySQL database!' : 'Not connected to MySQL database!');
+
+  // const getConnection = () => {
+  //   return new Promise((resolve, reject) => {
+  //     pool.getConnection((err, connection) => {
+  //       if (err) {
+  //         reject(err);
+  //       } else {
+  //         resolve(connection);
+  //       }
+  //     });
+  //   });
+  // };
     
 // insert a new user
 app.post('/adduser', (req, res) => {
@@ -633,6 +651,26 @@ app.put('/users/:username/contact', (req, res) => {
     res.json({ message: 'User contact information updated successfully' });
   });
 });
+
+app.post('/update_interests', (req, res) => {
+  const { username, interests } = req.body;
+
+  // Update the interests column in the user table for the matching username
+  const sql = 'UPDATE users SET interests = ? WHERE username = ?';
+  connection.query(sql, [interests, username], (err, result) => {
+    if (err) {
+      console.error('Error updating interests:', err);
+      res.status(500).json({ error: 'An error occurred while updating interests' });
+    } else {
+      if (result.affectedRows === 0) {
+        res.status(404).json({ error: 'User not found' });
+      } else {
+        res.json({ message: 'Interests updated successfully' });
+      }
+    }
+  });
+});
+
 
 
 
