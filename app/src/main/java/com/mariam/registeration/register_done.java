@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +63,7 @@ public class register_done extends AppCompatActivity {
                 editor.putString("interest", user.getInterest());
                 editor.putInt("notify", user.getNotify());
                 editor.putString("description", user.getDescription());
+                editor.putString("photo", Base64.encodeToString(user.getImageBytes(), Base64.DEFAULT));
                 editor.apply();
                 Log.i("done","done");
                 final String API_URL = "http://"+my_api.API_LINK+"/adduser";

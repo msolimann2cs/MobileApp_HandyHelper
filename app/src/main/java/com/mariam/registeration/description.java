@@ -93,6 +93,7 @@ public class description extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(description.this, setup_interest.class);
+                i.putExtra("user_data", user);
                 description.this.startActivity(i);
             }
         });
