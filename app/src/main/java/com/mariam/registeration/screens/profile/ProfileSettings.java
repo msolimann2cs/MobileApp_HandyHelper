@@ -14,26 +14,68 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.mariam.registeration.HomeActivity;
 import com.mariam.registeration.MainActivity;
+import com.mariam.registeration.MyRequests;
 import com.mariam.registeration.R;
 import com.mariam.registeration.User;
 import com.mariam.registeration.services.DatabaseCallback;
 import com.mariam.registeration.services.DatabaseManager;
+import com.mariam.registeration.services.HandyAPI;
 import com.mariam.registeration.services.UserSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class ProfileSettings extends AppCompatActivity implements DatabaseCallback {
+
+public class ProfileSettings extends AppCompatActivity {
     ShapeableImageView Homebtn;
     private DatabaseManager database;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_settings);
 
 //        Intent intent = getIntent();
+        User current_user = UserSession.getInstance().getLoggedUser();
+        String username = current_user.getUsername();
 //        User current_user = (User) intent.getSerializableExtra("current_user");
+        Future<String> userDetailsFuture = executorService.submit(new ProfileSettings.GetUserDetailsTask(username));
+        try {
+            String result = userDetailsFuture.get();
+
+            // Handle the result here
+            // Parse the JSON response and extract the specific columns
+            // This code should remain the same as before
+            JSONObject jsonResult = new JSONObject(result);
+            String rating = jsonResult.getString("rating");
+
+//            System.out.println(interests);
+
+            // Update the UI with the retrieved user details
+            TextView ratingField = findViewById(R.id.rating);
+            ratingField.setText(rating);
+
+
+
+
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
         LinearLayout Homebtn = findViewById(R.id.homeBtn);
 
@@ -41,15 +83,22 @@ public class ProfileSettings extends AppCompatActivity implements DatabaseCallba
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileSettings.this, HomeActivity.class);
+                finish();
                 startActivity(intent);
             }
         });
-        database = new DatabaseManager();
-        User logged_user = UserSession.getInstance().getLoggedUser();
-        String nationalId = logged_user.getNat_ID();
-        database.getUserDetails(nationalId, this);
         TextView name = findViewById(R.id.name);
-        name.setText(logged_user.getUsername());
+        name.setText(current_user.getUsername());
+        TextView navPost = findViewById(R.id.navPost);
+        navPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to another page
+                Intent intent = new Intent(ProfileSettings.this, MyRequests.class);
+                finish();
+                startActivity(intent);
+            }
+        });
 
 // Change status bar color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -128,30 +177,46 @@ public class ProfileSettings extends AppCompatActivity implements DatabaseCallba
 
     }
 
-    @Override
-    public void onDataFetched(String result) {
-        try {
-            JSONObject jsonResult = new JSONObject(result);
-            String image = jsonResult.getString("image");
-            String rating = jsonResult.getString("rating");
-            String interests = jsonResult.getString("interests");
-            String description = jsonResult.getString("description");
+    private class GetUserDetailsTask implements Callable<String> {
+        private HandyAPI my_api = new HandyAPI();
+        private String API_URL_BASE = "http://" + my_api.API_LINK + "/users/%s/details";
+        private String username;
 
-            // Use the retrieved data as needed
-            // Update UI or perform other operations with the data
-            TextView rating_field = findViewById(R.id.rating);
-            rating_field.setText(rating);
+        GetUserDetailsTask(String username) {
+            this.username = username;
+        }
 
-//            TextView aboutMeDescTextView = findViewById(R.id.about_me_desc);
-//            aboutMeDescTextView.setText(description);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            // Handle JSON parsing error
+        @Override
+        public String call() throws Exception {
+            String apiUrl = String.format(API_URL_BASE, username);
+
+            try {
+                URL url = new URL(apiUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-Type", "application/json");
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = connection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    bufferedReader.close();
+                    inputStream.close();
+
+                    return response.toString();
+                } else {
+                    return "Error: " + responseCode;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Error: " + e.getMessage();
+            }
         }
     }
 
-    @Override
-    public void onDataFetchError(String errorMessage) {
-
-    }
 }

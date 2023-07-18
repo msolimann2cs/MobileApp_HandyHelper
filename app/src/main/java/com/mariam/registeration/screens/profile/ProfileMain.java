@@ -47,6 +47,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.mariam.registeration.HomeActivity;
+import com.mariam.registeration.MyRequests;
 import com.mariam.registeration.R;
 import com.mariam.registeration.User;
 import com.mariam.registeration.services.HandyAPI;
@@ -140,6 +141,17 @@ public class ProfileMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileMain.this, HomeActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+        TextView navPost = findViewById(R.id.navPost);
+        navPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to another page
+                Intent intent = new Intent(ProfileMain.this, MyRequests.class);
+                finish();
                 startActivity(intent);
             }
         });
