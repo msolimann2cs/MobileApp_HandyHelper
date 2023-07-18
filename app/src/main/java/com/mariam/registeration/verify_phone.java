@@ -101,10 +101,10 @@ public class verify_phone extends AppCompatActivity implements View.OnClickListe
         return String.valueOf(code);
     }
 
-    private void sendVerificationCode(String phone, String verificationCode) {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(phone, null, "Your verification code is: " + verificationCode, null, null);
-    }
+//    private void sendVerificationCode(String phone, String verificationCode) {
+//        SmsManager smsManager = SmsManager.getDefault();
+//        smsManager.sendTextMessage(phone, null, "Your verification code is: " + verificationCode, null, null);
+//    }
 
     @Override
     public void onClick(View view) {
@@ -146,9 +146,9 @@ public class verify_phone extends AppCompatActivity implements View.OnClickListe
     private void sendSms() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         if (telephonyManager != null && telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
-            sendVerificationCode(phone, verificationCode);
+//            sendVerificationCode(phone, verificationCode);
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phone, null, "Your verification code is: " + verificationCode, null, null);
+            smsManager.sendTextMessage(phone, "+201027210024", "Your verification code is: " + verificationCode, null, null);
             System.out.println(verificationCode);
             Toast.makeText(this, "SMS sent", Toast.LENGTH_SHORT).show();
 //            user.setPhone(phone);

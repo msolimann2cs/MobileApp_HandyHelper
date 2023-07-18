@@ -64,7 +64,7 @@ public class verify_phone2 extends AppCompatActivity {
                 if (verify.equals(code)) {
                     System.out.println("match");
                     unmatched.setVisibility(View.INVISIBLE);
-                    Intent i = new Intent(verify_phone2.this,setup_interest.class);
+                    Intent i = new Intent(verify_phone2.this,Setup_img.class);
                     user.setPhone(phone);
                     i.putExtra("user_data", user);
                     verify_phone2.this.startActivity(i);

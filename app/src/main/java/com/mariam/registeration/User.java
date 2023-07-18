@@ -15,6 +15,7 @@ public class User implements Serializable {
     private String interest="";
     private int notify = 0;
     private String description="";
+    private byte[] imageBytes = null;
 
     public User(String username, String email, String pass, String gender,
                 int b_year, int b_month, int b_day, String nat_ID) {
@@ -46,7 +47,10 @@ public class User implements Serializable {
         return gender;
     }
 
-//    public int getB_year() {
+    public byte[] getImageBytes() {
+        return imageBytes;
+    }
+    //    public int getB_year() {
 //        return b_year;
 //    }
 //
@@ -122,5 +126,7 @@ public class User implements Serializable {
         this.description = description;
     }
 
-
+    public void setImageBytes(byte[] imageBytes) {
+        this.imageBytes = imageBytes;
+    }
 }

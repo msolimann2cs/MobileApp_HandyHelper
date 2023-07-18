@@ -2,8 +2,7 @@ const fs = require('fs/promises');
 const express = require('express');
 const cors = require('cors');
 const _ = require('lodash');
-// const mysql = require('mysql');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const { v4: uuid } = require('uuid');
 
@@ -11,41 +10,23 @@ const { v4: uuid } = require('uuid');
 const app = express();
 app.use(bodyParser.json());
 
-const connection = mysql.createPool({
-  connectionLimit: 10,
-  host: 'db4free.net',
-  user: 'handyhelper',
-  password: 'handyhelper',
-  database: 'auc_handyhelper'
-});
-  
-  // connection.connect(function(err) {
-  //   if (err) throw err;
-  //   console.log("Connected to MySQL database!");
-  //   });
-  connection.on('connection', (connection) => {
-    console.log('New connection established.');
+const connection = mysql.createConnection({
+    // connectionLimit: 10,
+    host: 'db4free.net',
+    user: 'handyhelper',
+    password: 'handyhelper',
+    database: 'auc_handyhelper'
   });
-
-  // console.log(connection.promise().isConnected() ? 'Connected to MySQL database!' : 'Not connected to MySQL database!');
-
-  // const getConnection = () => {
-  //   return new Promise((resolve, reject) => {
-  //     pool.getConnection((err, connection) => {
-  //       if (err) {
-  //         reject(err);
-  //       } else {
-  //         resolve(connection);
-  //       }
-  //     });
-  //   });
-  // };
+  
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected to MySQL database!");
+    });
     
 // insert a new user
 app.post('/adduser', (req, res) => {
     // extract user data from the request body
-    const { nat_ID, username, email, pass, gender, phone, date_of_birth, interest, description, notify} = req.body;
-    console.log("nationa: "+nat_ID);
+    const { nat_ID, username, email, pass, gender, phone, date_of_birth, interest, description, notify,imageBytes} = req.body;
     let query1 =`INSERT INTO users (national_id, username, email, pass, gender, phone_number, date_of_birth`;
     let query2 =`) VALUES ('${nat_ID}', '${username}', '${email}', '${pass}', '${gender}', '${phone}', '${date_of_birth}'`;
 
@@ -53,10 +34,10 @@ app.post('/adduser', (req, res) => {
     query1 += `, interests`;
     query2 += `, '${interest}'`;
   }
-  // if (image){
-  //   query1 += `, image`;
-  //   query2 += `, '${image}'`;
-  // }
+  if (imageBytes!= null){
+    query1 += `, image`;
+    query2 += `, '${imageBytes}'`;
+  }
   if (description){
     query1 += `, description`;
     query2 += `, '${description}'`;
@@ -66,6 +47,7 @@ app.post('/adduser', (req, res) => {
     query2 += `, ${notify}`;
   }
   query1 += query2 + `)`;
+  console.log(query1);
   
     // execute the query using the MySQL connection pool
     connection.query(query1, (err, result) => {
@@ -110,30 +92,11 @@ app.post('/adduser', (req, res) => {
       if(results.length > 0){
         res.status(201).json(results[0]);
       }else{
-        res.status(404).send("0");
+        res.status(404).json({message:"No entry"});
       }
     })
   })
-app.get('/updateallapps', (req,res)=>{
-  const {post_id} = req.query;
-  const query = "SELECT * FROM apply WHERE post_id = ? and accepted_status = 'A' "
 
-  connection.query(query,[post_id], (err, results)=>{
-    if(err) return;
-    if(results.length > 0){
-      const query2 = "UPDATE apply set accepted_status = 'R' where post_id = ? and accepted_status = 'P'";
-      connection.query(query2,[post_id], (err, results)=>{
-        if (err) return;
-        if(results){
-          res.send("1");
-        }
-      })
-    }else{
-      res.send("0");
-    }
-  })
-
-})
   app.post('/apply', (req, res)=>{
     const {post_id, national_id, apply_price} = req.body;
     const query = "INSERT INTO apply (post_id, national_id, apply_price) VALUES (?, ?, ?)";
@@ -338,6 +301,27 @@ app.put('/users/:username/description', (req, res) => {
   });
 });
 
+// API to get specific columns from the users table
+// image, rating, interests, and description
+app.get('/users/:national_id/details', (req, res) => {
+  const national_id = req.params.national_id.replace(':','');
+
+  const query = `SELECT image, rating, interests, description FROM users WHERE national_id = '${national_id}'`;
+
+  connection.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving user details from database');
+    } else {
+      if (result.length > 0) {
+        const userDetails = result[0];
+        res.status(200).json(userDetails);
+      } else {
+        res.status(404).send('User not found');
+      }
+    }
+  });
+});
 
 // Update user password by username
 app.put('/users/:username/password', (req, res) => {
@@ -585,107 +569,6 @@ app.get('/appliedPosts/:userId', (req, res) => {
       res.status(500).json({ error: 'Failed to retrieve applied posts' });
     } else {
       res.json(results);
-    }
-  });
-});
-
-// API to get specific columns from the users table
-// image, rating, interests, and description
-app.get('/users/:username/details', (req, res) => {
-  const username = req.params.username;
-
-  const query = `SELECT image, rating, interests, description FROM users WHERE username = '${username}'`;
-
-  connection.query(query, (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving user details from the database');
-    } else {
-      if (result.length > 0) {
-        const userDetails = result[0];
-        res.status(200).json(userDetails);
-      } else {
-        console.log('No user found in the database.'); // Add this line to log the scenario.
-        res.status(404).send('User not found');
-      }
-    }
-  });
-});
-
-// Update user password by username
-app.put('/users/:username/password', (req, res) => {
-  const { username } = req.params;
-  const { password } = req.body;
-
-  const sql = 'UPDATE users SET pass = ? WHERE username = ?';
-  connection.query(sql, [password, username], (err, result) => {
-    if (err) {
-      console.error('Error updating user password: ', err);
-      res.status(500).json({ error: 'Failed to update user password' });
-      return;
-    }
-    console.log(`User "${username}" password updated successfully`);
-    res.json({ message: 'User password updated successfully' });
-  });
-});
-
-// Update user email or phone number by username
-app.put('/users/:username/contact', (req, res) => {
-  const { username } = req.params;
-  const { email, phoneNumber } = req.body;
-
-  // Check if either email or phone number is provided
-  if (!email && !phoneNumber) {
-    res.status(400).json({ error: 'Either email or phone number must be provided' });
-    return;
-  }
-
-  // Build the SQL query dynamically based on the provided fields
-  let sql = 'UPDATE users SET';
-  const values = [];
-
-  if (email) {
-    sql += ' email = ?,';
-    values.push(email);
-  }
-  if (phoneNumber) {
-    sql += ' phone_number = ?,';
-    values.push(phoneNumber);
-  }
-
-  // Remove the trailing comma from the query
-  sql = sql.slice(0, -1);
-
-  // Add the WHERE clause to update the user with the specified username
-  sql += ' WHERE username = ?';
-  values.push(username);
-
-  connection.query(sql, values, (err, result) => {
-    if (err) {
-      console.error('Error updating user contact information: ', err);
-      res.status(500).json({ error: 'Failed to update user contact information' });
-      return;
-    }
-    console.log(`User "${username}" contact information updated successfully`);
-    res.json({ message: 'User contact information updated successfully' });
-  });
-});
-
-app.post('/update_interests', (req, res) => {
-  const { username, interests } = req.body;
-
-  // Update the interests column in the user table for the matching username
-  const sql = 'UPDATE users SET interests = ? WHERE username = ?';
-  connection.query(sql, [interests, username], (err, result) => {
-    if (err) {
-      console.error('Error updating interests:', err);
-      res.status(500).json({ error: 'An error occurred while updating interests' });
-    } else {
-      if (result.affectedRows === 0) {
-        res.status(404).json({ error: 'User not found' });
-      } else {
-        res.json({ message: 'Interests updated successfully' });
-      }
     }
   });
 });
