@@ -53,6 +53,7 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
     private boolean isPlaceSelected;
     private double locationLat;
     private double locationLon;
+    private String category;
     private HandyAPI my_api = new HandyAPI();
 
 
@@ -66,6 +67,14 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
             Toast.makeText(this, "No internet connection available", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        Intent intent = getIntent();
+//        Bundle bundle = this.getIntent().getExtras();
+//        if(bundle != null){
+//            category
+//        }
+        category = intent.getStringExtra("title");
+        Log.e("TAG", "The category is: " + category);
 
         // Initialize the Places SDK
         Places.initialize(getApplicationContext(), "AIzaSyAAUKNLUrCJGc3UijGGKO6wz3VIloVlbRU");
@@ -277,6 +286,7 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
                 requestBody.put("time", time);
                 requestBody.put("compensation", compensation);
                 requestBody.put("description", description);
+                requestBody.put("category", category); // Add category to the request body
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(requestBody.toString());

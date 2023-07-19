@@ -179,7 +179,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
                 for (int i = 0; i < reqs.size(); i++) {
-                    if (!cats[1] && reqs.get(i).cat.equals("Carcare")) {
+                    if (!cats[1] && (reqs.get(i).cat.equals("Carcare") || reqs.get(i).cat.equals("Car Care"))) {
                         reqs.remove(i);
                         i--;
                     }
@@ -197,7 +197,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
                 for (int i = 0; i < reqs.size(); i++) {
-                    if (!cats[4] && reqs.get(i).cat.equals("Petcare")) {
+                    if (!cats[4] && (reqs.get(i).cat.equals("Petcare") || reqs.get(i).cat.equals("Pet Care"))) {
                         reqs.remove(i);
                         i--;
                     }

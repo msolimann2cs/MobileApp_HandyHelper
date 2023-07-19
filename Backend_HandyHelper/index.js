@@ -542,16 +542,16 @@ app.get('/applicants/:postId', (req, res) => {
     });
   });
   app.post('/createPost', (req, res) => {
-    const { national_id, title, location_lat, location_lon, date, time, compensation, description } = req.body;
+    const { national_id, title, location_lat, location_lon, date, time, compensation, description, category } = req.body;
     
     // Construct the SQL query
     const query = `
-      INSERT INTO post (title, content, created_at, national_id, service_date, service_time, location_lat, location_lon, initial_price)
-      VALUES (?, ?, NOW(), ?, ?, ?, ?, ?, ?)
+      INSERT INTO post (title, content, created_at, national_id, service_date, service_time, location_lat, location_lon, initial_price, category)
+      VALUES (?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?)
     `;
     
     // Execute the query
-    connection.query(query, [title, description, national_id, date, time, location_lat, location_lon, compensation], (error, results) => {
+    connection.query(query, [title, description, national_id, date, time, location_lat, location_lon, compensation, category], (error, results) => {
       if (error) {
         console.error('Error creating post:', error);
         res.sendStatus(500);
@@ -560,6 +560,7 @@ app.get('/applicants/:postId', (req, res) => {
       }
     });
   });
+  
   
   
   app.get('/getApplicationStatus', (req, res) => {
