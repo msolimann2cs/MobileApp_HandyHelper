@@ -2,6 +2,7 @@ package com.mariam.registeration;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
+import com.mariam.registeration.User;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.mariam.registeration.screens.profile.ProfileMain;
+import com.mariam.registeration.screens.profile.ProfileSettings;
 import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
@@ -139,7 +142,7 @@ public class MyRequests extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle icon1 click here
-                Intent intent = new Intent(MyRequests.this, ProfileMain.class);
+                Intent intent = new Intent(MyRequests.this, ProfileSettings.class);
                 startActivity(intent);
             }
         });
@@ -233,10 +236,10 @@ public class MyRequests extends AppCompatActivity {
             String result = "";
 
             try {
-                //String nationalID = getNationalIDFromSharedPreferences(); // Retrieve the national ID
-                String nationalID = "11111111111111"; // Retrieve the national ID
+                String nationalID = getNationalIDFromSharedPreferences(); // Retrieve the national ID
 
-                URL url = new URL("http://"+my_api.API_LINK+"/combinedData/" + nationalID);
+                URL url = new URL("http://" + my_api.API_LINK + "/combinedData/" + nationalID);
+
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "connection is " + connection);
 
@@ -305,3 +308,4 @@ public class MyRequests extends AppCompatActivity {
         return preferences.getString("Nat_ID", "");
     }
 }
+

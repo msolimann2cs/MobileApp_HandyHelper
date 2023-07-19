@@ -14,6 +14,7 @@ import java.util.List;
 
 
 public class Request {
+    static boolean locEnabled;
     String title;
     String description;
     LocalDate reqDate;
@@ -36,13 +37,14 @@ public class Request {
 
     }
 
-    public Request(int id,String cat, String title, String description, String date,String time, double locationLat, double locationLong, int price,  String userId) {
+    public Request(int id,String cat, String title, String description, String date,String time, double locationLat, double locationLong, int price,  String userId, boolean locEnabled) {
         //Current User Location
         this.reqDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
         this.id = id;
         this.cat = cat;
         this.userId = userId;
         this.time = time;
+        this.locEnabled = locEnabled;
 
         try {
             LocalDate currDate = LocalDate.now();

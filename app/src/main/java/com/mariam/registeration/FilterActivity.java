@@ -34,6 +34,8 @@ public class FilterActivity extends AppCompatActivity {
         cats[3] = false;
         cats[4] = false;
 
+        boolean locEnabled= true;
+
         catGardening = (Button) findViewById(R.id.gardeningButton);
         catPetCate = (Button) findViewById(R.id.petcareButton);
         catCarCare = (Button) findViewById(R.id.carcareButton);
@@ -42,7 +44,11 @@ public class FilterActivity extends AppCompatActivity {
         backBtn = (TextView) findViewById(R.id.back);
         ColorStateList catagButtons = getResources().getColorStateList(R.color.colorstate);
         ColorStateList catagButtonsClicked = getResources().getColorStateList(R.color.colorstateclick);
+        Bundle bundle = new Bundle(this.getIntent().getExtras());
 
+        if(bundle!=null){
+            locEnabled= bundle.getBoolean("enabled");
+        }
         catGardening.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +131,12 @@ public class FilterActivity extends AppCompatActivity {
 
 
         RangeSlider disSlider = (RangeSlider) findViewById(R.id.distanceSlider);
+
+        if(!locEnabled){
+            disSlider.setVisibility(View.INVISIBLE);
+        }else{
+            disSlider.setVisibility(View.VISIBLE);
+        }
 
 
 

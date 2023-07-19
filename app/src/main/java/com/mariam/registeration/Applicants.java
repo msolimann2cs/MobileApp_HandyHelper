@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import com.mariam.registeration.screens.profile.ProfileSettings;
 import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
@@ -57,6 +58,7 @@ class Applicant {
 }
 
 public class Applicants extends AppCompatActivity {
+    HandyAPI API = new HandyAPI();
 
     private ListView listView;
     private List<Applicant> itemList;
@@ -85,6 +87,28 @@ public class Applicants extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goback();
+            }
+        });
+
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle icon1 click here
+                Intent intent = new Intent(Applicants.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle icon1 click here
+                Intent intent = new Intent(Applicants.this, ProfileSettings.class);
+                startActivity(intent);
             }
         });
     }
@@ -134,6 +158,18 @@ public class Applicants extends AppCompatActivity {
                 }
             });
 
+            convertView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Applicants.this, ApplicantProfile.class);
+                    // Pass the necessary data to the UserProfile activity
+                    intent.putExtra("nat_id", applicant.getNatID());
+                    intent.putExtra("username", applicant.getUsername());
+                    // Start the UserProfile activity
+                    startActivity(intent);
+                }
+            });
+
             return convertView;
         }
 
@@ -146,6 +182,7 @@ public class Applicants extends AppCompatActivity {
         }
     }
 
+
     private class RetrieveApplicantsTask extends AsyncTask<Integer, Void, String> {
 
         @Override
@@ -154,7 +191,7 @@ public class Applicants extends AppCompatActivity {
             String result = "";
 
             try {
-                URL url = new URL("http://"+my_api.API_LINK +"/applicants/" + postId);
+                URL url = new URL("http://"+API.API_LINK+ "/applicants/" + postId);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "URL is "+ url);
 
@@ -218,6 +255,7 @@ public class Applicants extends AppCompatActivity {
 
             try {
                 URL url = new URL("http://"+my_api.API_LINK+ "/updateApplicationStatus");
+
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");

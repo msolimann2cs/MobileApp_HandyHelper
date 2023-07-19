@@ -17,10 +17,6 @@ import java.net.URL;
 
 public class DatabaseManager {
     private HandyAPI my_api = new HandyAPI();
-    public void updateDescription(String username, String description, View.OnClickListener callback) {
-        new UpdateDescriptionTask((DatabaseCallback) callback).execute(username, description);
-    }
-
     private class UpdateDescriptionTask extends AsyncTask<String, Void, String> {
         private final DatabaseCallback callback;
 
@@ -32,7 +28,7 @@ public class DatabaseManager {
         protected String doInBackground(String... params) {
             String username = params[0];
             String rawDescription = params[1];
-            String apiUrl = "http://"+my_api.API_LINK+"/users/" + username + "/description";
+            String apiUrl = "http://your-api-url/users/" + username + "/description";
 
             try {
                 URL url = new URL(apiUrl);
@@ -95,7 +91,7 @@ public class DatabaseManager {
         @Override
         protected String doInBackground(String... params) {
             String nationalId = params[0];
-            String apiUrl = "http://"+my_api.API_LINK+"/users/" + nationalId + "/details";
+            String apiUrl = "http://your-api-url/users/" + nationalId + "/details";
 
             try {
                 URL url = new URL(apiUrl);
@@ -137,8 +133,11 @@ public class DatabaseManager {
         }
     }
 
+    public void updateDescription(String username, String description, View.OnClickListener callback) {
+        new UpdateDescriptionTask((DatabaseCallback) callback).execute(username, description);
+    }
+
     public void getUserDetails(String nationalId, DatabaseCallback callback) {
         new GetUserDetailsTask(callback).execute(nationalId);
     }
-
 }

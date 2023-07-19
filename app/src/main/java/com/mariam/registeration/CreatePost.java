@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +54,7 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
     private double locationLat;
     private double locationLon;
     private HandyAPI my_api = new HandyAPI();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,13 +261,15 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
 
             try {
                 URL url = new URL("http://"+my_api.API_LINK + "/createPost");
+
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
+                String nationalID = getNationalIDFromSharedPreferences(); // Retrieve the national ID
 
                 JSONObject requestBody = new JSONObject();
-                requestBody.put("national_id", "11111111111111");
+                requestBody.put("national_id", nationalID);
                 requestBody.put("title", location);
                 requestBody.put("location_lat", locationLat);
                 requestBody.put("location_lon", locationLon);
@@ -302,5 +306,9 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
                 Toast.makeText(CreatePost.this, "Failed to create post", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    private String getNationalIDFromSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getString("Nat_ID", "");
     }
 }

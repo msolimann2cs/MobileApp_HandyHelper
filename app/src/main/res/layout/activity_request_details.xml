@@ -236,11 +236,13 @@
                 </LinearLayout>
             </LinearLayout>
             <View style="@style/Divider" android:layout_marginHorizontal="10dp" />
+
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="5"
                 android:layout_margin="20dp"
+                
                 android:id="@+id/googlemap"
                 class="com.google.android.gms.maps.SupportMapFragment"
                 />

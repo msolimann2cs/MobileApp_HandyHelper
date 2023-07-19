@@ -105,7 +105,8 @@ public class setup_interest extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(setup_interest.this, verify_phone2.class);
+                Intent i = new Intent(setup_interest.this, Setup_img.class);
+                i.putExtra("user_data", user);
                 setup_interest.this.startActivity(i);
             }
         });

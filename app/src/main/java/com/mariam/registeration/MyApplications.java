@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mariam.registeration.screens.profile.ProfileSettings;
 import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
@@ -137,6 +138,28 @@ public class MyApplications extends AppCompatActivity {
         // Retrieve the applied posts
         RetrieveAppliedPostsTask task = new RetrieveAppliedPostsTask();
         task.execute();
+
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle icon1 click here
+                Intent intent = new Intent(MyApplications.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle icon1 click here
+                Intent intent = new Intent(MyApplications.this, ProfileSettings.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class AppAdapter extends ArrayAdapter<App> {
@@ -202,7 +225,7 @@ public class MyApplications extends AppCompatActivity {
     }
 
     private class RetrieveAppliedPostsTask extends AsyncTask<Void, Void, String> {
-
+        HandyAPI API = new HandyAPI();
         @Override
         protected String doInBackground(Void... voids) {
             String result = "";
@@ -210,6 +233,7 @@ public class MyApplications extends AppCompatActivity {
             try {
                 URL url = new URL("http://"+ my_api.API_LINK+ "/appliedPosts/" + userId);
                 //URL url = new URL("http://10.40.39.215/appliedPosts/" + userId);
+
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "the url is" +url);
 

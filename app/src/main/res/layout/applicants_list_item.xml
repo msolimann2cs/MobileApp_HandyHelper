@@ -87,7 +87,9 @@
                 android:layout_weight="1"
                 android:textColor="#ffffff"
                 android:layout_marginEnd="4dp"
-                android:backgroundTint="#F9AC0C" />
+                android:backgroundTint="#F9AC0C"
+                android:background="@drawable/rounded_text_background"
+                />
 
             <Button
                 android:id="@+id/button2"
@@ -96,7 +98,10 @@
                 android:text="Decline"
                 android:layout_weight="1"
                 android:textColor="#ffffff"
-                android:backgroundTint="#2D4059" />
+                android:backgroundTint="#2D4059"
+                android:background="@drawable/rounded_text_background"
+
+                />
 
         </LinearLayout>
 

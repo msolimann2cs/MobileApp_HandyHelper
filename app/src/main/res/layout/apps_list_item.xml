@@ -109,12 +109,11 @@
             <!-- Icon 2 -->
             <ImageView
                 android:id="@+id/icon2"
-                android:layout_width="24dp"
+                android:layout_width="19dp"
                 android:layout_height="24dp"
-                android:src="@drawable/pencil"
                 android:layout_marginStart="16dp"
-                android:Tint="#2D4059"
-                />
+                android:src="@drawable/pencil"
+                android:tint="#2D4059" />
 
             <TextView
                 android:id="@+id/numofapplications"
@@ -132,10 +131,9 @@
                 android:id="@+id/icon3"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/calendar"
                 android:layout_marginStart="16dp"
-                android:Tint="#2D4059"
-                />
+                android:src="@drawable/calendar"
+                android:tint="#2D4059" />
 
             <TextView
                 android:id="@+id/date"

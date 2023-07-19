@@ -25,8 +25,18 @@
                 android:layout_marginTop="60dp"
                 android:background="@drawable/white_round_container"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/bck_btn"
+                    android:paddingLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&lt;"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    />
+
 <LinearLayout
-    android:layout_marginTop="75dp"
+    android:layout_marginTop="25dp"
     android:layout_gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="50dp"
@@ -63,17 +73,7 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center"
                     >
-                    <TextView
-                        android:id="@+id/profile_tab"
-                        android:background="@drawable/button_style_1_selected"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Profile"
-                        android:textColor="@android:color/black"
-                        android:textSize="24sp" />
+
 <!--                    <TextView-->
 <!--                        android:id="@+id/wallet_tab"-->
 <!--                        android:layout_marginLeft="20dp"-->
@@ -86,18 +86,7 @@
 <!--                        android:text="Wallet"-->
 <!--                        android:textColor="@android:color/black"-->
 <!--                        android:textSize="24sp" />-->
-                    <TextView
-                        android:id="@+id/settings_tab"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/button_style1_mod"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Settings"
-                        android:textColor="@android:color/black"
-                        android:textSize="24sp" />
+
 
                 </LinearLayout>
 
@@ -114,6 +103,7 @@
                     android:textColor="@color/black"
                     />
                 <TextView
+                    android:paddingLeft="10dp"
                     android:maxLines="3"
                     android:scrollHorizontally="false"
                     android:id="@+id/about_me_desc"
@@ -139,88 +129,109 @@
                     android:textColor="@color/black"
                     />
                 <LinearLayout
-                    android:paddingRight="10dp"
+                    android:layout_marginTop="10dp"
                     android:paddingLeft="10dp"
                     android:layout_marginLeft="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:id="@+id/categories"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:background="@drawable/button_style1_mod"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Car"
-                        android:lineSpacingExtra="4dp"
-                        android:gravity="start|top"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        />
-                    <TextView
-                        android:background="@drawable/button_style1_mod"
-                        android:layout_marginLeft="10dp"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gardening"
-                        android:lineSpacingExtra="4dp"
-                        android:gravity="start|top"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
                     android:paddingRight="10dp"
-                    android:paddingLeft="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:id="@+id/categories_line2"
-                    android:layout_marginTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/categories_tab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:background="@drawable/button_style1_mod"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:paddingRight="10dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
+                        android:id="@+id/cat1"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pet Care"
-                        android:lineSpacingExtra="4dp"
-                        android:gravity="start|top"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        />
-                    <TextView
-                        android:background="@drawable/button_style1_mod"
-                        android:layout_marginLeft="10dp"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
+                        android:orientation="horizontal">
+<!--                        <TextView-->
+<!--                            android:background="@drawable/button_style1_mod"-->
+<!--                            android:paddingRight="20dp"-->
+<!--                            android:paddingLeft="20dp"-->
+<!--                            android:paddingTop="5dp"-->
+<!--                            android:paddingBottom="5dp"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Car"-->
+<!--                            android:lineSpacingExtra="4dp"-->
+<!--                            android:gravity="start|top"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+<!--                        <TextView-->
+<!--                            android:background="@drawable/button_style1_mod"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:paddingRight="20dp"-->
+<!--                            android:paddingLeft="20dp"-->
+<!--                            android:paddingTop="5dp"-->
+<!--                            android:paddingBottom="5dp"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Gardening"-->
+<!--                            android:lineSpacingExtra="4dp"-->
+<!--                            android:gravity="start|top"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="15dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
+                        android:id="@+id/cat2"
+                        android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transportaion"
-                        android:lineSpacingExtra="4dp"
-                        android:gravity="start|top"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
-                        />
+                        android:orientation="horizontal">
+<!--                        <TextView-->
+<!--                            android:background="@drawable/button_style1_mod"-->
+<!--                            android:paddingRight="20dp"-->
+<!--                            android:paddingLeft="20dp"-->
+<!--                            android:paddingTop="5dp"-->
+<!--                            android:paddingBottom="5dp"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Pet Care"-->
+<!--                            android:lineSpacingExtra="4dp"-->
+<!--                            android:gravity="start|top"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+<!--                        <TextView-->
+<!--                            android:background="@drawable/button_style1_mod"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:paddingRight="20dp"-->
+<!--                            android:paddingLeft="20dp"-->
+<!--                            android:paddingTop="5dp"-->
+<!--                            android:paddingBottom="5dp"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Transportaion"-->
+<!--                            android:lineSpacingExtra="4dp"-->
+<!--                            android:gravity="start|top"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            />-->
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="27dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:id="@+id/cat3"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    </LinearLayout>
                 </LinearLayout>
+
+
 
 <!--                <TextView-->
 <!--                    android:layout_marginLeft="20dp"-->
@@ -323,61 +334,6 @@
 
 <!--                    </FrameLayout>-->
 <!--                </LinearLayout>-->
-                <LinearLayout
-
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    >
-                    <LinearLayout
-                        android:id="@+id/homeBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="5dp"
-
-                            android:background="@drawable/home_48px"
-
-                            android:id="@+id/navReq"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="5dp"
-                            android:background="@drawable/quick_reference_all_48px"
-                            android:id="@+id/navPost"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="5dp"
-                            android:background="@drawable/account_circle_fill_48px"
-                            android:id="@+id/navProfile"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
 
             </RelativeLayout>
 

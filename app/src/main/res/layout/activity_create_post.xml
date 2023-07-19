@@ -88,6 +88,7 @@
             <!-- Post Title -->
 
             <!-- Location -->
+
             <EditText
                 android:id="@+id/textBox"
                 android:layout_width="350dp"
@@ -99,6 +100,7 @@
                 android:hint="Enter Post Title"
                 android:padding="8dp"
                 android:textColor="#2D4059"
+                android:textColorHint="#2D4059"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -169,15 +171,16 @@
                     android:id="@+id/dateEditText"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edittext"
+                    android:backgroundTint="#DBE2EF"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:hint="MM/DD/YYYY"
                     android:inputType="date"
                     android:padding="8dp"
                     android:textColor="#2D4059"
-                    android:textSize="16sp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:backgroundTint="#2D4059"
-                    />
+                    android:textColorHint="#2D4059"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -193,16 +196,16 @@
                     android:id="@+id/timeEditText"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:hint="HH:mm"
                     android:inputType="time"
                     android:padding="8dp"
                     android:textColor="#2D4059"
-                    android:textSize="16sp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:backgroundTint="#2D4059"
-
-                    />
+                    android:textColorHint="#2D4059"
+                    android:background="@drawable/rounded_edittext"
+                    android:backgroundTint="#DBE2EF"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -234,13 +237,14 @@
                 android:id="@+id/compensationTextBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_edittext"
                 android:gravity="center_horizontal"
                 android:hint="Enter Price"
                 android:padding="8dp"
-                android:background="@drawable/rounded_edittext"
                 android:textColor="#2D4059"
+                android:textColorHint="#2D4059"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -270,15 +274,16 @@
             <EditText
                 android:id="@+id/descriptionTextBox"
                 android:layout_width="350dp"
-                android:height="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:height="70dp"
+                android:background="@drawable/rounded_edittext"
                 android:gravity="center_horizontal"
                 android:hint="Enter Request Description"
                 android:padding="8dp"
-                android:background="@drawable/rounded_edittext"
                 android:textColor="#2D4059"
+                android:textColorHint="#2D4059"
                 android:textSize="16sp" />
             <!-- Confirm Button -->
             <Button
@@ -287,6 +292,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_edittext"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="Post Request"
                 android:backgroundTint="#F9AC0C"
                 />

@@ -33,7 +33,13 @@ public class RequestAdaptor extends ArrayAdapter<Request> {
         descText.setText(request.description);
         titleText.setText(request.title);
         priceText.setText(Integer.toString(request.price));
-        locatText.setText(String.format("%.0f", request.distance()) + "Km");
+        if(request.locEnabled) {
+            locatText.setText(String.format("%.0f", request.distance()) + "Km");
+        }else{
+
+                locatText.setText(String.format("-", request.distance()) + "Km");
+
+        }
         dateText.setText(request.date);
         return convertView;
     }

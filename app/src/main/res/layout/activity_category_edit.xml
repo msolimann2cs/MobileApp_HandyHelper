@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="@drawable/white_round_container"
     android:padding="16dp">
 
     <LinearLayout
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/pet_care"
             android:layout_width="320dp"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -48,7 +49,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pet Care"
+                android:text="Petcare"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -61,12 +62,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text=">"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/installation"
             android:layout_marginTop="3.5dp"
             android:layout_width="320dp"
             android:layout_height="50dp"
@@ -91,12 +93,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text=">"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/gardening"
             android:layout_marginTop="3.5dp"
             android:layout_width="320dp"
             android:layout_height="50dp"
@@ -121,12 +124,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text=">"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/trasportation"
             android:layout_marginTop="3.5dp"
             android:layout_width="320dp"
             android:layout_height="50dp"
@@ -151,12 +155,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text=">"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/cars"
             android:layout_marginTop="3.5dp"
             android:layout_width="320dp"
             android:layout_height="50dp"
@@ -181,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text=">"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 />

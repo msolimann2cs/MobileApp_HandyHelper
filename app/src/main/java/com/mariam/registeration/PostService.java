@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mariam.registeration.screens.profile.ProfileSettings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +112,28 @@ public class PostService extends AppCompatActivity {
             public void onClick(View v) {
                 // Handle back button press
                 goback();
+            }
+        });
+
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle icon1 click here
+                Intent intent = new Intent(PostService.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle icon1 click here
+                Intent intent = new Intent(PostService.this, ProfileSettings.class);
+                startActivity(intent);
             }
         });
     }

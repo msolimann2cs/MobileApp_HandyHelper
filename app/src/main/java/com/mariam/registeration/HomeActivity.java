@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mariam.registeration.R.id;
+import com.mariam.registeration.screens.profile.ProfileMain;
+import com.mariam.registeration.screens.profile.ProfileSettings;
 import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
@@ -28,9 +31,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
-    private HandyAPI my_api = new HandyAPI();
+     HandyAPI my_api = new HandyAPI();
     TextView filterBtn;
     ArrayList<Request> reqs;
+
     private static final int REQUEST_CODE = 100;
 
     @Override
@@ -42,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
 
         getAllRequests getReqs = new getAllRequests();
         ActivityCompat.requestPermissions(HomeActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+
+
 
         location loc = new location();
         loc.setCtx(this);
@@ -58,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ProfileMain.class);
+                Intent intent = new Intent(HomeActivity.this, ProfileSettings.class);
                 intent.putExtra("current_user", current_user);
                 startActivity(intent);
             }
@@ -78,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
 
-        private final String API_URL = "http://"+my_api.API_LINK+"posts";
+        private final String API_URL = "http://"+my_api.API_LINK+"/posts";
 
       
         public static final String REQUEST_METHOD = "GET";
@@ -139,7 +145,11 @@ public class HomeActivity extends AppCompatActivity {
                     String time = jsonReq.getString("service_time");
                     int initialPrice = jsonReq.getInt("initial_price");
                     String userId = jsonReq.getString("national_id");
-                    Request req = new Request(id, cat, title, desc, date, time, locationLat, locationLon, initialPrice, userId);
+                    boolean locEnabled = true;
+                    if (ActivityCompat.checkSelfPermission(HomeActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(HomeActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                        locEnabled = false;
+                    }
+                    Request req = new Request(id, cat, title, desc, date, time, locationLat, locationLon, initialPrice, userId, locEnabled);
 
                     reqs.add(req);
                 }
@@ -205,11 +215,12 @@ public class HomeActivity extends AppCompatActivity {
                         i--;
                     }
                 }
-
-                for (int i = 0; i < reqs.size(); i++) {
-                    if (reqs.get(i).distance() > maxdis || reqs.get(i).distance() < mindis) {
-                        reqs.remove(i);
-                        i--;
+                if(reqs.get(0).locEnabled) {
+                    for (int i = 0; i < reqs.size(); i++) {
+                        if (reqs.get(i).distance() > maxdis || reqs.get(i).distance() < mindis) {
+                            reqs.remove(i);
+                            i--;
+                        }
                     }
                 }
 
@@ -242,12 +253,14 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra("reqId", clickedReq.id);
                     intent.putExtra("userId", clickedReq.userId);
 
+
                     HomeActivity.this.startActivity(intent);
                 }
             });
             HomeActivity.this.filterBtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
+                    intent.putExtra("enabled", reqs.get(0).locEnabled);
                     HomeActivity.this.startActivity(intent);
                 }
             });

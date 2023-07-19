@@ -73,8 +73,9 @@
             android:id="@+id/icon2"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginStart="16dp"
             android:src="@drawable/pencil"
-            android:layout_marginStart="16dp" />
+            android:tint="#2D4059" />
 
         <TextView
             android:id="@+id/numofapplications"
@@ -92,8 +93,9 @@
             android:id="@+id/icon3"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginStart="16dp"
             android:src="@drawable/calendar"
-            android:layout_marginStart="16dp" />
+            android:tint="#2D4059" />
 
         <TextView
             android:id="@+id/date"
