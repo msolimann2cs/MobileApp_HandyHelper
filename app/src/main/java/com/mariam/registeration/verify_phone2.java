@@ -6,8 +6,6 @@ import androidx.core.content.ContextCompat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,9 +14,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.Console;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 
 public class verify_phone2 extends AppCompatActivity {
 
@@ -38,6 +36,8 @@ public class verify_phone2 extends AppCompatActivity {
             R.id.editTextNumber3,
             R.id.editTextNumber4,
     };
+    public static final String ACCOUNT_SID = "ACde827196220eeef6de10d018f919c2f6";
+    public static final String AUTH_TOKEN = "4dda50444b6adf84557dfffe0ef49c20";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +48,10 @@ public class verify_phone2 extends AppCompatActivity {
         user = (User) intent.getSerializableExtra("user_data");
         System.out.println("verify2");
         code = intent.getStringExtra("code");
-        if (user != null) {
-            // Do something with the User object
-            Log.d("SecondActivity", "Received user: " + user.getPhone());
-        }
+//        if (user != null) {
+//            // Do something with the User object
+//            Log.d("SecondActivity", "Received user: " + user.getPhone());
+//        }
         unmatched = (TextView) findViewById(R.id.unmatched);
         buttonConfirm = (Button) findViewById(R.id.confirm_button);
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
@@ -61,24 +61,30 @@ public class verify_phone2 extends AppCompatActivity {
                 for (int i = 0; i < 4; i++) {
                     verify += input_code[i].getText().toString();
                 }
-                if (verify.equals(code)) {
-                    System.out.println("match");
-                    unmatched.setVisibility(View.INVISIBLE);
-                    Intent i = new Intent(verify_phone2.this,Setup_img.class);
-                    user.setPhone(phone);
-                    i.putExtra("user_data", user);
-                    verify_phone2.this.startActivity(i);
-
-                } else {
-                    System.out.println(code);
-                    System.out.println(verify);
-                    System.out.println("unmatch");
-                    unmatched.setVisibility(View.VISIBLE);
-                    for (EditText edittext: input_code)
-                    {
-                        edittext.setBackgroundResource(R.drawable.whiterounded_rededges);
-                    }
-                }
+                System.out.println("match");
+                unmatched.setVisibility(View.INVISIBLE);
+                Intent i = new Intent(verify_phone2.this,Setup_img.class);
+                user.setPhone(phone);
+                i.putExtra("user_data", user);
+                verify_phone2.this.startActivity(i);
+//                if (verify.equals(code)) {
+//                    System.out.println("match");
+//                    unmatched.setVisibility(View.INVISIBLE);
+//                    Intent i = new Intent(verify_phone2.this,Setup_img.class);
+//                    user.setPhone(phone);
+//                    i.putExtra("user_data", user);
+//                    verify_phone2.this.startActivity(i);
+//
+//                } else {
+//                    System.out.println(code);
+//                    System.out.println(verify);
+//                    System.out.println("unmatch");
+//                    unmatched.setVisibility(View.VISIBLE);
+//                    for (EditText edittext: input_code)
+//                    {
+//                        edittext.setBackgroundResource(R.drawable.whiterounded_rededges);
+//                    }
+//                }
             }
         });
 
@@ -152,7 +158,7 @@ public class verify_phone2 extends AppCompatActivity {
         resendcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSms();
+                sendVerificationCode();
             }
         });
     }
@@ -172,25 +178,21 @@ public class verify_phone2 extends AppCompatActivity {
         int code = (int) (Math.random() * 9000) + 1000;
         return String.valueOf(code);
     }
-    private void sendVerificationCode(String phone, String verificationCode) {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(phone, null, "Your verification code is: " + verificationCode, null, null);
-    }
-    private void sendSms() {
+
+    private void sendVerificationCode() {
+
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
         String verificationCode = generateVerificationCode();
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        if (telephonyManager != null && telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
-            sendVerificationCode(phone, verificationCode);
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phone, null, "Your verification code is: " + verificationCode, null, null);
-            System.out.println(verificationCode);
-            code = verificationCode;
-            Toast.makeText(this, "SMS sent", Toast.LENGTH_SHORT).show();
-        } else {
-            System.out.println("Not sent");
-            Toast.makeText(this, "Cannot send SMS", Toast.LENGTH_SHORT).show();
-        }
+//        Message message = Message.creator(
+//                        new com.twilio.type.PhoneNumber(phone),
+//                        new com.twilio.type.PhoneNumber("+18149628262"),
+//                        "Your verification code is: " + verificationCode)
+//                .create();
+//
+//        System.out.println("Verification code sent to " + message.getTo() + ": " + message.getBody());
     }
+
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = getCurrentFocus();

@@ -16,28 +16,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mariam.registeration.services.HandyAPI;
 import com.mariam.registeration.services.UserSession;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.sql.Blob;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class Login extends AppCompatActivity {
     private HandyAPI my_api = new HandyAPI();
@@ -99,6 +89,7 @@ public class Login extends AppCompatActivity {
 
                     final String API_URL = "http://"+my_api.API_LINK+"/login";
 
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -145,9 +136,6 @@ public class Login extends AppCompatActivity {
                                         Login.this.update_move(temp);
                                     }
                                 } else {
-                                    Login.this.logged=false;
-                                    System.out.println("Not logged");
-//                                    Login.this.notlogged();
                                     String errorResponse = "HTTP error code: " + responseCode;
                                 }
                             } catch (IOException e) {
@@ -157,12 +145,8 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     }).start();
-//                    if(!logged)
-//                    {
-//                        Login.this.errorMessageTextView.setVisibility(View.VISIBLE);
-//                        Login.this.mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
-//                        Login.this.mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
-//                    }
+                    System.out.println(logged);
+                    notlogged(logged);
                 }
             }
         });
@@ -183,11 +167,14 @@ public class Login extends AppCompatActivity {
         });
 
     }
-    public void notlogged() {
-        System.out.println("Not logged");
-        errorMessageTextView.setVisibility(View.VISIBLE);
-        mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
-        mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
+    public void notlogged(boolean log) {
+        if (!log)
+        {
+            System.out.println("Not logged");
+            errorMessageTextView.setVisibility(View.VISIBLE);
+            mEmailEditText.setBackgroundResource(R.drawable.red_roundedrec);
+            mPasswordEditText.setBackgroundResource(R.drawable.red_roundedrec);
+        }
     }
 
     private void hideKeyboard() {

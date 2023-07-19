@@ -9,16 +9,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.Manifest;
+
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 
 public class verify_phone extends AppCompatActivity implements View.OnClickListener {
     EditText editTextPhone;
@@ -27,7 +28,13 @@ public class verify_phone extends AppCompatActivity implements View.OnClickListe
     private View backgroundView;
     private String phone="";
     private User user;
+
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+    public static final String ACCOUNT_SID = "ACde827196220eeef6de10d018f919c2f6";
+    public static final String AUTH_TOKEN = "4dda50444b6adf84557dfffe0ef49c20";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +57,7 @@ public class verify_phone extends AppCompatActivity implements View.OnClickListe
                 phone = editTextPhone.getText().toString();
                 if (phone.substring(0,2).equals("+2"))
                 {
-                    checkSmsPermission();
+                    sendVerificationCode();
                 }else
                     editTextPhone.setError("Please enter valid number (eg. +20**********");
 
@@ -101,15 +108,31 @@ public class verify_phone extends AppCompatActivity implements View.OnClickListe
         return String.valueOf(code);
     }
 
-//    private void sendVerificationCode(String phone, String verificationCode) {
+    private void sendVerificationCode() {
 //        SmsManager smsManager = SmsManager.getDefault();
 //        smsManager.sendTextMessage(phone, null, "Your verification code is: " + verificationCode, null, null);
-//    }
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        String verificationCode = generateVerificationCode();
+//        Message message = Message.creator(
+//                        new com.twilio.type.PhoneNumber(phone),
+//                        new com.twilio.type.PhoneNumber("+18149628262"),
+//                        "Your verification code is: " + verificationCode).create();
+        System.out.println("sent");
+//        System.out.println("Verification code sent to " + message.getTo() + ": " + message.getBody());
+        Intent i = new Intent(verify_phone.this,verify_phone2.class);
+        i.putExtra("user_data",user);
+        i.putExtra("phone",phone);
+        i.putExtra("code",verificationCode);
+        System.out.println("move to 2");
+        verify_phone.this.startActivity(i);
+    }
 
     @Override
     public void onClick(View view) {
 
     }
+
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = getCurrentFocus();
@@ -119,47 +142,4 @@ public class verify_phone extends AppCompatActivity implements View.OnClickListe
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    private void checkSmsPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
-            System.out.println("requestPermissions");
-        } else {
-            sendSms();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_SEND_SMS:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    sendSms();
-
-                } else {
-                    Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }
-
-    private void sendSms() {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        if (telephonyManager != null && telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
-//            sendVerificationCode(phone, verificationCode);
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phone, "+201027210024", "Your verification code is: " + verificationCode, null, null);
-            System.out.println(verificationCode);
-            Toast.makeText(this, "SMS sent", Toast.LENGTH_SHORT).show();
-//            user.setPhone(phone);
-            Intent i = new Intent(verify_phone.this,verify_phone2.class);
-            i.putExtra("user_data",user);
-            i.putExtra("phone",phone);
-            i.putExtra("code",verificationCode);
-            verify_phone.this.startActivity(i);
-        } else {
-            System.out.println("Not sent");
-            Toast.makeText(this, "Cannot send SMS", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
