@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public class getAllRequests extends AsyncTask<String, Integer, String> {
 
-        private static final String API_URL = "http://"+"10.40.34.169:3000/"+"posts";
+        private final String API_URL = "http://"+my_api.API_LINK+"posts";
 
       
         public static final String REQUEST_METHOD = "GET";

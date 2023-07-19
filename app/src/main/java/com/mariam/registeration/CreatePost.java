@@ -24,6 +24,7 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONObject;
 
@@ -51,6 +52,7 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
     private boolean isPlaceSelected;
     private double locationLat;
     private double locationLon;
+    private HandyAPI my_api = new HandyAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,7 +258,7 @@ public class CreatePost extends AppCompatActivity implements DatePickerDialog.On
             String description = params[4];
 
             try {
-                URL url = new URL("http://10.40.34.169:3000/createPost");
+                URL url = new URL("http://"+my_api.API_LINK + "/createPost");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");

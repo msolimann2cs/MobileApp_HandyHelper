@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +35,8 @@ public class MyApplications extends AppCompatActivity {
     private ListView listView;
     private AppAdapter adapter;
     private String userId = "11111111111111"; // Replace with the actual user ID
+    private HandyAPI my_api = new HandyAPI();
+
 
     // App class declaration
     public class App {
@@ -205,8 +208,10 @@ public class MyApplications extends AppCompatActivity {
             String result = "";
 
             try {
-                URL url = new URL("http://10.40.34.169:3000/appliedPosts/" + userId);
+                URL url = new URL("http://"+ my_api.API_LINK+ "/appliedPosts/" + userId);
+                //URL url = new URL("http://10.40.39.215/appliedPosts/" + userId);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                Log.e("TAG", "the url is" +url);
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -247,6 +252,7 @@ public class MyApplications extends AppCompatActivity {
                     String date = rawServiceDate.split("T")[0];
                     int numOfApplications = postObject.getInt("num_applications");
                     int price = postObject.getInt("initial_price");
+                    Log.e("TAG", "The json is "+ postObject);
 
                     // Determine the rejectedIconResId based on the acceptedStatus
                     int rejectedIconResId = 0;

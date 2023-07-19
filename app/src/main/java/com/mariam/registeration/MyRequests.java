@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,8 @@ public class MyRequests extends AppCompatActivity {
     private CustomArrayAdapter adapter;
     private TabLayout tabLayout;
     private FloatingActionButton fabCreatePost;
+    private HandyAPI my_api = new HandyAPI();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,7 +236,7 @@ public class MyRequests extends AppCompatActivity {
                 //String nationalID = getNationalIDFromSharedPreferences(); // Retrieve the national ID
                 String nationalID = "11111111111111"; // Retrieve the national ID
 
-                URL url = new URL("http://10.40.34.169:3000/combinedData/" + nationalID);
+                URL url = new URL("http://"+my_api.API_LINK+"/combinedData/" + nationalID);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 Log.e("TAG", "connection is " + connection);
 

@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mariam.registeration.R.id;
 import com.mariam.registeration.R.layout;
+import com.mariam.registeration.services.HandyAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +57,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
 int p_id;
 
     double lat,lon;
+    private HandyAPI my_api = new HandyAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -307,7 +309,7 @@ int p_id;
     }
 
     public class getPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"apply";
+        String API_URL = "http://"+my_api.API_LINK+"apply";
         private String nationalId;
         private int postId;
         private OnRequestCompletedListener listener;
@@ -376,7 +378,7 @@ int p_id;
 
 
     public class applyToPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"apply";
+        String API_URL = "http://"+my_api.API_LINK+"apply";
         private String nationalId;
         private int postId;
         private int price;
@@ -461,7 +463,7 @@ int p_id;
     }
 
     public class getFullPost extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"post";
+        String API_URL = "http://"+my_api.API_LINK+"post";
         private int postId;
         private OnRequestCompletedListener listener;
 
@@ -531,7 +533,7 @@ int p_id;
 
 
     public class updatePostState extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"updatepoststatus";
+        String API_URL = "http://"+my_api.API_LINK+"updatepoststatus";
         private int postId;
         private String status;
         private OnRequestCompletedListener listener;
@@ -602,7 +604,7 @@ int p_id;
     }
 
     public class getUser extends AsyncTask<String, Integer, String>{
-        String API_URL = "http://"+"10.40.34.169:3000/"+"users/";
+        String API_URL = "http://"+my_api.API_LINK+"users/";
         private String nationalId;
         private int postId;
         private OnRequestCompletedListener listener;
