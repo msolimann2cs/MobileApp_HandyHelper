@@ -9,9 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,9 +23,9 @@ import android.widget.Toast;
 import android.Manifest;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class Setup_img extends AppCompatActivity {
 
@@ -37,7 +35,8 @@ public class Setup_img extends AppCompatActivity {
     private byte[] imageBytes;
 
     private static final int CAMERA_REQUEST_CODE = 100;
-    private static final int GALLERY_REQUEST_CODE = 101;
+//    private static final int GALLERY_REQUEST_CODE = 101;
+    private static final int SELECT_PICTURE = 200;
     private static final int REQUEST_PERMISSION_CODE = 102;
     private BottomSheetDialog bottomSheetDialog;
     Button showMenuButton;
@@ -88,8 +87,6 @@ public class Setup_img extends AppCompatActivity {
         });
 
         imageView = findViewById(R.id.imageView);
-//
-//        btnUpload = findViewById(R.id.btnUpload);
 
         btnnext = findViewById(R.id.next);
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -165,8 +162,13 @@ public class Setup_img extends AppCompatActivity {
 
     // Launch the gallery app to choose a picture
     private void choosePictureFromGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+
     }
 
     // Handle the result of the camera or gallery app
@@ -180,24 +182,24 @@ public class Setup_img extends AppCompatActivity {
                     bitmap = (Bitmap) data.getExtras().get("data");
                     imageView.setImageBitmap(bitmap);
                     break;
-                case GALLERY_REQUEST_CODE:
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                    Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
-                    bitmap = BitmapFactory.decodeFile(picturePath);
-                    imageView.setImageBitmap(bitmap);
-                    break;
+                case SELECT_PICTURE :
+                    // Get the url of the image from data
+                    Uri selectedImageUri = data.getData();
+                    if (null != selectedImageUri) {
+                        // update the preview image in the layout
+                        imageView.setImageURI(selectedImageUri);
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
             }
 
             if (bitmap != null) {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
                 imageBytes = bos.toByteArray();
-//                imageBytes = getBytesFromBitmap(bitmap);
             }
         }
     }

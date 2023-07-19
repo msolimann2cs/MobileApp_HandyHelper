@@ -43,7 +43,7 @@ public class register_done extends AppCompatActivity {
                     + "," + user.getPhone()+ "," + user.getNotify());
         }
         greeting = (TextView) findViewById(R.id.hello);
-        String name = "Hello, " ;
+        String name = "Hello "+user.getUsername()+"," ;
 //        +user.getUsername();
         greeting.setText(name);
 
